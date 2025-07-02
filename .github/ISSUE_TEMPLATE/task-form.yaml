@@ -1,0 +1,45 @@
+name: create a task
+description: map out the steps for a feature, bug etc for our hackathon Project
+title: <short description of the task>
+assignees:
+  - nil
+body:
+  - type: textarea
+    id: task-summary
+    attributes:
+      label: Task Summary (Optional)
+      description: A couple sentences describing what the task should do.
+      placeholder: ex 'Add a file to the repository'
+    validations:
+      required: false     
+  
+  - type: textarea
+    id: task-steps
+    attributes:
+      label: Task Steps
+      description: Steps to complete the task in task list format, please copy the line with checkbox if you need more.
+      value: '- [ ] create a file named test.md' 
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-comments
+    attributes:
+      label: Additional Comments (Optional)
+      description: Provide additonal comments or context for the task steps.
+      placeholder: you can the use `touch` command to create the file.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: issue-requirements
+    attributes:
+      label: Issue requirements
+      description: Please make sure you have done the below requirements. Fill out the checkboxes if you have.
+      options: 
+        - label: I have assigned appropriate scope label (backend, frontend, db, misc etc.) to this issue.
+          required: true
+        - label: I have added this issue to the relevent project.
+          required: true 
+
+        
