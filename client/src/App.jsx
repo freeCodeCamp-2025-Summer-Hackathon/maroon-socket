@@ -1,14 +1,9 @@
-import { useState } from 'react'
+import SignUp from './components/SignUp'
 
-
-function App() {
-  
-
-  return (
-    <>
-      <h1 className="text-red-500 text-3xl" >Hello world!</h1>
-    </>
+function App(){
+  return(
+    <SignUp />
   )
+ 
 }
-
-export default App
+export default App;
