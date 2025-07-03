@@ -4,9 +4,13 @@
   "description": "Repository for the maroon-socket team's work.",
   "main": "index.js",
   "type": "module",
-  "workspaces": ["./client", "./server"],
+  "workspaces": [
+    "./client",
+    "./server"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier -w ."
   },
   "repository": {
     "type": "git",
@@ -18,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/freeCodeCamp-2025-Summer-Hackathon/maroon-socket/issues"
   },
-  "homepage": "https://github.com/freeCodeCamp-2025-Summer-Hackathon/maroon-socket#readme"
+  "homepage": "https://github.com/freeCodeCamp-2025-Summer-Hackathon/maroon-socket#readme",
+  "devDependencies": {
+    "prettier": "3.6.2"
+  }
 }
