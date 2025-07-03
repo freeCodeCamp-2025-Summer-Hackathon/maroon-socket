@@ -1,0 +1,29 @@
+{
+  "name": "maroon-socket",
+  "version": "1.0.0",
+  "description": "Repository for the maroon-socket team's work.",
+  "main": "index.js",
+  "type": "module",
+  "workspaces": [
+    "./client",
+    "./server"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier -w ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freeCodeCamp-2025-Summer-Hackathon/maroon-socket.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/freeCodeCamp-2025-Summer-Hackathon/maroon-socket/issues"
+  },
+  "homepage": "https://github.com/freeCodeCamp-2025-Summer-Hackathon/maroon-socket#readme",
+  "devDependencies": {
+    "prettier": "3.6.2"
+  }
+}
