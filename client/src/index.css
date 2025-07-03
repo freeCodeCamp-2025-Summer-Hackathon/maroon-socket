@@ -5,9 +5,10 @@
 body {
   background-size: cover;
   background-color: #29433F;
-  margin: 3% 2% 2% 2%;
+  padding: 3% 2% 2% 2%;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin:0
 }

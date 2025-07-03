@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FaUserPen, FaEnvelope, FaLock } from "react-icons/fa6";
 import { MdLockOutline } from "react-icons/md";
 import signUp from '../assets/sign_up.png';
+import { Link } from "react-router-dom"
 
 
 function SignUp() {
@@ -72,7 +73,7 @@ function SignUp() {
           </div>
           <button className={`w-30 h-12 p-3 bg-[#29433F] rounded-md text-white cursor-pointer ${terms ? "" : " cursor-not-allowed"}`} disabled={!terms} onClick={(e)=>handleSubmit(e)}>Register</button>
           <div className="text-sm flex justify-center items-center gap-1">
-            Already have an account? <div className="text-[#29433F] cursor-pointer">Sign In</div>
+            Already have an account? <div className="text-[#29433F] cursor-pointer"><Link to="login">Sign In</Link></div>
           </div>
         </form>
     </div>
