@@ -2,3 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-size: cover;
+  background-color: #29433F;
+  padding: 3% 2% 2% 2%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:0
+}
