@@ -35,7 +35,7 @@ function Login(){
                         <div className="flex gap-1 py-4 mt-3">
                             Don't have an account ?
                             <div className="text-[#29433F] cursor-pointer hover:underline">
-                                <Link to="signup" >Register here</Link>
+                                <Link to="/signup" >Register here</Link>
                             </div>
                         </div>
                        
