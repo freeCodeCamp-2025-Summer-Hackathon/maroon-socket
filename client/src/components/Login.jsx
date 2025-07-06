@@ -13,9 +13,9 @@ function Login(){
     }
     return (
         
-         <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden w-full flex">
+         <div className="bg-secondary rounded-2xl shadow-2xl overflow-hidden w-full flex">
             <div className="flex flex-col items-start gap-4 py-32 px-20 w-full">
-                <h1 className="text-3xl font-semibold text-[#2B4540]" >Sign In</h1>
+                <h1 className="text-3xl font-semibold text-primary" >Sign In</h1>
                 <form className="w-full flex flex-col justify-center items-start gap-4">
                         <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
                         <span><FaUserPen className="text-2xl text-gray-600"/></span>
@@ -29,12 +29,12 @@ function Login(){
                             <input type="checkbox" className="bg-transparent size-4"></input>
                             <div className="text-base">Remember me</div>
                         </div>
-                        <button className="w-40 h-12 p-3 bg-[#29433F] text-white cursor-pointer rounded-lg" onClick={(e)=>handleSubmit(e)}>Login</button>
+                        <button className="w-40 h-12 p-3 bg-primary text-white cursor-pointer rounded-lg" onClick={(e)=>handleSubmit(e)}>Login</button>
                         
                 </form>
                         <div className="flex gap-1 py-4 mt-3">
                             Don't have an account ?
-                            <div className="text-[#29433F] cursor-pointer hover:underline"><Link to="/"
+                            <div className="text-primary cursor-pointer hover:underline"><Link to="/"
                             >Register here</Link>
                             </div>
                         </div>

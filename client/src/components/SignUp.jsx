@@ -45,7 +45,7 @@ function SignUp() {
 
     {/* Right Side , Sign up form*/}
     <div className="w-1/2 p-8 flex flex-col justify-center">
-      <h2 className="text-3xl font-bold text-[#29433F] mb-8 text-center">Sign Up</h2>
+      <h2 className="text-3xl font-bold text-primary mb-8 text-center">Sign Up</h2>
         <form className="w-full flex flex-col justify-center items-start gap-4">
           <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
             <span><FaUserPen className="text-2xl text-gray-600"/></span>
@@ -71,9 +71,9 @@ function SignUp() {
             <input className="size-4 bg-transparent border-2 border-gray-400" type="checkbox" checked={terms} onChange={(e)=>setTerms(e.target.checked)} />
             <label className="text-sm">I agree to all the terms.</label>
           </div>
-          <button className={`w-30 h-12 p-3 bg-[#29433F] rounded-md text-white cursor-pointer ${terms ? "" : " cursor-not-allowed"}`} disabled={!terms} onClick={(e)=>handleSubmit(e)}>Register</button>
+          <button className={`w-30 h-12 p-3 bg-primary rounded-md text-white cursor-pointer ${terms ? "" : " cursor-not-allowed"}`} disabled={!terms} onClick={(e)=>handleSubmit(e)}>Register</button>
           <div className="text-sm flex justify-center items-center gap-1">
-            Already have an account? <div className="text-[#29433F] cursor-pointer"><Link to="login">Sign In</Link></div>
+            Already have an account? <div className="text-primary cursor-pointer"><Link to="/login">Sign In</Link></div>
           </div>
         </form>
     </div>
