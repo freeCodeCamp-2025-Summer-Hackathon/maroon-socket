@@ -2,14 +2,35 @@
 import { useState } from "react";
 import { FaUserPen } from "react-icons/fa6";
 import { MdLockOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+// Dummy User
+const dummyEmail = "example@gmail.com";
+const dummyPassword = "12345678@";
 
 function Login(){
     const [verification,setVerification] = useState({email:"", password:""});
+    const navigate = useNavigate();
+
+    // Dummy Check
+    const dummyCheck = ()=>{
+        if(verification.email !== dummyEmail || verification.password !== dummyPassword){
+            return false;
+        }
+        return true;
+    }
 
     function handleSubmit(e){
         e.preventDefault();
         console.log(verification);
+   
+        if(dummyCheck()){
+            setTimeout(()=>{
+                  navigate('/userHome');
+            },2000);
+        }else{
+            alert("Invalid email or password");
+        }
     }
     return (
         
