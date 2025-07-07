@@ -33,8 +33,9 @@ function Login(){
         }
     }
     return (
-        
-         <div className="bg-secondary rounded-2xl shadow-2xl overflow-hidden w-full flex">
+        <div className="bg-[#29433F] w-full h-screen flex justify-center items-center px-20">
+        <div className="bg-[#29433F] w-full h-screen flex justify-center items-center px-20">
+         <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden md:w-3/5 flex">
             <div className="flex flex-col items-start gap-4 py-32 px-20 w-full">
                 <h1 className="text-3xl font-semibold text-primary" >Sign In</h1>
                 <form className="w-full flex flex-col justify-center items-start gap-4">
@@ -50,20 +51,21 @@ function Login(){
                             <input type="checkbox" className="bg-transparent size-4"></input>
                             <div className="text-base">Remember me</div>
                         </div>
-                        <button className="w-40 h-12 p-3 bg-primary text-white cursor-pointer rounded-lg" onClick={(e)=>handleSubmit(e)}>Login</button>
+                        <button className="w-40 h-12 p-3 bg-[#29433F] text-white cursor-pointer rounded-lg" onClick={(e)=>handleSubmit(e)}>Login</button>
                         
                 </form>
                         <div className="flex gap-1 py-4 mt-3">
                             Don't have an account ?
-                            <div className="text-primary cursor-pointer hover:underline"><Link to="/"
-                            >Register here</Link>
+                            <div className="text-[#29433F] cursor-pointer hover:underline">
+                                <Link to="/signup" >Register here</Link>
                             </div>
                         </div>
-                       
+                    </div>
             </div>
+          </div>
         </div>
-        
-        
+        </div>
+        </div>
     )
 }
 

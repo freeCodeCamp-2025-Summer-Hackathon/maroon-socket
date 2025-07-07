@@ -1,9 +1,8 @@
-import SignUp from './components/SignUp'
+import LandingPage from './components/LandingPage';
 
 function App(){
   return(
-    <SignUp />
+    <LandingPage/>
   )
- 
 }
 export default App;
