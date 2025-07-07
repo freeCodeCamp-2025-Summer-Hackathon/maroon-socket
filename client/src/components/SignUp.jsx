@@ -38,6 +38,7 @@ function SignUp() {
     }
   }
  return (
+  <div className="bg-[#29433F] w-full h-screen flex justify-center items-center px-20">
    <div className="bg-[#29433F] w-full h-screen flex justify-center items-center px-4">
    <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full flex">
     <div className='w-1/2 relative'>
@@ -80,7 +81,7 @@ function SignUp() {
     </div>
    </div>
    </div>
-  
+   </div>
  )
 }
 
