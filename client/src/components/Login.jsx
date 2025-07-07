@@ -12,8 +12,8 @@ function Login(){
         console.log(verification);
     }
     return (
-        
-         <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden w-full flex">
+        <div className="bg-[#29433F] w-full h-screen flex justify-center items-center px-20">
+         <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden md:w-3/5 flex">
             <div className="flex flex-col items-start gap-4 py-32 px-20 w-full">
                 <h1 className="text-3xl font-semibold text-[#2B4540]" >Sign In</h1>
                 <form className="w-full flex flex-col justify-center items-start gap-4">
@@ -41,7 +41,7 @@ function Login(){
                        
             </div>
         </div>
-        
+        </div>
         
     )
 }
