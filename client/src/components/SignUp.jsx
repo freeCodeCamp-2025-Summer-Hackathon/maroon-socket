@@ -38,6 +38,8 @@ function SignUp() {
     }
   }
  return (
+  <div className="bg-[#29433F] w-full h-screen flex justify-center items-center px-20">
+   <div className="bg-[#29433F] w-full h-screen flex justify-center items-center px-4">
    <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full flex">
     <div className='w-1/2 relative'>
         <img src={signUp} alt="a decorative plant pot" className="w-full h-full object-cover" />
@@ -78,7 +80,8 @@ function SignUp() {
         </form>
     </div>
    </div>
-  
+   </div>
+   </div>
  )
 }
 
