@@ -4,8 +4,9 @@
 
 body {
   background-size: cover;
-  background-color: #29433F;
-  padding: 3% 2% 2% 2%;
+  background-color: #ffffff/*#29433F*/;
+  padding: 0 /*3% 2% 2% 2%*/;
+  min-height: 100vh;
   text-align: center;
   display: flex;
   justify-content: center;

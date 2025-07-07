@@ -10,7 +10,7 @@ function LandingPage() {
     };
     return (
 
-        <div className="w-full h-full bg-white py-4 rounded-[20px]">
+        <div className="w-screen h-screen bg-white py-4 rounded-[20px]">
             {/*nav bar*/}
             <nav className="bg-white shadow-md flex justify-between items-center w-full p-8 rounded-b-lg">
                 <div className="flex items-center px-4">
@@ -52,7 +52,7 @@ function LandingPage() {
             </section>
             <div class="w-40 h-1 bg-[#2d6a4f] rounded-full mx-auto my-4"></div>
             {/*Explore*/}
-            <section className="py-10 px-6">
+            <section className="py-10 px-6 ">
                 <h2 className="text-3xl font-bold text-center mb-8" >Explore the app</h2>
                 <div className="flex flex-row gap-4 p-10">
                     <img src="" alt="App screenshot1" className="w-full h-auto rounded-lg shadow-md" />
