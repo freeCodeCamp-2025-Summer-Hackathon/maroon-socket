@@ -73,7 +73,7 @@ function SignUp() {
           </div>
           <button className={`w-30 h-12 p-3 bg-[#29433F] rounded-md text-white cursor-pointer ${terms ? "" : " cursor-not-allowed"}`} disabled={!terms} onClick={(e)=>handleSubmit(e)}>Register</button>
           <div className="text-sm flex justify-center items-center gap-1">
-            Already have an account? <div className="text-[#29433F] cursor-pointer"><Link to="login">Sign In</Link></div>
+            Already have an account? <div className="text-[#29433F] cursor-pointer"><Link to="/login">Sign In</Link></div>
           </div>
         </form>
     </div>
