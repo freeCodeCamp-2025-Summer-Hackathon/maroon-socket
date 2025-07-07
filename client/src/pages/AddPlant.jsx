@@ -42,39 +42,31 @@ const handleSubmit = async (e)=>{
 }
 
   return (
-    <div className="bg-secondary w-[50dvw] h-[93vh] rounded-md p-2 flex flex-col justify-center items-center ">
-        <h1 className="text-4xl font-semibold">Add Plant</h1>
-        {/** Add Plant form */}
-        <div className="w-5/6 h-full  flex justify-center items-center">
-            <form className="flex w-3/5 h-full flex-col justify-center gap-6  rounded-md p-4"  >
-                <div className="flex flex-col justify-center items-start gap-1">
-                    <div id="plantImage" className="w-32 h-28 p-2 flex justify-center items-center bg-white rounded-lg shadow-md" onClick={()=>imageRef.current.click()}>
-                        {
-                           newPlant.image ? (<p>{newPlant.image.name}</p>) :  (<FiUpload className="size-20 text-3xl"  />)
-                        }
-                    </div>
-                    {
-                        imageFormatError ? (<p className="text-sm text-red-500 " >Only .png .jpg .webp formats are allowed</p>) : ("")
-                    }
-                    <label htmlFor="plantImage" className="font-semibold text-lg" >Upload Plant Image</label>
+    <div className="bg-secondary w-screen h-screen flex justify-center ">
+      <div className=" w-3/5 h-full bg-primary px-8 flex flex-col justify-around items-start gap-2  ">
+        <div className="flex justify-center items-center gap-2">
+           <h1 className="text-3xl font-semibold text-white pl-4">Add Plant</h1>
+           <span className="size-10"><img src="/Images/plant-pot2.png" className="w-full h-full object-cover"/></span>
+        </div>
 
-                    <input ref={imageRef} type="file" accept=".png, .jpg, .jpeg" name="plantImage" onChange={handleImage} required className="hidden"/>
-                </div>
+        {/** Add Plant form */}
+        <div className="w-full flex justify-center items-center">
+            <form className="flex w-full h-full flex-col justify-center gap-8  rounded-md px-4"  onSubmit={handleSubmit} >  
                 <div className=" flex flex-col justify-center items-start gap-1">
-                   <label htmlFor="plantName" className="font-semibold text-lg" >Plant Name</label>
-                   <input className="border-none w-full p-3 text-base rounded-lg shadow-md focus:outline-none" type="text" id="plantName" value={newPlant.plantName}
+                   <label htmlFor="plantName" className="font-semibold text-lg text-white" >Plant Name</label>
+                   <input className="border-none w-full p-3 text-base rounded-lg shadow-md shadow-black focus:outline-none" type="text" id="plantName" value={newPlant.plantName}
                      placeholder="e.g-Money plant" name="plantName"
                      onChange={(e)=>{setNewPlant({...newPlant, plantName:e.target.value})}} required/>
                 </div>
                 <div className=" flex flex-col justify-center items-start gap-1">
-                    <label htmlFor="notes" className="font-semibold text-lg" >Notes</label>
-                    <textarea  className="border-none w-full px-3 py-2 text-base rounded-lg shadow-md focus:outline-none" rows={4} id="notes" placeholder="Write anything about your plant..." 
+                    <label htmlFor="notes" className="font-semibold text-lg text-white" >Notes</label>
+                    <textarea  className="border-none w-full px-3 py-2 text-base rounded-lg shadow-md shadow-black focus:outline-none" rows={4} id="notes" placeholder="Write anything about your plant..." 
                     onChange={(e)=>{setNewPlant({...newPlant, notes:e.target.value})}}
                     value={newPlant.notes} name="notes" required />
                 </div>
                 <div className=" flex flex-col justify-center items-start gap-1">
-                    <label htmlFor="waterFreq" className="font-semibold text-lg" >Watering Frequency</label>
-                    <select className="border w-full px-3 py-2 text-base rounded-lg shadow-md focus:outline-none" id="waterFreq" value={newPlant.waterFreq} name="waterFreq"
+                    <label htmlFor="waterFreq" className="font-semibold text-lg text-white" >Watering Frequency</label>
+                    <select className="border w-full px-3 py-2 text-base rounded-lg shadow-md shadow-black focus:outline-none" id="waterFreq" value={newPlant.waterFreq} name="waterFreq"
                     onChange={(e)=>{setNewPlant({...newPlant, waterFreq:parseInt(e.target.value)})}} required>
                         <option>--Select Watering Frequency--</option>
                         <option value="30">Monthly</option>
@@ -82,13 +74,34 @@ const handleSubmit = async (e)=>{
                         <option value="1">Daily</option>
                     </select>
                 </div>
+                <div className="flex flex-col justify-center items-start gap-1 ">
+                    <div id="plantImage" className="w-40 h-36 p-2 flex justify-center items-center bg-white shadow-black rounded-lg shadow-md" onClick={()=>imageRef.current.click()}>
+                        {
+                           newPlant.image ? (<p>{newPlant.image.name}</p>) :  (<div className="flex flex-col justify-center items-center gap-2">
+                             <FiUpload className="size-16 text-xl bg-black text-white rounded-full p-4"  />
+                             <p className="text-sm">Upload image</p>
+                           </div>
+                           )
+                        }
+                    </div>
+                        {
+                           imageFormatError ? (<p className="text-sm text-red-500 " >Only .png .jpg .webp formats are allowed</p>) : ("")
+                        }
+                    <input ref={imageRef} type="file" accept=".png, .jpg, .jpeg" name="plantImage" onChange={handleImage} required className="hidden"/>
+                </div>
+
                 {/** Submit Container */}
                 <div className="w-full flex justify-center items-center">
                 <button className="border flex justify-center items-center text-lg w-48 h-10 p-3 rounded-lg shadow-md text-white font-bold bg-black"
-                 type="submit" onClick={handleSubmit} >Done</button>
+                 type="submit" >Add</button>
                 </div>
             </form>
         </div>
+      </div>  
+      {/** plant-icon */}
+      <div className="w-3/5 h-screen flex justify-center items-center " >
+        <img src="/Images/plant-pot1.png" className="object-cover size-44 "/>
+      </div>
     </div>
   )
 }

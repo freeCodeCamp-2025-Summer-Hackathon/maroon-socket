@@ -21,13 +21,13 @@ const plants = [
 
 const MyPlants = () => {
   return (
-<div className="bg-secondary w-[90dvw] h-[93vh] rounded-md p-8 flex flex-col justify-center items-start gap-10 " >
-    <h1 className="text-3xl font-bold ">My Plants</h1>
+<div className="bg-secondary w-screen h-screen rounded-md p-8 flex flex-col justify-center items-start gap-14 " >
+    <h1 className="text-4xl font-bold ">My Plants</h1>
     <div className="w-full h-full flex justify-start gap-7 ">
         {
            plants.map((plant, idx)=>{
             return (
-                <div key={idx} className="flex flex-col justify-center items-center gap-4 w-56 h-72 bg-white shadow-md shadow-gray-300 rounded-lg" >
+                <div key={idx} className="flex flex-col justify-center items-center gap-4 w-fit h-fit p-6 bg-white shadow-md shadow-gray-300 rounded-lg" >
                     <div className="w-44 h-48 rounded-md">
                         <img src={plant.url} className="w-full h-full object-cover"/>
                     </div>
@@ -39,9 +39,9 @@ const MyPlants = () => {
 
         {/** Add new plants */}
         <Link to={"/addPlant"} >
-        <div className="w-56 h-72 bg-white shadow-md shadow-gray-300 rounded-lg flex flex-col justify-center items-center gap-10 cursor-pointer">
-             <span ><FaPlus className="w-24 h-24 font-light" /></span>
-             {/* <p className="text-base text-gray-400">Add new plant</p> */}
+        <div className="w-52 h-fit p-6 bg-white shadow-md shadow-gray-300 rounded-lg flex flex-col justify-center items-center gap-8 cursor-pointer">
+             <span ><FaPlus className="w-24 h-44 font-light" /></span>
+             <p className="text-sm text-gray-400">Add new plant</p>
         </div>
         </Link> 
     </div>      
