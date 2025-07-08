@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import authRouter from './routes/authRouter.js';
+import plantRouter from './routes/plantRouter.js';
 
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
@@ -20,6 +21,7 @@ app.get('/api/status', (req, res) => {
 });
 
 app.use('/api/auth', authRouter);
+app.use('/api/plant', plantRouter);
 
 app.listen(PORT, () =>
     console.log(`Server is listening on port: ${PORT} at host: ${HOST}`)
