@@ -1,11 +1,13 @@
 import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
 import authRouter from './routes/authRouter.js';
 
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
 const app = express();
 
+app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
 app.use(express.json());
 
 app.get('/', (req, res) => {
