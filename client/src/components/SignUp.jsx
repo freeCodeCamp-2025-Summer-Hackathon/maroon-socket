@@ -59,15 +59,15 @@ function SignUp() {
           </div>
           <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
             <span ><FaEnvelope className="text-xl text-gray-600"/></span>
-            <input className="w-full border-none bg-transparent focus:outline-none text-gray-500" type="text" value = { userData.email } placeholder="Your Email id" onChange = {(e) => setUserData({...userData, email: e.target.value})} />
+            <input className="w-full border-none bg-transparent focus:outline-none text-gray-500" type="email" value = { userData.email } placeholder="Your Email id" onChange = {(e) => setUserData({...userData, email: e.target.value})} />
           </div>
           <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
             <span ><FaLock className="text-xl text-gray-600"/></span>
-            <input className="w-full border-none focus:outline-none bg-transparent text-gray-500" type="text" value= { userData.passWord } placeholder="Enter Password" onChange = {(e) => setUserData({...userData, passWord: e.target.value})}/>
+            <input className="w-full border-none focus:outline-none bg-transparent text-gray-500" type="password" value= { userData.passWord } placeholder="Enter Password" onChange = {(e) => setUserData({...userData, passWord: e.target.value})}/>
           </div>
           <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
             <span ><MdLockOutline className="text-2xl text-gray-600"/></span>
-            <input className="w-full border-none focus:outline-none bg-transparent  text-gray-500" type="text" value= { userData.confirmPassword } placeholder="Re-enter Password" onChange = {(e) => setUserData({...userData, confirmPassword: e.target.value})}/>
+            <input className="w-full border-none focus:outline-none bg-transparent  text-gray-500" type="password" value= { userData.confirmPassword } placeholder="Re-enter Password" onChange = {(e) => setUserData({...userData, confirmPassword: e.target.value})}/>
           </div>
           <div className="flex gap-2 justify-center items-center">
             <input className="size-4 bg-transparent border-2 border-gray-400" type="checkbox" checked={terms} onChange={(e)=>setTerms(e.target.checked)} />

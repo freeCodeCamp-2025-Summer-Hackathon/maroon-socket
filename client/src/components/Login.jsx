@@ -41,11 +41,11 @@ return (
                 <form className="w-full flex flex-col justify-center items-start gap-4">
                     <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
                         <span><FaUserPen className="text-2xl text-gray-600"/></span>
-                        <input className="w-full border-none bg-transparent focus:outline-none text-gray-500" type="text" value= {verification.email} onChange={(e)=>setVerification({...verification, email: e.target.value})} placeholder="Your mail id" />
+                        <input className="w-full border-none bg-transparent focus:outline-none text-gray-500" type="email" value= {verification.email} onChange={(e)=>setVerification({...verification, email: e.target.value})} placeholder="Your mail id" />
                     </div>
                     <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
                         <span><MdLockOutline className="text-2xl text-gray-600"/></span>
-                        <input className="w-full border-none bg-transparent focus:outline-none text-gray-500" type="text" value = {verification.password} onChange={(e) => setVerification({...verification, password: e.target.value})}placeholder="Your Password" />
+                        <input className="w-full border-none bg-transparent focus:outline-none text-gray-500" type="password" value = {verification.password} onChange={(e) => setVerification({...verification, password: e.target.value})}placeholder="Your Password" />
                     </div>
                     <div className="flex justify-center items-center gap-3 mt-6">
                         <input type="checkbox" className="bg-transparent size-4"></input>
