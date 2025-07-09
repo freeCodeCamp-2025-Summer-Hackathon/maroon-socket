@@ -46,7 +46,13 @@ Repository for the maroon-socket team's work.
     cd client
     ```
 
-2. **Start the App:**
+2. **Create a .env file:**
+
+    ```bash
+    cp .env.sample .env
+    ```
+
+3. **Start the App:**
 
     ```bash
     npm run dev
