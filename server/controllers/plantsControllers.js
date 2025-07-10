@@ -1,6 +1,6 @@
 import { PrismaClient } from '../generated/prisma/client.js';
 import storage from '../supabase/storageClient.js';
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'node:crypto';
 
 const prisma = new PrismaClient();
 
@@ -39,7 +39,7 @@ export const createPlant = async (req, res) => {
         if (req.file) {
             const bucket = storage.from('plant-images');
             const extension = req.file.originalname.split('.').pop();
-            const uniqueFilename = `${uuidv4()}.${extension}`;
+            const uniqueFilename = `${randomUUID()}.${extension}`;
 
             const { error: uploadError } = await bucket.upload(
                 uniqueFilename,
