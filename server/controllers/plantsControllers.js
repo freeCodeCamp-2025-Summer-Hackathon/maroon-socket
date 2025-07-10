@@ -1,4 +1,6 @@
 import { PrismaClient } from '../generated/prisma/client.js';
+import storage from '../supabase/storageClient.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const prisma = new PrismaClient();
 
@@ -25,11 +27,49 @@ export const getAllPLants = async (req, res) => {
 
 export const createPlant = async (req, res) => {
     try {
-        const { name, note, image_url, water_freq } = req.body;
+        const { name, note, water_freq } = req.body;
         if (!name) {
             return res
                 .status(400)
                 .json({ success: false, message: 'Name is required' });
+        }
+
+        let image_url = '';
+
+        if (req.file) {
+            const bucket = storage.from('plant-images');
+            const extension = req.file.originalname.split('.').pop();
+            const uniqueFilename = `${uuidv4()}.${extension}`;
+
+            const { error: uploadError } = await bucket.upload(
+                uniqueFilename,
+                req.file.buffer,
+                {
+                    contentType: req.file.mimetype,
+                    upsert: false
+                }
+            );
+
+            if (uploadError) {
+                console.error('Supabase upload error:', uploadError);
+                return res.status(500).json({
+                    success: false,
+                    message: 'Image upload failed'
+                });
+            }
+
+            const { data: publicUrlData, error: publicUrlError } =
+                bucket.getPublicUrl(uniqueFilename);
+
+            if (publicUrlError || !publicUrlData?.publicUrl) {
+                console.error('Failed to get public URL:', publicUrlError);
+                return res.status(500).json({
+                    success: false,
+                    message: 'Failed to get public URL'
+                });
+            }
+
+            image_url = publicUrlData.publicUrl;
         }
 
         const newPlant = await prisma.plants.create({
