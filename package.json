@@ -10,7 +10,8 @@
     ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "format": "prettier -w ."
+        "format": "prettier -w .",
+        "format:check": "prettier --check ."
     },
     "repository": {
         "type": "git",
