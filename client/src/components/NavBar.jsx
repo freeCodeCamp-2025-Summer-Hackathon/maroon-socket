@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-
-function NavBar(){
-    return(
+function NavBar() {
+    return (
         <nav className="bg-white shadow-md flex justify-between items-center w-full p-8 rounded-b-lg">
             <div className="flex items-center px-4">
                 <span className="text-2xl font-bold text-[#2d6a4f]">
@@ -13,7 +12,7 @@ function NavBar(){
                     Home
                 </li>
                 <li className="hover:text-[#2d6a4f] hover:font-medium">
-                        <Link to="/">Community</Link>
+                    <Link to="/">Community</Link>
                 </li>
                 <li className="hover:text-[#2d6a4f] hover:font-medium">
                     <Link to="/login">Login</Link>
