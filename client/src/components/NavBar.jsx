@@ -13,6 +13,9 @@ function NavBar(){
                     Home
                 </li>
                 <li className="hover:text-[#2d6a4f] hover:font-medium">
+                        <Link to="/">Community</Link>
+                </li>
+                <li className="hover:text-[#2d6a4f] hover:font-medium">
                     <Link to="/login">Login</Link>
                 </li>
                 <li className="hover:text-[#2d6a4f] hover:font-medium">
