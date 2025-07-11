@@ -1,5 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import heroImage from '../assets/heroImage.webp';
+import NavBar from './NavBar.jsx';
 
 function LandingPage() {
     const navigate = useNavigate();
@@ -10,24 +11,7 @@ function LandingPage() {
     return (
         <div className="w-screen h-screen bg-white py-4 rounded-[20px]">
             {/*nav bar*/}
-            <nav className="bg-white shadow-md flex justify-between items-center w-full p-8 rounded-b-lg">
-                <div className="flex items-center px-4">
-                    <span className="text-2xl font-bold text-[#2d6a4f]">
-                        PlantPal
-                    </span>
-                </div>
-                <ul className="flex gap-5 px-20 text-[#767676]">
-                    <li className="text-[#2d6a4f] font-semibold border-b-2">
-                        Home
-                    </li>
-                    <li className="hover:text-[#2d6a4f] hover:font-medium">
-                        <Link to="/login">Login</Link>
-                    </li>
-                    <li className="hover:text-[#2d6a4f] hover:font-medium">
-                        <Link to="/signup">Sign Up</Link>
-                    </li>
-                </ul>
-            </nav>
+            <NavBar />
             {/*main section*/}
             <section className="flex flex-row justify-between items-center gap-6 p-10">
                 <div className="flex flex-col items-start justify-center ml-20 ">
