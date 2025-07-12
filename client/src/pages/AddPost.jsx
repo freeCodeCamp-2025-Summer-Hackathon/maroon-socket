@@ -10,8 +10,8 @@ const AddPost = ({ onClose }) => {
     const postOptions = ['Question', 'Tip'];
     function handleSubmit(e) {
         e.preventDefault();
-        if (!postFields.title || !postFields.content) {
-            alert('Please provide title and description');
+        if (!postType || !postFields.title || !postFields.content) {
+            alert('Please provide Post Type, title and description');
             return false;
         }
         console.log(postType);
@@ -37,18 +37,24 @@ const AddPost = ({ onClose }) => {
                     onSubmit={handleSubmit}
                     className="space-y-6 flex flex-col w-full"
                 >
-                    <div className="flex items-center justify-between rounded-lg pl-1 pr-4 text-gray-700 bg-[#F2F5F2] border">
-                        <select
-                            name={postType}
-                            onChange={(e) => setPostType(e.target.value)}
-                            className="w-full focus:outline-none rounded-lg p-3 text-gray-700 bg-[#F2F5F2] bg-[length:24px_24px] bg-position-[down_4px_center]"
-                        >
-                            {postOptions.map((option) => (
-                                <option key={option} value={option}>
-                                    {option}
+                    <div>
+                        <div className="flex items-center justify-between rounded-lg pl-1 pr-4 text-gray-700 bg-[#F2F5F2] border mt-1">
+                            <select
+                                name="postType"
+                                value={postType}
+                                onChange={(e) => setPostType(e.target.value)}
+                                className="w-full focus:outline-none rounded-lg p-3 text-gray-700 bg-[#F2F5F2] bg-[length:24px_24px] bg-position-[down_4px_center]"
+                            >
+                                <option value="" disabled>
+                                    Select a post type
                                 </option>
-                            ))}
-                        </select>
+                                {postOptions.map((option) => (
+                                    <option key={option} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
                     <input
                         type="text"
