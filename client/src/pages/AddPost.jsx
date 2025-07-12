@@ -18,12 +18,13 @@ const AddPost = ({ onClose }) => {
         console.log(postFields);
     }
     return (
-        <div className="w-full bg-transparent flex flex-col items-center py-16 px-4 min-h-screen bg-white gap-10">
+        <div className="w-full bg-transparent flex flex-col items-center py-16 px-4 min-h-screen bg-white space-y-11">
             <div className="w-full max-w-2xl p-4 space-y-14">
                 <div className="flex flex-col space-y-10">
                     <button
                         className="self-end cursor-pointer"
                         onClick={onClose}
+                        aria-label="Close"
                     >
                         <AiTwotoneCloseSquare className="text-3xl text-[#2C6A4E]" />
                     </button>
@@ -35,11 +36,18 @@ const AddPost = ({ onClose }) => {
                 <form
                     method="post"
                     onSubmit={handleSubmit}
-                    className="space-y-6 flex flex-col w-full"
+                    className="space-y-12 flex flex-col w-full"
                 >
-                    <div>
-                        <div className="flex items-center justify-between rounded-lg pl-1 pr-4 text-gray-700 bg-[#F2F5F2] border mt-1">
+                    <div className="flex flex-col space-y-2">
+                        <label
+                            htmlFor="post-Type"
+                            className="block mb-1 font-medium text-gray-700"
+                        >
+                            Post Type:
+                        </label>
+                        <div className="flex items-center justify-between rounded-lg pl-1 pr-4 text-gray-700 bg-[#F2F5F2] border">
                             <select
+                                id="post-Type"
                                 name="postType"
                                 value={postType}
                                 onChange={(e) => setPostType(e.target.value)}
@@ -56,32 +64,50 @@ const AddPost = ({ onClose }) => {
                             </select>
                         </div>
                     </div>
-                    <input
-                        type="text"
-                        name="title"
-                        onChange={(e) => {
-                            setPostFields({
-                                ...postFields,
-                                title: e.target.value
-                            });
-                        }}
-                        value={postFields.title}
-                        placeholder="Title of the Post"
-                        className="w-full rounded-lg p-3 text-gray-700 bg-[#F2F5F2] placeholder:font-poppins placeholder:text-gray-400 focus:outline-green-800"
-                    />
-                    <textarea
-                        name="content"
-                        placeholder="Detailed description of the post..."
-                        onChange={(e) => {
-                            setPostFields({
-                                ...postFields,
-                                content: e.target.value
-                            });
-                        }}
-                        value={postFields.content}
-                        rows="4"
-                        className="w-full rounded-lg p-3 text-gray-700 bg-[#F2F5F2] placeholder:font-poppins placeholder:text-gray-400 focus:outline-green-800"
-                    />
+                    <div className="flex flex-col space-y-2">
+                        <label
+                            htmlFor="title"
+                            className="block mb-1 font-medium text-gray-700"
+                        >
+                            Title:
+                        </label>
+                        <input
+                            id="title"
+                            type="text"
+                            name="title"
+                            onChange={(e) => {
+                                setPostFields({
+                                    ...postFields,
+                                    title: e.target.value
+                                });
+                            }}
+                            value={postFields.title}
+                            placeholder="Title of the Post"
+                            className="w-full rounded-lg p-3 text-gray-700 bg-[#F2F5F2] placeholder:font-poppins placeholder:text-gray-400 focus:outline-green-800"
+                        />
+                    </div>
+                    <div className="flex flex-col space-y-2">
+                        <label
+                            htmlFor="description"
+                            className="block mb-1 font-medium text-gray-700"
+                        >
+                            Description:
+                        </label>
+                        <textarea
+                            id="description"
+                            name="content"
+                            placeholder="Detailed description of the post..."
+                            onChange={(e) => {
+                                setPostFields({
+                                    ...postFields,
+                                    content: e.target.value
+                                });
+                            }}
+                            value={postFields.content}
+                            rows="4"
+                            className="w-full rounded-lg p-3 text-gray-700 bg-[#F2F5F2] placeholder:font-poppins placeholder:text-gray-400 focus:outline-green-800"
+                        />
+                    </div>
                     <div className="w-3/5 py-4">
                         <button
                             type="submit"
