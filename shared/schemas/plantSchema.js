@@ -8,7 +8,7 @@ export const plantSchema = z.object({
             /^[a-zA-Z\s]+$/,
             'Plant name can only contain letters and spaces'
         ),
-    notes: z.string().trim().min(1, 'Notes cannot be empty'),
+    notes: z.string().trim().nonempty( 'Notes cannot be empty'),
     water_freq: z
         .number()
         .int()
