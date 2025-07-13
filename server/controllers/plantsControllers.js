@@ -98,31 +98,31 @@ export const logWatering = async (req, res) => {
     const plantId = parseInt(req.params.plantId);
     const userId = req.user.id;
     const wateredAt = req.body.wateredAt
-                    ? new Date(req.body.wateredAt) // safely parse string to Date object
-                    : undefined; // undefined = Prisma uses default(now())
+        ? new Date(req.body.wateredAt) // safely parse string to Date object
+        : undefined; // undefined = Prisma uses default(now())
 
     try {
         const plant = await prisma.plants.findUnique({
             where: { id: plantId }
         });
-        
+
         if (!plant || plant.user_id !== userId) {
-            return res.status(403).json({ success: false, message: 'User does not have this plant' });
+            return res.status(403).json({
+                success: false,
+                message: 'User does not have this plant'
+            });
         }
-
-
 
         const waterLog = await prisma.waterLogs.create({
             data: {
                 plant_id: plantId,
                 wateredAt
-             } 
+            }
         });
 
-        res.status(201).json({ success: true, message: 'Watering recorded'})
-      
+        res.status(201).json({ success: true, data: waterLog });
     } catch (error) {
-        res.status(500).json({success: false, messasge: error.message})
+        res.status(500).json({ success: false, message: error.message });
     }
-    return
-}
+    return;
+};
