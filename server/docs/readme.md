@@ -1,6 +1,7 @@
 You can set up your local env to run `server` in different ways.
 
 Here's one way to do it.
+
 ## setting up repo
 
 1. Clone repo
