@@ -34,7 +34,7 @@ const DetailedPost = () => {
         <div className="w-screen h-screen flex flex-col bg-white gap-8 m-8">
             {/*Post details*/}
             <div className="flex flex-col gap-2 mb-2 rounded-md shadow px-4 m-4">
-                <h5>UserName</h5>
+                <h5 className="font-semibold text-base" >{post.UserName}</h5>
                 <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
                 <p className="mb-4 text-gray-700">{post.content}</p>
             </div>
@@ -56,7 +56,7 @@ const DetailedPost = () => {
             {/*Add comment feild*/}
             <form
                 onSubmit={handleSubmit}
-                className="absolute bottom-2 left-0 w-full flex items-center justify-center gap-2 px-6 py-4"
+                className="absolute bottom-2 left-0 w-full flex items-center gap-2 px-6 py-4"
             >
                 <input
                     className="border border-gray-300 rounded-full p-2 w-full max-w-md mb-4"
