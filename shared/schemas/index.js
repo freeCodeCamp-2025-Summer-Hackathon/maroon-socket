@@ -1,2 +1,2 @@
-export * from "./signupSchema"
-export * from "./plantSchema"
+export * from './signupSchema';
+export * from './plantSchema';
