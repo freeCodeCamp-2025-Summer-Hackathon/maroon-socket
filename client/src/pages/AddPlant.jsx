@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { FiUpload } from 'react-icons/fi';
-import plantPotIcon2 from "..assets/plant-pot2.png";
-import plantPotIcon1 from "..assets/plant-pot1.png";
+import plantPotIcon2 from '../assets/plant-pot2.png';
+
 
 const AddPlant = () => {
     const [newPlant, setNewPlant] = useState({
@@ -15,7 +15,7 @@ const AddPlant = () => {
 
     // Image format Validation on client-side
     const imageValidation = (file) => {
-        const allowedFormats = ['image/png', 'image/jpg', 'image/webp'];
+        const allowedFormats = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
 
         if (!allowedFormats.includes(file.type)) {
             setImageFormatError(true);
@@ -46,9 +46,9 @@ const AddPlant = () => {
     };
 
     return (
-        <div className="bg-secondary w-screen h-screen flex justify-center ">
-            <div className=" w-3/5 h-full bg-primary px-8 flex flex-col justify-around items-start gap-2  ">
-                <div className="flex justify-center items-center gap-2">
+        <div className="bg-secondary w-full h-full flex justify-center py-6 ">
+            <div className=" w-2/5 h-fit bg-primary px-8 py-12 flex flex-col justify-around items-start gap-5 rounded-md ">
+                <div className=" w-full flex justify-center items-center gap-2">
                     <h1 className="text-3xl font-semibold text-white pl-4">
                         Add Plant
                     </h1>
@@ -63,7 +63,7 @@ const AddPlant = () => {
                 {/** Add Plant form */}
                 <div className="w-full flex justify-center items-center">
                     <form
-                        className="flex w-full h-full flex-col justify-center gap-8  rounded-md px-4"
+                        className="flex w-full h-full flex-col justify-center gap-10  rounded-md px-4"
                         onSubmit={handleSubmit}
                     >
                         <div className=" flex flex-col justify-center items-start gap-1">
@@ -174,7 +174,7 @@ const AddPlant = () => {
                         {/** Submit Container */}
                         <div className="w-full flex justify-center items-center">
                             <button
-                                className="border flex justify-center items-center text-lg w-48 h-10 p-3 rounded-lg shadow-md text-white font-bold bg-black"
+                                className="border flex justify-center items-center text-lg w-full h-10 p-3 rounded-lg shadow-md text-white font-bold bg-black"
                                 type="submit"
                             >
                                 Add
@@ -182,13 +182,6 @@ const AddPlant = () => {
                         </div>
                     </form>
                 </div>
-            </div>
-            {/** plant-icon */}
-            <div className="w-3/5 h-screen flex justify-center items-center ">
-                <img
-                    src={plantPotIcon1}
-                    className="object-cover size-44 "
-                />
             </div>
         </div>
     );

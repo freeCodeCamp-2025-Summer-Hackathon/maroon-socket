@@ -18,9 +18,9 @@ const AddPost = ({ onClose }) => {
         console.log(postFields);
     }
     return (
-        <div className="w-full bg-transparent flex flex-col items-center py-16 px-4 min-h-screen bg-white space-y-11">
-            <div className="w-full max-w-2xl p-4 space-y-14">
-                <div className="flex flex-col space-y-10">
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 h-full flex flex-col justify-center items-center py-16 px-4 space-y-11 ">
+            <div className="w-full max-w-2xl px-8 py-4 space-y-8 shadow shadow-gray-500 bg-[#F7FBF7] rounded-md">
+                <div className="flex flex-col space-y-4">
                     <button
                         className="self-end cursor-pointer"
                         onClick={onClose}
@@ -28,7 +28,7 @@ const AddPost = ({ onClose }) => {
                     >
                         <AiTwotoneCloseSquare className="text-3xl text-[#2C6A4E]" />
                     </button>
-                    <h1 className="text-center text-2xl font-bold text-[#2C6A4E]">
+                    <h1 className="text-center text-3xl font-bold text-[#2C6A4E]">
                         Create Post
                     </h1>
                 </div>
@@ -36,7 +36,7 @@ const AddPost = ({ onClose }) => {
                 <form
                     method="post"
                     onSubmit={handleSubmit}
-                    className="space-y-12 flex flex-col w-full"
+                    className="space-y-8 flex flex-col w-full "
                 >
                     <div className="flex flex-col space-y-2">
                         <label
@@ -108,10 +108,10 @@ const AddPost = ({ onClose }) => {
                             className="w-full rounded-lg p-3 text-gray-700 bg-[#F2F5F2] placeholder:font-poppins placeholder:text-gray-400 focus:outline-green-800"
                         />
                     </div>
-                    <div className="w-3/5 py-4">
+                    <div className="w-full py-4 flex">
                         <button
                             type="submit"
-                            className="w-full rounded-full bg-[#2C6A4E] py-3 font-bold text-white transition-colors hover:bg-opacity-90 focus:outline-none"
+                            className="w-full rounded-full bg-[#2C6A4E] py-3 font-bold text-white transition-colors hover:bg-opacity-90 text-xl focus:outline-none"
                         >
                             Post
                         </button>
