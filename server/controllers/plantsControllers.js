@@ -106,7 +106,14 @@ export const logWatering = async (req, res) => {
             where: { id: plantId }
         });
 
-        if (!plant || plant.user_id !== userId) {
+        if (!plant) {
+            return res.status(400).json({
+                success: false,
+                message: 'Plant does not exist'
+            });
+        }
+
+        if (plant.user_id !== userId) {
             return res.status(403).json({
                 success: false,
                 message: 'User does not have this plant'
