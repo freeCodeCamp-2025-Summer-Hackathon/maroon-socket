@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { FaUserPen, FaEnvelope, FaLock } from 'react-icons/fa6';
 import { MdLockOutline } from 'react-icons/md';
 import signUp from '../assets/sign_up.png';

@@ -1,5 +1,7 @@
 import { useState, useRef } from 'react';
 import { FiUpload } from 'react-icons/fi';
+import plantPotIcon2 from "..assets/plant-pot2.png";
+import plantPotIcon1 from "..assets/plant-pot1.png";
 
 const AddPlant = () => {
     const [newPlant, setNewPlant] = useState({
@@ -52,7 +54,7 @@ const AddPlant = () => {
                     </h1>
                     <span className="size-10">
                         <img
-                            src="/Images/plant-pot2.png"
+                            src={plantPotIcon2}
                             className="w-full h-full object-cover"
                         />
                     </span>
@@ -184,7 +186,7 @@ const AddPlant = () => {
             {/** plant-icon */}
             <div className="w-3/5 h-screen flex justify-center items-center ">
                 <img
-                    src="/Images/plant-pot1.png"
+                    src={plantPotIcon1}
                     className="object-cover size-44 "
                 />
             </div>
