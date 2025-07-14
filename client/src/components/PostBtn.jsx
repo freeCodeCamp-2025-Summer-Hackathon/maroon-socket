@@ -12,7 +12,7 @@ export default function PostBtn() {
                 onClick={() => setShowModal(true)}
                 className="bg-[#2C6A4E] flex justify-center gap-2 w-60 px-6 py-2 rounded-md text-white font-semibold text-lg font-poppins"
             >
-                <MdCreate className='self-center'/>
+                <MdCreate className="self-center" />
                 Create a Post
             </button>
             {showModal &&

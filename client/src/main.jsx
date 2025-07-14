@@ -37,7 +37,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/community',
-        element: <Community/>
+        element: <Community />
     }
 ]);
 createRoot(document.getElementById('root')).render(

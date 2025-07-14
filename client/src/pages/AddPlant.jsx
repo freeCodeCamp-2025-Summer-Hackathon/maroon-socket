@@ -2,7 +2,6 @@ import { useState, useRef } from 'react';
 import { FiUpload } from 'react-icons/fi';
 import plantPotIcon2 from '../assets/plant-pot2.png';
 
-
 const AddPlant = () => {
     const [newPlant, setNewPlant] = useState({
         plantName: '',
@@ -15,7 +14,12 @@ const AddPlant = () => {
 
     // Image format Validation on client-side
     const imageValidation = (file) => {
-        const allowedFormats = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
+        const allowedFormats = [
+            'image/png',
+            'image/jpg',
+            'image/jpeg',
+            'image/webp'
+        ];
 
         if (!allowedFormats.includes(file.type)) {
             setImageFormatError(true);
