@@ -3,38 +3,67 @@ import { FaUserPen } from 'react-icons/fa6';
 import { MdLockOutline } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 
-// Dummy User
-const dummyEmail = 'example@gmail.com';
-const dummyPassword = '12345678@';
-
 function Login() {
-    const [verification, setVerification] = useState({
-        email: '',
+    const [credentials, setCredentials] = useState({
+        username: '',
         password: ''
     });
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    // Dummy Check
-    const dummyCheck = () => {
-        if (
-            verification.email !== dummyEmail ||
-            verification.password !== dummyPassword
-        ) {
-            return false;
-        }
-        return true;
-    };
-
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        console.log(verification);
+        setError('');
 
-        if (dummyCheck()) {
-            setTimeout(() => {
-                navigate('/userHome');
-            }, 2000);
-        } else {
-            alert('Invalid email or password');
+        if (!credentials.username.trim() || !credentials.password.trim()) {
+            setError('Please provide username/email and password');
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const loginData = {
+                username: credentials.username,
+                password: credentials.password
+            };
+
+            const response = await fetch(
+                'http://localhost:3000/api/auth/login',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loginData)
+                }
+            );
+
+            let data;
+            try {
+                data = await response.json();
+            } catch {
+                data = {};
+            }
+            console.log(data);
+            const token = data?.data?.token;
+
+            if (response.ok) {
+                if (token) {
+                    sessionStorage.setItem('token', token);
+                    navigate('/userHome');
+                } else {
+                    setError('Did not receive auth token from server');
+                }
+            } else {
+                setError(data?.message);
+            }
+        } catch {
+            setError('Login failed');
+        } finally {
+            setLoading(false);
         }
     }
     return (
@@ -45,6 +74,11 @@ function Login() {
                         <h1 className="text-3xl font-semibold text-[#29433F]">
                             Sign In
                         </h1>
+                        {error && (
+                            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded w-full">
+                                {error}
+                            </div>
+                        )}
                         <form className="w-full flex flex-col justify-center items-start gap-4">
                             <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
                                 <span>
@@ -53,14 +87,16 @@ function Login() {
                                 <input
                                     className="w-full border-none bg-transparent focus:outline-none text-gray-500"
                                     type="email"
-                                    value={verification.email}
+                                    value={credentials.username}
                                     onChange={(e) =>
-                                        setVerification({
-                                            ...verification,
-                                            email: e.target.value
+                                        setCredentials({
+                                            ...credentials,
+                                            username: e.target.value
                                         })
                                     }
-                                    placeholder="Your mail id"
+                                    required
+                                    placeholder="Username/Email*"
+                                    disabled={loading}
                                 />
                             </div>
                             <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
@@ -70,23 +106,19 @@ function Login() {
                                 <input
                                     className="w-full border-none bg-transparent focus:outline-none text-gray-500"
                                     type="password"
-                                    value={verification.password}
+                                    value={credentials.password}
                                     onChange={(e) =>
-                                        setVerification({
-                                            ...verification,
+                                        setCredentials({
+                                            ...credentials,
                                             password: e.target.value
                                         })
                                     }
-                                    placeholder="Your Password"
+                                    placeholder="Password*"
+                                    required
+                                    disabled={loading}
                                 />
                             </div>
-                            <div className="flex justify-center items-center gap-3 mt-6">
-                                <input
-                                    type="checkbox"
-                                    className="bg-transparent size-4"
-                                ></input>
-                                <div className="text-base">Remember me</div>
-                            </div>
+
                             <button
                                 className="w-40 h-12 p-3 bg-[#29433F] text-white cursor-pointer rounded-lg"
                                 onClick={(e) => handleSubmit(e)}
