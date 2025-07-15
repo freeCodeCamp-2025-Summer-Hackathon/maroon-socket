@@ -51,8 +51,8 @@ function SignUp() {
         }
     }
     return (
-        <div className="bg-[#29433F] w-full min-h-screen flex justify-center items-center py-8">
-            <div className="bg-[#29433F] w-full flex justify-center items-center px-4">
+        <div className="bg-[#3A6B3D] w-full min-h-screen flex justify-center items-center py-8">
+            <div className="bg-[#3A6B3D] w-full flex justify-center items-center px-4">
                 <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full flex">
                     <div className="w-1/2 relative">
                         <img
@@ -196,7 +196,7 @@ function SignUp() {
                                 />
                             </div>
 
-                            <button className="w-30 h-12 p-3 bg-primary rounded-md text-white cursor-pointer mt-2">
+                            <button className="w-30 h-12 p-3 bg-[#29423E] rounded-md text-[#F7FBF7] cursor-pointer mt-2">
                                 Register
                             </button>
                             <div className="text-sm flex justify-center items-center gap-1">
