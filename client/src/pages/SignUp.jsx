@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaUserPen, FaEnvelope, FaLock } from 'react-icons/fa6';
 import { MdLockOutline } from 'react-icons/md';
 import signUp from '../assets/sign_up.png';
@@ -59,7 +59,7 @@ function SignUp() {
 
                     {/* Right Side , Sign up form*/}
                     <div className="w-1/2 p-8 flex flex-col justify-center">
-                        <h2 className="text-3xl font-bold text-primary mb-8 text-center">
+                        <h2 className="text-3xl font-bold text-[#29433F] mb-8 text-center">
                             Sign Up
                         </h2>
                         <form className="w-full flex flex-col justify-center items-start gap-4">
@@ -160,7 +160,7 @@ function SignUp() {
                                 </label>
                             </div>
                             <button
-                                className={`w-30 h-12 p-3 bg-primary rounded-md text-white cursor-pointer ${terms ? '' : ' cursor-not-allowed'}`}
+                                className={`w-30 h-12 p-3 bg-[#29433F] rounded-md text-white cursor-pointer ${terms ? '' : ' cursor-not-allowed'}`}
                                 disabled={!terms}
                                 onClick={(e) => handleSubmit(e)}
                             >
@@ -168,7 +168,7 @@ function SignUp() {
                             </button>
                             <div className="text-sm flex justify-center items-center gap-1">
                                 Already have an account?
-                                <div className="text-primary cursor-pointer">
+                                <div className="text-[#29433F] cursor-pointer">
                                     <Link to="/login">Sign In</Link>
                                 </div>
                             </div>

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import heroImage from '../assets/heroImage.webp';
-import NavBar from './NavBar.jsx';
+import NavBar from '../components/NavBar.jsx';
 
 function LandingPage() {
     const navigate = useNavigate();
