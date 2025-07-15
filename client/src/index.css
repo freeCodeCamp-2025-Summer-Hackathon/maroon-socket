@@ -1,4 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@font-face {
+    font-family: 'Poppins';
+    font-weight: 400;
+    src:
+        local('Poppins'),
+        url('./assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Poppins';
+    font-weight: 700;
+    src:
+        local('Poppins'),
+        url('./assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Poppins';
+    font-weight: 600;
+    src:
+        local('Poppins'),
+        url('./assets/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+}
+
+/* For header, footer and additional texts that can't be the body of the page*/
+/* We can Use these fonts to get the attention of user */
+@font-face {
+    font-family: 'Inter';
+    font-weight: 400;
+    src:
+        local('Inter'),
+        url('./assets/fonts/Inter/Inter-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Inter';
+    font-weight: 700;
+    src:
+        local('Inter'),
+        url('./assets/fonts/Inter/Inter-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Inter';
+    font-weight: 600;
+    src:
+        local('Inter'),
+        url('./assets/fonts/Inter/Inter-SemiBold.ttf') format('truetype');
+}
 
 @tailwind base;
 @tailwind components;

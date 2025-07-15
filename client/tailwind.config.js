@@ -4,11 +4,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                poppins: ['Poppins', 'sans-serif']
-            },
-            colors: {
-                primary: '#29433F',
-                secondary: '#FEF7E7'
+                poppins: ['Poppins', 'sans-serif'],
+                inter: ['Inter', 'sans-serif']
             }
         }
     },
