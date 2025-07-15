@@ -45,7 +45,7 @@ const DetailedPost = () => {
                 <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
                 <p className="mb-4 text-gray-700">{post.content}</p>
             </div>
-            
+
             {/*Comments*/}
             <ul className="gap-3 flex flex-col items-justify-start px-4 ml-4">
                 {comments.map((comment, i) => (
