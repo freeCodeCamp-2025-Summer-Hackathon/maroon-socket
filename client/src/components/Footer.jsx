@@ -34,11 +34,7 @@ const Footer = () => {
                             <p className="font-poppins font-normal">
                                 Plant care is essential for maintaining healthy
                                 and thriving greenery. Scheduling watering and
-                                providing proper care ensures your plants
-                                receive the attention they need, anytime.
-                                Whether it's adjusting sunlight exposure,
-                                monitoring soil moisture, or pruning, consistent
-                                care keeps your plants vibrant and flourishing.
+                                providing proper care for your plants
                             </p>
                         </div>
                         <div className="flex flex-col gap-5 lg:px-16 md:px-8">
