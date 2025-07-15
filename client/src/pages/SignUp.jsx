@@ -6,26 +6,31 @@ import { Link } from 'react-router-dom';
 
 function SignUp() {
     const [userData, setUserData] = useState({
-        firstName: '',
-        lastName: '',
+        username: '',
+        fullName: '',
         email: '',
-        passWord: '',
-        confirmPassword: ''
+        password: '',
+        passwordConfirm: ''
     });
-    const [terms, setTerms] = useState(false);
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        // isEmail(userData.email);
-        // checkPasswords(userData.passWord,userData.confirmPassword)
+
         if (
-            isEmail(userData.email) &&
-            checkPasswords(userData.passWord, userData.confirmPassword)
+            !checkPasswords(userData.password, userData.passwordConfirm) ||
+            !isEmail(userData.email)
         ) {
-            console.log({ userData });
-        } else {
-            return false;
+            return;
         }
+        const apiUrl = import.meta.env.VITE_API_URL;
+
+        const res = await fetch(`${apiUrl}/api/auth/signup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData)
+        });
+
+        console.log(await res.json());
     }
 
     function isEmail(emailId) {
@@ -46,8 +51,8 @@ function SignUp() {
         }
     }
     return (
-        <div className="bg-[#29433F] w-full h-screen flex justify-center items-center px-20">
-            <div className="bg-[#29433F] w-full h-screen flex justify-center items-center px-4">
+        <div className="bg-[#29433F] w-full min-h-screen flex justify-center items-center py-8">
+            <div className="bg-[#29433F] w-full flex justify-center items-center px-4">
                 <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full flex">
                     <div className="w-1/2 relative">
                         <img
@@ -62,7 +67,16 @@ function SignUp() {
                         <h2 className="text-3xl font-bold text-[#29433F] mb-8 text-center">
                             Sign Up
                         </h2>
-                        <form className="w-full flex flex-col justify-center items-start gap-4">
+                        <form
+                            className="w-full flex flex-col justify-center items-start gap-4"
+                            onSubmit={handleSubmit}
+                        >
+                            <label
+                                className="block font-medium text-gray-700"
+                                htmlFor="username"
+                            >
+                                Username:
+                            </label>
                             <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
                                 <span>
                                     <FaUserPen className="text-2xl text-gray-600" />
@@ -70,16 +84,24 @@ function SignUp() {
                                 <input
                                     className="w-full border-none bg-transparent focus:outline-none text-gray-500"
                                     type="text"
-                                    value={userData.firstName}
-                                    placeholder="Your First Name"
+                                    id="username"
+                                    value={userData.username}
+                                    placeholder="JohnD"
                                     onChange={(e) =>
                                         setUserData({
                                             ...userData,
-                                            firstName: e.target.value
+                                            username: e.target.value
                                         })
                                     }
                                 />
                             </div>
+
+                            <label
+                                className="block font-medium text-gray-700"
+                                htmlFor="fullname"
+                            >
+                                Full name:
+                            </label>
                             <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
                                 <span>
                                     <FaUserPen className="text-2xl text-gray-600" />
@@ -87,16 +109,24 @@ function SignUp() {
                                 <input
                                     className="w-full border-none bg-transparent focus:outline-none text-gray-500"
                                     type="text"
-                                    value={userData.lastName}
-                                    placeholder="Your Last Name"
+                                    id="fullname"
+                                    value={userData.fullName}
+                                    placeholder="John Doe"
                                     onChange={(e) =>
                                         setUserData({
                                             ...userData,
-                                            lastName: e.target.value
+                                            fullName: e.target.value
                                         })
                                     }
                                 />
                             </div>
+
+                            <label
+                                className="block font-medium text-gray-700"
+                                htmlFor="email"
+                            >
+                                Email:
+                            </label>
                             <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
                                 <span>
                                     <FaEnvelope className="text-xl text-gray-600" />
@@ -104,8 +134,9 @@ function SignUp() {
                                 <input
                                     className="w-full border-none bg-transparent focus:outline-none text-gray-500"
                                     type="email"
+                                    id="email"
                                     value={userData.email}
-                                    placeholder="Your Email id"
+                                    placeholder="JohnD@gmail.com"
                                     onChange={(e) =>
                                         setUserData({
                                             ...userData,
@@ -114,6 +145,13 @@ function SignUp() {
                                     }
                                 />
                             </div>
+
+                            <label
+                                className="block font-medium text-gray-700"
+                                htmlFor="password"
+                            >
+                                Password:
+                            </label>
                             <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
                                 <span>
                                     <FaLock className="text-xl text-gray-600" />
@@ -121,16 +159,24 @@ function SignUp() {
                                 <input
                                     className="w-full border-none focus:outline-none bg-transparent text-gray-500"
                                     type="password"
-                                    value={userData.passWord}
-                                    placeholder="Enter Password"
+                                    id="password"
+                                    value={userData.password}
+                                    placeholder="pass123"
                                     onChange={(e) =>
                                         setUserData({
                                             ...userData,
-                                            passWord: e.target.value
+                                            password: e.target.value
                                         })
                                     }
                                 />
                             </div>
+
+                            <label
+                                className="block font-medium text-gray-700"
+                                htmlFor="passwordConfirm"
+                            >
+                                Confirm Password:
+                            </label>
                             <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
                                 <span>
                                     <MdLockOutline className="text-2xl text-gray-600" />
@@ -138,32 +184,19 @@ function SignUp() {
                                 <input
                                     className="w-full border-none focus:outline-none bg-transparent  text-gray-500"
                                     type="password"
-                                    value={userData.confirmPassword}
-                                    placeholder="Re-enter Password"
+                                    id="passwordConfirm"
+                                    value={userData.passwordConfirm}
+                                    placeholder="pass123"
                                     onChange={(e) =>
                                         setUserData({
                                             ...userData,
-                                            confirmPassword: e.target.value
+                                            passwordConfirm: e.target.value
                                         })
                                     }
                                 />
                             </div>
-                            <div className="flex gap-2 justify-center items-center">
-                                <input
-                                    className="size-4 bg-transparent border-2 border-gray-400"
-                                    type="checkbox"
-                                    checked={terms}
-                                    onChange={(e) => setTerms(e.target.checked)}
-                                />
-                                <label className="text-sm">
-                                    I agree to all the terms.
-                                </label>
-                            </div>
-                            <button
-                                className={`w-30 h-12 p-3 bg-[#29433F] rounded-md text-white cursor-pointer ${terms ? '' : ' cursor-not-allowed'}`}
-                                disabled={!terms}
-                                onClick={(e) => handleSubmit(e)}
-                            >
+
+                            <button className="w-30 h-12 p-3 bg-primary rounded-md text-white cursor-pointer mt-2">
                                 Register
                             </button>
                             <div className="text-sm flex justify-center items-center gap-1">
