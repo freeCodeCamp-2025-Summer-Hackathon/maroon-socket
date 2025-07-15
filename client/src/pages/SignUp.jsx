@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SignupForm from '../components/SignupForm';
-import SignupSuccessCard from '../components/SIgnupSuccessCard';
+import SignupSuccessCard from '../components/SignupSuccessCard';
 
 function SignUp() {
     const [signupSuccess, setSignupSuccess] = useState(false);
