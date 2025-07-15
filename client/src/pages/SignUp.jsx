@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { FaUserPen, FaEnvelope, FaLock } from 'react-icons/fa6';
+import {
+    FaUserPen,
+    FaEnvelope,
+    FaLock,
+    FaHandsClapping
+} from 'react-icons/fa6';
 import { MdLockOutline } from 'react-icons/md';
 import signUp from '../assets/sign_up.png';
 import { Link } from 'react-router-dom';
@@ -28,6 +33,22 @@ function Input({ type, onChange, id, placeholder, value, children }) {
     );
 }
 
+function SignUpSuccessCard() {
+    return (
+        <div className="bg-[#3A6B3D] w-full min-h-screen flex justify-center items-center p-8">
+            <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl max-w-5xl w-full h-[300px] justify-center items-center gap-6 flex flex-col">
+                <FaHandsClapping className=" text-6xl text-[#3A6B3D]" />
+                <p className="text-xl font-[Poppins] font-bold">
+                    You have sucssessfully signed up! Proceed to
+                    <Link to="/login" className="text-[#3A6B3D]">
+                        &nbsp; Login
+                    </Link>
+                </p>
+            </div>
+        </div>
+    );
+}
+
 function SignUp() {
     const [userData, setUserData] = useState({
         username: '',
@@ -37,9 +58,14 @@ function SignUp() {
         passwordConfirm: ''
     });
 
+    const [signedUp, setSignedUp] = useState(false);
+
     async function handleSubmit(e) {
         e.preventDefault();
 
+        setSignedUp(true);
+
+        /*
         if (
             !checkPasswords(userData.password, userData.passwordConfirm) ||
             !isEmail(userData.email)
@@ -55,6 +81,7 @@ function SignUp() {
         });
 
         console.log(await res.json());
+       */
     }
 
     function isEmail(emailId) {
@@ -74,129 +101,134 @@ function SignUp() {
             return false;
         }
     }
-    return (
-        <div className="bg-[#3A6B3D] w-full min-h-screen flex justify-center items-center p-8">
-            <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full flex">
-                <div className="w-1/2 relative">
-                    <img
-                        src={signUp}
-                        alt="a decorative plant pot"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
 
-                {/* Right Side , Sign up form*/}
-                <div className="w-1/2 p-8 flex flex-col justify-center">
-                    <h2 className="text-3xl font-bold text-[#29433F] mb-8 text-center">
-                        Sign Up
-                    </h2>
-                    <form
-                        className="w-full flex flex-col justify-center items-start gap-4"
-                        onSubmit={handleSubmit}
-                    >
-                        <Label htmlFor="username">Username:</Label>
-                        <Input
-                            type="text"
-                            id="username"
-                            value={userData.username}
-                            placeholder="JohnD"
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    username: e.target.value
-                                })
-                            }
+    if (signedUp) {
+        return <SignUpSuccessCard></SignUpSuccessCard>;
+    } else {
+        return (
+            <div className="bg-[#3A6B3D] w-full min-h-screen flex justify-center items-center p-8">
+                <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full flex">
+                    <div className="w-1/2">
+                        <img
+                            src={signUp}
+                            alt="a decorative plant pot"
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+
+                    {/* Right Side , Sign up form*/}
+                    <div className="w-1/2 p-8 flex flex-col justify-center">
+                        <h2 className="text-3xl font-bold text-[#29433F] mb-8 text-center">
+                            Sign Up
+                        </h2>
+                        <form
+                            className="w-full flex flex-col justify-center items-start gap-4"
+                            onSubmit={handleSubmit}
                         >
-                            <FaUserPen className="text-2xl inline-block text-gray-600" />
-                        </Input>
+                            <Label htmlFor="username">Username:</Label>
+                            <Input
+                                type="text"
+                                id="username"
+                                value={userData.username}
+                                placeholder="JohnD"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        username: e.target.value
+                                    })
+                                }
+                            >
+                                <FaUserPen className="text-2xl inline-block text-gray-600" />
+                            </Input>
 
-                        <Label htmlFor="fullName">Full Name:</Label>
+                            <Label htmlFor="fullName">Full Name:</Label>
 
-                        <Input
-                            type="text"
-                            id="fullName"
-                            value={userData.fullName}
-                            placeholder="John Doe"
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    fullName: e.target.value
-                                })
-                            }
-                        >
-                            <FaUserPen className="text-2xl inline-block text-gray-600" />
-                        </Input>
+                            <Input
+                                type="text"
+                                id="fullName"
+                                value={userData.fullName}
+                                placeholder="John Doe"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        fullName: e.target.value
+                                    })
+                                }
+                            >
+                                <FaUserPen className="text-2xl inline-block text-gray-600" />
+                            </Input>
 
-                        <Label htmlFor="email">Email:</Label>
+                            <Label htmlFor="email">Email:</Label>
 
-                        <Input
-                            type="email"
-                            id="email"
-                            value={userData.email}
-                            placeholder="JohnD@gmail.com"
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    email: e.target.value
-                                })
-                            }
-                        >
-                            <FaEnvelope className="text-xl text-gray-600" />
-                        </Input>
+                            <Input
+                                type="email"
+                                id="email"
+                                value={userData.email}
+                                placeholder="JohnD@gmail.com"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        email: e.target.value
+                                    })
+                                }
+                            >
+                                <FaEnvelope className="text-xl text-gray-600" />
+                            </Input>
 
-                        <Label htmlFor="password">Password: </Label>
+                            <Label htmlFor="password">Password: </Label>
 
-                        <Input
-                            type="password"
-                            id="password"
-                            value={userData.password}
-                            placeholder="pass123"
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    password: e.target.value
-                                })
-                            }
-                        >
-                            <FaLock className="text-xl text-gray-600" />
-                        </Input>
+                            <Input
+                                type="password"
+                                id="password"
+                                value={userData.password}
+                                placeholder="pass123"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        password: e.target.value
+                                    })
+                                }
+                            >
+                                <FaLock className="text-xl text-gray-600" />
+                            </Input>
 
-                        <Label htmlFor="passwordConfirm">
-                            Confirm Password:
-                        </Label>
+                            <Label htmlFor="passwordConfirm">
+                                Confirm Password:
+                            </Label>
 
-                        <Input
-                            type="password"
-                            id="passwordConfirm"
-                            value={userData.passwordConfirm}
-                            placeholder="pass123"
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    passwordConfirm: e.target.value
-                                })
-                            }
-                        >
-                            <MdLockOutline className="text-3xl text-gray-600" />
-                        </Input>
+                            <Input
+                                type="password"
+                                id="passwordConfirm"
+                                value={userData.passwordConfirm}
+                                placeholder="pass123"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        passwordConfirm: e.target.value
+                                    })
+                                }
+                            >
+                                <MdLockOutline className="text-3xl text-gray-600" />
+                            </Input>
 
-                        <button
-                            className="w-30 h-12 p-3 bg-[#29423E] rounded-md text-[#F7FBF7] cursor-pointer mt-2"
-                            type="submit"
-                        >
-                            Register
-                        </button>
-                        <div className="text-sm flex justify-center items-center gap-1">
-                            Already have an account?
-                            <div className="text-[#29433F] cursor-pointer">
-                                <Link to="/login">Sign In</Link>
+                            <button
+                                className="w-30 h-12 p-3 bg-[#29423E] rounded-md text-[#F7FBF7] cursor-pointer mt-2"
+                                type="submit"
+                            >
+                                Register
+                            </button>
+                            <div className="text-sm flex justify-center items-center gap-1">
+                                Already have an account?
+                                <div className="text-[#29433F] cursor-pointer">
+                                    <Link to="/login">Sign In</Link>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default SignUp;
