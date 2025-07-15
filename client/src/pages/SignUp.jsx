@@ -5,9 +5,11 @@ import {
     FaLock,
     FaHandsClapping
 } from 'react-icons/fa6';
+import ErrorMessage from '../components/ErrorMessage';
 import { MdLockOutline } from 'react-icons/md';
 import signUp from '../assets/sign_up.png';
 import { Link } from 'react-router-dom';
+import { signupUser } from '../services/authService';
 
 function Label({ htmlFor, children }) {
     return (
@@ -50,6 +52,7 @@ function SignUpSuccessCard() {
 }
 
 function SignUp() {
+    const [errors, setErrors] = useState({});
     const [userData, setUserData] = useState({
         username: '',
         fullName: '',
@@ -58,55 +61,33 @@ function SignUp() {
         passwordConfirm: ''
     });
 
-    const [signedUp, setSignedUp] = useState(false);
+    const [signupSuccess, setsignupSuccess] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault();
 
-        setSignedUp(true);
+        try {
+            const res = await signupUser(userData);
 
-        /*
-        if (
-            !checkPasswords(userData.password, userData.passwordConfirm) ||
-            !isEmail(userData.email)
-        ) {
-            return;
-        }
-        const apiUrl = import.meta.env.VITE_API_URL;
-
-        const res = await fetch(`${apiUrl}/api/auth/signup`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(userData)
-        });
-
-        console.log(await res.json());
-       */
-    }
-
-    function isEmail(emailId) {
-        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (regex.test(emailId)) {
-            return emailId;
-        } else {
-            alert('Check your mail Id');
-            return false;
-        }
-    }
-    function checkPasswords(pass, confirmPass) {
-        if (pass === confirmPass) {
-            return (pass, confirmPass);
-        } else {
-            alert('check your passwords');
-            return false;
+            if (res.success === 'false' && res.errorType === 'ZOD_ERROR') {
+                setErrors(res.errors);
+                return;
+            } else if (res.success === 'false') {
+                setErrors({ generic: 'something went wrong' });
+                return;
+            }
+            setsignupSuccess(true);
+        } catch (error) {
+            console.log(error);
+            setErrors({ generic: 'something went wrong' });
         }
     }
 
-    if (signedUp) {
+    if (signupSuccess) {
         return <SignUpSuccessCard></SignUpSuccessCard>;
     } else {
         return (
-            <div className="bg-[#3A6B3D] w-full min-h-screen flex justify-center items-center p-8">
+            <div className="bg-primary w-full min-h-screen flex justify-center items-center p-8">
                 <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full flex">
                     <div className="w-1/2">
                         <img
@@ -140,9 +121,11 @@ function SignUp() {
                             >
                                 <FaUserPen className="text-2xl inline-block text-gray-600" />
                             </Input>
+                            <ErrorMessage
+                                message={errors?.username}
+                            ></ErrorMessage>
 
                             <Label htmlFor="fullName">Full Name:</Label>
-
                             <Input
                                 type="text"
                                 id="fullName"
@@ -157,9 +140,11 @@ function SignUp() {
                             >
                                 <FaUserPen className="text-2xl inline-block text-gray-600" />
                             </Input>
+                            <ErrorMessage
+                                message={errors?.fullName}
+                            ></ErrorMessage>
 
                             <Label htmlFor="email">Email:</Label>
-
                             <Input
                                 type="email"
                                 id="email"
@@ -174,9 +159,11 @@ function SignUp() {
                             >
                                 <FaEnvelope className="text-xl text-gray-600" />
                             </Input>
+                            <ErrorMessage
+                                message={errors?.email}
+                            ></ErrorMessage>
 
                             <Label htmlFor="password">Password: </Label>
-
                             <Input
                                 type="password"
                                 id="password"
@@ -191,11 +178,13 @@ function SignUp() {
                             >
                                 <FaLock className="text-xl text-gray-600" />
                             </Input>
+                            <ErrorMessage
+                                message={errors?.password}
+                            ></ErrorMessage>
 
                             <Label htmlFor="passwordConfirm">
                                 Confirm Password:
                             </Label>
-
                             <Input
                                 type="password"
                                 id="passwordConfirm"
@@ -210,6 +199,11 @@ function SignUp() {
                             >
                                 <MdLockOutline className="text-3xl text-gray-600" />
                             </Input>
+                            <ErrorMessage
+                                message={
+                                    errors?.passwordConfirm || errors?.generic
+                                }
+                            ></ErrorMessage>
 
                             <button
                                 className="w-30 h-12 p-3 bg-[#29423E] rounded-md text-[#F7FBF7] cursor-pointer mt-2"
