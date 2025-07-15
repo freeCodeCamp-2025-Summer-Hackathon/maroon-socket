@@ -35,6 +35,14 @@ model Plants {
   user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
   user_id    Int
   createdAt  DateTime @default(now())
+  waterLogs  WaterLogs[]
+}
+
+model WaterLogs {
+  id Int             @id @default(autoincrement())
+  plant Plants       @relation(fields: [plant_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
+  plant_id Int
+  wateredAt DateTime @default(now())
 }
 
 model Post {
