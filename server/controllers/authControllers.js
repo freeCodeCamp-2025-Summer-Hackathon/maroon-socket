@@ -2,7 +2,8 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { signupSchema, flattenError } from 'shared/schemas/index.js';
 import { PrismaClient } from '../generated/prisma/client.js';
-import { ValidationError } from '../errors/ErrorClasses.js';
+import { ApplicationError, ValidationError } from '../errors/ErrorClasses.js';
+import { Success } from '../lib/sucessClasses.js';
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || 'secret';
@@ -82,8 +83,7 @@ const signup = async (req, res) => {
         where: { email }
     });
     if (existingEmail) {
-        const errors = { email: 'Email already exists' };
-        throw new ValidationError(errors);
+        throw new ApplicationError('Email already exists');
     }
 
     // Check if username exists
@@ -91,8 +91,7 @@ const signup = async (req, res) => {
         where: { username }
     });
     if (existingUsername) {
-        const errors = { username: 'Username is already taken' };
-        throw new ValidationError(errors);
+        throw new ApplicationError('Username is already taken');
     }
 
     // Hash password
@@ -113,11 +112,8 @@ const signup = async (req, res) => {
             email: true
         }
     });
-    return res.status(201).json({
-        success: true,
-        message: 'User created successfully',
-        data: user
-    });
+
+    return res.status(201).json(new Success('User created successfully', user));
 };
 
 export { login, signup };
