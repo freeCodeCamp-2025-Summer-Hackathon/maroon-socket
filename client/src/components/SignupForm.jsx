@@ -98,7 +98,9 @@ function SignupForm({ setSignupSuccess }) {
                                 <FaUserPen className="text-xl flex-shrink-0 inline-block text-gray-600" />
                             </Input>
                             <div className="min-h-[1.25rem]">
-                                <ErrorMessage message={errors?.username}></ErrorMessage>
+                                <ErrorMessage
+                                    message={errors?.username}
+                                ></ErrorMessage>
                             </div>
                         </div>
                         <div className="space-y-1">
@@ -118,7 +120,9 @@ function SignupForm({ setSignupSuccess }) {
                                 <FaUserPen className="text-xl flex-shrink-0 inline-block text-gray-600" />
                             </Input>
                             <div className="min-h-[1.25rem]">
-                                <ErrorMessage message={errors?.fullName}></ErrorMessage>
+                                <ErrorMessage
+                                    message={errors?.fullName}
+                                ></ErrorMessage>
                             </div>
                         </div>
 
@@ -139,10 +143,12 @@ function SignupForm({ setSignupSuccess }) {
                                 <FaEnvelope className="text-lg flex-shrink-0 text-gray-600" />
                             </Input>
                             <div className="min-h-[1.25rem]">
-                                <ErrorMessage message={errors?.email}></ErrorMessage>
+                                <ErrorMessage
+                                    message={errors?.email}
+                                ></ErrorMessage>
                             </div>
                         </div>
-                        
+
                         <div className="space-y-1">
                             <Label htmlFor="password">Password: </Label>
                             <Input
@@ -160,7 +166,9 @@ function SignupForm({ setSignupSuccess }) {
                                 <FaLock className="text-lg flex-shrink-0 text-gray-600" />
                             </Input>
                             <div className="min-h-[1.25rem]">
-                                <ErrorMessage message={errors?.password}></ErrorMessage>
+                                <ErrorMessage
+                                    message={errors?.password}
+                                ></ErrorMessage>
                             </div>
                         </div>
                         <div className="space-y-1">
@@ -183,7 +191,10 @@ function SignupForm({ setSignupSuccess }) {
                             </Input>
                             <div className="min-h-[1.25rem]">
                                 <ErrorMessage
-                                    message={errors?.passwordConfirm || errors?.generic}
+                                    message={
+                                        errors?.passwordConfirm ||
+                                        errors?.generic
+                                    }
                                 ></ErrorMessage>
                             </div>
                         </div>
@@ -195,7 +206,12 @@ function SignupForm({ setSignupSuccess }) {
                         </button>
                         <div className="text-sm flex justify-center items-center gap-1">
                             Already have an account?
-                                <Link to="/login" className="text-[#29433F] cursor-pointer hover:underline">Sign In</Link>
+                            <Link
+                                to="/login"
+                                className="text-[#29433F] cursor-pointer hover:underline"
+                            >
+                                Sign In
+                            </Link>
                         </div>
                     </form>
                 </div>
