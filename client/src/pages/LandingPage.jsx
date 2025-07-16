@@ -1,141 +1,79 @@
-import { useNavigate } from 'react-router-dom';
-import heroImage from '../assets/heroImage.webp';
+// import { useNavigate } from 'react-router-dom';
+// import heroImage from '../assets/heroImage.webp';
 import NavBar from '../components/NavBar.jsx';
+// import heroBG from '../assets/hero-bg.png';
+import hero from "../assets/hero.png";
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const handleClick = () => {
-        navigate('login');
-    };
+    // const handleClick = () => {
+    //     navigate('login');
+    // };
     return (
-        <div className="w-screen h-screen bg-white py-4 rounded-[20px]">
-            {/*nav bar*/}
-            <NavBar />
-            {/*main section*/}
-            <section className="flex flex-row justify-between items-center gap-6 p-10">
-                <div className="flex flex-col items-start justify-center ml-20 ">
-                    <h1 className="text-4xl text-[#2d6a4f] font-extrabold py-10">
-                        Hi, welcome to PlantPal
-                    </h1>
-                    <p className="text-lg text-[#1b4332] font-semibold ">
-                        A plant care tracker and community for house plant
-                        lovers.
-                    </p>
-                    <p className="text-base mb-10 text-left">
-                        Effortlessly manage your plants, connect with fellow
-                        enthusiasts,
-                        <br /> and watch your green friends thrive!
-                    </p>
-                    <button
-                        onClick={handleClick}
-                        className="bg-[#2d6a4f] text-white font-bold py-4 px-8 rounded-full shadow-lg"
-                    >
-                        Track your plants now!
-                    </button>
-                </div>
-                <div>
-                    <img src={heroImage} alt="hero image" />
-                </div>
-            </section>
-            <div className="w-40 h-1 bg-[#2d6a4f] rounded-full mx-auto my-4"></div>
-            {/*Testimonials*/}
-            <section className="py-10 px-6">
-                <h2 className="text-3xl font-bold text-center mb-8">
-                    What Our Users Are Saying
-                </h2>
-                <div className="flex flex-row items-center gap-8">
-                    <div className="p-8 m-4 rounded-lg shadow max-w-md w-full">
-                        <p className="text-[#767676]">
-                            &quot;This app has been a game-changer for my indoor
-                            gardening. The reminders are spot on!&quot;
-                        </p>
+    <>
+       <NavBar/>
+
+       {/** Contains all sections */}
+       <main>
+           {/** Hero Section */} 
+           <section className="relative h-[89vh] w-full border-b-2 border-black py-5">
+                    <div className="flex flex-col justify-center items-center gap-4 h-2/5 px-4 text-center">
+                         <h1 className="font-poppins text-4xl font-bold ">Helping You Keep Your <span className='text-primary text-4xl font-poppins font-bold'>Plant</span> Happy</h1>
+                       <div className='w-full flex flex-col justify-center items-center gap-8'>
+                            <div className='flex flex-col justify-center items-center gap-2 w-full'>
+                             <p className="text-lg font-poppins font-bold text-primary -mb-1">
+                              PlantPal is your all-in-one tool to track, care for, and connect over houseplants.
+                             </p>
+                             <p className="text-sm font-poppins text-gray-500">
+                               Get care reminders, share progress, and grow together with a plant-loving community.
+                             </p>
+                            </div> 
+                        {/** Call to action */}
+                          <Link to={'/login'}>
+                            <button className='cursor-pointer bg-primary text-white px-8 py-3 rounded-lg font-poppins font-semibold'>
+                            Check your timely updates
+                            </button>
+                          </Link>  
+                       </div>  
+                   </div>
+
+              {/* SVG Wave */}
+                   <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+                      <svg className="w-full h-56" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" >
+                        <path  fill="#3a6b3d"  fillOpacity="1"
+                        d="M0,160L40,176C80,192,160,224,240,240C320,256,400,256,480,224C560,192,640,128,720,117.3C800,107,880,149,960,176C1040,203,1120,213,1200,181.3C1280,149,1360,75,1400,37.3L1440,0L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path>
+                      </svg>
+                   </div>
+               
+               {/** Hero image */}
+               <div className='w-full flex justify-center'>
+                    <div className='w-3/5 h-3/5 absolute bottom-0 z-10'>
+                      <img src={hero} className='object-cover w-full h-full'/>
                     </div>
-                    <div className="p-8 m-4 rounded-lg shadow max-w-md w-full">
-                        <p className="text-[#767676]">
-                            &quot;The community features are fantastic! I've
-                            learned so much from other plant lovers.&quot;
-                        </p>
-                    </div>
-                    <div className="p-8 m-4 rounded-lg shadow max-w-md w-full">
-                        <p className="text-[#767676]">
-                            &quot;The best app for plant lovers! I can track my
-                            plants' needs and connect with others.&quot;
-                        </p>
-                    </div>
-                </div>
-            </section>
-            <div className="w-40 h-1 bg-[#2d6a4f] rounded-full mx-auto my-4"></div>
-            {/*Explore*/}
-            <section className="py-10 px-6 ">
-                <h2 className="text-3xl font-bold text-center mb-8">
-                    Explore the app
-                </h2>
-                <div className="flex flex-row gap-4 p-10">
-                    <img
-                        src=""
-                        alt="App screenshot1"
-                        className="w-full h-auto rounded-lg shadow-md"
-                    />
-                    <img
-                        src=""
-                        alt="App screenshot2"
-                        className="w-full h-auto rounded-lg shadow-md"
-                    />
-                    <img
-                        src=""
-                        alt="App screenshot3"
-                        className="w-full h-auto rounded-lg shadow-md"
-                    />
-                </div>
+               </div>
             </section>
 
-            <footer className="py-16 px-6 text-center text-white bg-[#2d6a4f]">
-                <div className="flex flex-row justify-center space-x-20 items-center mb-8">
-                    <div className="mb-8">
-                        <span className="text-3xl font-bold">PlantPal</span>
-                        <p className="text-sm mt-2">
-                            &copy; 2023 PlantPal. All rights reserved.
-                        </p>
-                    </div>
-                    <div className="flex flex-wrap justify-center space-x-6 text-lg">
-                        <a
-                            href="#"
-                            className="hover:text-[#52b788] transition duration-300"
-                        >
-                            About Us
-                        </a>
-                        <a
-                            href="#"
-                            className="hover:text-[#52b788] transition duration-300"
-                        >
-                            Features
-                        </a>
-                        <a
-                            href="#"
-                            className="hover:text-[#52b788] transition duration-300"
-                        >
-                            Privacy Policy
-                        </a>
-                        <a
-                            href="#"
-                            className="hover:text-[#52b788] transition duration-300"
-                        >
-                            Terms of Service
-                        </a>
-                        <a
-                            href="#"
-                            className="hover:text-[#52b788] transition duration-300"
-                        >
-                            Contact
-                        </a>
-                    </div>
-                </div>
-                <div className="mt-8 pt-8 border-t">
-                    <p>Made with 💚 for plant lovers everywhere.</p>
-                </div>
-            </footer>
-        </div>
+
+           {/** Feature section */}
+           <section className='h-screen w-full border-b-2 border-black'>
+
+           </section>
+           
+           {/** Testimonial section */}
+           <section className='h-screen w-full border-b-2 border-black' >
+
+           </section>
+
+           {/** Extra section */}
+           <section className='w-full h-screen border-b-2 border-black'>
+
+           </section>
+       </main>
+
+       {/** Footer section */} 
+    </> 
     );
 }
 
