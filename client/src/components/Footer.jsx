@@ -148,7 +148,7 @@ const Footer = () => {
                     <div className="flex w-full justify-center">
                         <div className="mt-16 pt-8 border-t w-11/12 lg:w-3/5 border-gray-300">
                             <p className="text-center">
-                                Made with 💚 for the{' '}
+                                Made with 💚 for the&nbsp;
                                 <Link
                                     to="https://www.freecodecamp.org/"
                                     className="hover:underline"
