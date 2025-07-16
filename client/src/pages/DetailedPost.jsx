@@ -33,7 +33,7 @@ const DetailedPost = () => {
     return (
         <div className="w-screen h-screen flex flex-col bg-white max-w-fit gap-6 m-8">
             {/*Post details*/}
-            <div className="flex flex-col gap-1 mb-2 rounded-md border-2 shadow px-4 m-4">
+            <div className="flex flex-col gap-1 mb-2 rounded-md border-2 border-green-600 border-opacity-20 shadow  px-4 m-4">
                 <div className="flex flex-row gap-2 py-2">
                     <div className="h-8 w-8 rounded-full text-white font-bold bg-[#3a6b3d] flex items-center justify-center">
                         {post.UserName.charAt(0).toUpperCase()}
@@ -47,11 +47,11 @@ const DetailedPost = () => {
             </div>
 
             {/*Comments*/}
-            <ul className="gap-3 flex flex-col items-justify-start px-4 ml-4">
+            <ul className="gap-1 flex flex-col items-justify-start px-4 ml-4 ">
                 {comments.map((comment, i) => (
                     <li
                         key={i}
-                        className="flex flex-col items-start gap-1 p-2 border rounded-md shadow-md"
+                        className="flex flex-col items-start gap-1 p-2 border-l-2 border-green-300 rounded-md shadow"
                     >
                         <div className="font-semibold text-black">
                             {comment.UserName}
