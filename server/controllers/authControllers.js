@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import { signupSchema, flattenError } from 'shared/schemas/index.js';
 import { PrismaClient } from '../generated/prisma/client.js';
+import { ValidationError } from '../errors/ErrorClasses.js';
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || 'secret';
@@ -66,69 +68,56 @@ const login = async (req, res) => {
 };
 
 const signup = async (req, res) => {
-    try {
-        const { fullName, username, email, password } = req.body;
+    const ValidationResult = signupSchema.safeParse(req.body);
 
-        // Check if all required fields are present
-        if (!fullName || !username || !email || !password) {
-            return res.status(400).json({
-                success: false,
-                message: 'Please enter all required fields'
-            });
-        }
-
-        // Check if email exists
-        const existingEmail = await prisma.user.findUnique({
-            where: { email }
-        });
-        if (existingEmail) {
-            return res.status(400).json({
-                success: false,
-                message: 'Email already exists'
-            });
-        }
-
-        // Check if username exists
-        const existingUsername = await prisma.user.findUnique({
-            where: { username }
-        });
-        if (existingUsername) {
-            return res.status(400).json({
-                success: false,
-                message: 'Username already exists'
-            });
-        }
-
-        // Hash password
-        const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
-
-        // Create new user in database
-        const user = await prisma.user.create({
-            data: {
-                fullName: fullName,
-                username: username,
-                email: email,
-                password_hash: hashedPassword
-            },
-            select: {
-                id: true,
-                fullName: true,
-                username: true,
-                email: true
-            }
-        });
-        return res.status(201).json({
-            success: true,
-            message: 'User created successfully',
-            data: user
-        });
-    } catch (error) {
-        console.error('Signup error:', error);
-        return res.status(500).json({
-            success: false,
-            message: 'Internal server error'
-        });
+    if (ValidationResult.success === false) {
+        const errors = flattenError(ValidationResult.error);
+        throw new ValidationError(errors);
     }
+
+    const { username, email, fullName, password } = ValidationResult.data;
+
+    // Check if email exists
+    const existingEmail = await prisma.user.findUnique({
+        where: { email }
+    });
+    if (existingEmail) {
+        const errors = { email: 'Email already exists' };
+        throw new ValidationError(errors);
+    }
+
+    // Check if username exists
+    const existingUsername = await prisma.user.findUnique({
+        where: { username }
+    });
+    if (existingUsername) {
+        const errors = { username: 'Username is already taken' };
+        throw new ValidationError(errors);
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+
+    // Create new user in database
+    const user = await prisma.user.create({
+        data: {
+            fullName: fullName,
+            username: username,
+            email: email,
+            password_hash: hashedPassword
+        },
+        select: {
+            id: true,
+            fullName: true,
+            username: true,
+            email: true
+        }
+    });
+    return res.status(201).json({
+        success: true,
+        message: 'User created successfully',
+        data: user
+    });
 };
 
 export { login, signup };
