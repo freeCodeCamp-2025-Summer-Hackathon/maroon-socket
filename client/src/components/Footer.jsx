@@ -2,7 +2,13 @@ import React from 'react';
 import '../index.css';
 import logo from '../assets/logos/white_logo.svg';
 import { Link } from 'react-router-dom';
-import { FaInstagram, FaDiscord, FaYoutube, FaReddit, FaGithub } from 'react-icons/fa';
+import {
+    FaInstagram,
+    FaDiscord,
+    FaYoutube,
+    FaReddit,
+    FaGithub
+} from 'react-icons/fa';
 
 const Footer = () => {
     return (
@@ -142,7 +148,14 @@ const Footer = () => {
                     <div className="flex w-full justify-center">
                         <div className="mt-16 pt-8 border-t w-11/12 lg:w-3/5 border-gray-300">
                             <p className="text-center">
-                                Made with 💚 for the <Link to="https://www.freecodecamp.org/" className="hover:underline">FreeCodeCamp</Link> Hackathon
+                                Made with 💚 for the{' '}
+                                <Link
+                                    to="https://www.freecodecamp.org/"
+                                    className="hover:underline"
+                                >
+                                    FreeCodeCamp
+                                </Link>{' '}
+                                Hackathon
                             </p>
                         </div>
                     </div>
