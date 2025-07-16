@@ -47,7 +47,10 @@ function SignupForm({ setSignupSuccess }) {
         try {
             const res = await signupUser(userData);
 
-            if (res.success === 'false' && res.errorType === 'ZOD_ERROR') {
+            if (
+                res.success === 'false' &&
+                res.errorType === 'VALIDATION_ERROR'
+            ) {
                 setErrors(res.errors);
                 return;
             } else if (res.success === 'false') {
