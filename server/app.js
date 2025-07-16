@@ -4,6 +4,7 @@ import cors from 'cors';
 import authRouter from './routes/authRouter.js';
 import plantRouter from './routes/plantRouter.js';
 import postRouter from './routes/postRouter.js';
+import commentRouter from './routes/commentRouter.js';
 
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
@@ -26,6 +27,7 @@ app.get('/api/status', (req, res) => {
 app.use('/api/auth', authRouter);
 app.use('/api/plant', plantRouter);
 app.use('/api/post', postRouter);
+app.use('/api/post/:id/comment', commentRouter);
 
 app.listen(PORT, () =>
     console.log(`Server is listening on port: ${PORT} at host: ${HOST}`)
