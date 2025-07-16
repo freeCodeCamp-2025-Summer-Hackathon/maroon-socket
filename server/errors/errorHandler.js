@@ -1,4 +1,8 @@
-import { ValidationError, ServerError, ApplicationError } from './ErrorClasses.js';
+import {
+    ValidationError,
+    ServerError,
+    ApplicationError
+} from './ErrorClasses.js';
 
 function errorHandler(err, req, res, _next) {
     console.log(err);

@@ -1,7 +1,7 @@
 class ServerError extends Error {
     constructor(message = 'Internal Server Error') {
         super();
-        this.message = 'Internal Server Error';
+        this.message = message;
         this.errorType = 'SERVER_ERROR';
         this.success = false;
     }
