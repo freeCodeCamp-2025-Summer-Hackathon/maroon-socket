@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import { signupSchema, flattenError } from 'shared/schemas/index.js';
 import { PrismaClient } from '../generated/prisma/client.js';
 import { ApplicationError, ValidationError } from '../errors/ErrorClasses.js';
-import { Success } from '../lib/sucessClasses.js';
+import { Success } from '../lib/successClasses.js';
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || 'secret';
