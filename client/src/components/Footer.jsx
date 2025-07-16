@@ -2,7 +2,7 @@ import React from 'react';
 import '../index.css';
 import logo from '../assets/logos/white_logo.svg';
 import { Link } from 'react-router-dom';
-import { FaInstagram, FaDiscord, FaYoutube, FaReddit } from 'react-icons/fa';
+import { FaInstagram, FaDiscord, FaYoutube, FaReddit, FaGithub } from 'react-icons/fa';
 
 const Footer = () => {
     return (
@@ -99,16 +99,16 @@ const Footer = () => {
                             </p>
                             <div className="flex gap-6 mt-2">
                                 <a
-                                    href="https://www.instagram.com/freecodecamp/"
+                                    href="https://github.com/freeCodeCamp-2025-Summer-Hackathon/maroon-socket/tree/main"
                                     target="_blank"
                                     rel="noreferrer"
                                     aria-label="Instagram"
                                     className="text-white hover:text-[#dfff00] transition-colors"
                                 >
-                                    <FaInstagram size={28} />
+                                    <FaGithub size={28} />
                                 </a>
                                 <a
-                                    href="https://discord.com/invite/KVUmVXA"
+                                    href="/"
                                     target="_blank"
                                     rel="noreferrer"
                                     aria-label="Discord"
@@ -117,7 +117,7 @@ const Footer = () => {
                                     <FaDiscord size={28} />
                                 </a>
                                 <a
-                                    href="https://www.youtube.com/@freecodecamp"
+                                    href="/"
                                     target="_blank"
                                     rel="noreferrer"
                                     aria-label="Facebook"
@@ -126,7 +126,7 @@ const Footer = () => {
                                     <FaYoutube size={28} />
                                 </a>
                                 <a
-                                    href="https://www.reddit.com/r/FreeCodeCamp/"
+                                    href="/"
                                     target="_blank"
                                     rel="noreferrer"
                                     aria-label="Reddit"
@@ -142,7 +142,7 @@ const Footer = () => {
                     <div className="flex w-full justify-center">
                         <div className="mt-16 pt-8 border-t w-11/12 lg:w-3/5 border-gray-300">
                             <p className="text-center">
-                                Made with 💚 for plant lovers everywhere.
+                                Made with 💚 for the <Link to="https://www.freecodecamp.org/" className="hover:underline">FreeCodeCamp</Link> Hackathon
                             </p>
                         </div>
                     </div>
