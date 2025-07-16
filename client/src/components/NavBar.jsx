@@ -11,7 +11,7 @@ function NavBar() {
                 <li className="text-[#2d6a4f] font-inter font-semibold border-b-2">
                     Home
                 </li>
-   
+
                 <li className="hover:text-[#2d6a4f] hover:font-medium">
                     <Link to="/community">Community</Link>
                 </li>
