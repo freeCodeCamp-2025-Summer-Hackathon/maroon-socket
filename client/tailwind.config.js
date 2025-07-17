@@ -8,7 +8,8 @@ export default {
             },
             colors: {
                 primary: '#3A6B3D',
-                secondary: '#F7FBF7'
+                secondary: '#F7FBF7',
+                btn: '#29423E'
             }
         }
     },

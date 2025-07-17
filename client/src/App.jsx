@@ -1,6 +1,15 @@
-import LandingPage from './pages/LandingPage';
+import { Outlet } from 'react-router-dom';
+import Navbar from './components/NavBar.jsx';
 
-function App() {
-    return <LandingPage />;
-}
+const App = () => {
+
+  return (
+    <div >
+      <Navbar />
+      <Outlet />
+    </div>
+  );
+};
+
 export default App;
+

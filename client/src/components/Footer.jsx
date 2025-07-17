@@ -1,4 +1,3 @@
-import React from 'react';
 import '../index.css';
 import logo from '../assets/logos/white_logo.svg';
 import { Link } from 'react-router-dom';
@@ -12,8 +11,8 @@ import {
 
 const Footer = () => {
     return (
-        <footer className="relative h-screen text-white">
-            <div className="absolute top-0 left-0 w-full h-full overflow-auto bg-[#3A6B3D]">
+        <footer className="relative h-full text-white pb-0">
+            <div className="absolute top-0 left-0 w-full h-full overflow-auto bg-primary">
                 <svg
                     data-name="Layer 1"
                     xmlns="http://www.w3.org/2000/svg"
@@ -34,10 +33,10 @@ const Footer = () => {
                     {/* Content Row */}
                     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
                         <div className="flex flex-col gap-5">
-                            <h2 className="font-inter font-normal text-white text-3xl">
+                            <h2 className="font-inter font-bold text-black text-2xl">
                                 About PlantPal
                             </h2>
-                            <p className="font-poppins font-normal">
+                            <p className="font-poppins text-base ">
                                 Plant care is essential for maintaining healthy
                                 and thriving greenery. Scheduling watering and
                                 providing proper care for your plants
@@ -45,25 +44,25 @@ const Footer = () => {
                         </div>
                         <div className="flex flex-col gap-5 lg:px-16 md:px-8">
                             <h2
-                                className="font-inter font-normal text-white text-3xl"
+                                className="font-inter font-bold text-black text-2xl"
                                 arial-label="Quick Links"
                             >
                                 Quick Links
                             </h2>
                             <ul className="font-poppins font-normal flex flex-col gap-2">
                                 <li>
-                                    <Link
-                                        to="/"
-                                        className="hover:underline font-poppins"
+                                    <a
+                                        href='#home'
+                                        className="hover:underline font-poppins underline-offset-8 "
                                         aria-label="Home"
                                     >
                                         Home
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li>
                                     <Link
                                         to="/"
-                                        className="hover:underline font-poppins"
+                                        className="hover:underline font-poppins underline-offset-8"
                                         aria-label="community"
                                     >
                                         Community
@@ -72,7 +71,7 @@ const Footer = () => {
                                 <li>
                                     <Link
                                         to="/myplants"
-                                        className="hover:underline font-poppins"
+                                        className="hover:underline font-poppins underline-offset-8"
                                         aria-label="My Plants"
                                     >
                                         My Plants
@@ -81,7 +80,7 @@ const Footer = () => {
                                 <li>
                                     <Link
                                         to="/login"
-                                        className="hover:underline font-poppins"
+                                        className="hover:underline font-poppins underline-offset-8"
                                         aria-label="login"
                                     >
                                         Login
@@ -90,14 +89,14 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="flex flex-col gap-5">
-                            <h2 className="font-inter font-normal text-white text-3xl">
+                            <h2 className="font-inter font-bold text-black text-2xl">
                                 Follow Us
                             </h2>
                             <p className="font-poppins font-normal">
                                 Have questions? Reach out to us at{' '}
                                 <a
                                     href="mailto:support@plantpal.com"
-                                    className="hover:underline"
+                                    className="hover:underline underline-offset-8"
                                 >
                                     support@plantpal.com
                                 </a>
@@ -146,7 +145,7 @@ const Footer = () => {
 
                     {/* Copyright Row */}
                     <div className="flex w-full justify-center">
-                        <div className="mt-16 pt-8 border-t w-11/12 lg:w-3/5 border-gray-300">
+                        <div className="mt-16 pt-5 border-t w-11/12 lg:w-3/5 border-gray-300">
                             <p className="text-center">
                                 Made with 💚 for the&nbsp;
                                 <Link

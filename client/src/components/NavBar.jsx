@@ -1,27 +1,26 @@
 import { Link } from 'react-router-dom';
+import Plantlogo from '../assets/logos/green_logo.svg';
+
 function NavBar() {
     return (
-        <nav className="bg-white shadow-md flex justify-between items-center p-6 ">
-            <div className="flex items-center px-4">
-                <span className="text-2xl font-bold text-[#2d6a4f]">
-                    PlantPal
-                </span>
+    <nav className="bg-white shadow-md flex items-center p-6 fixed top-0 left-0 w-full z-50">
+        <div className='w-full flex justify-between items-center px-8'>
+            <div className="w-28 flex justify-center items-center">
+                <img src={Plantlogo} className='object-cover w-full h-7'/>
             </div>
-            <ul className="flex gap-5 px-20 text-[#767676]">
-                <li className="text-[#2d6a4f] font-semibold border-b-2">
-                    Home
+            <ul className=" flex gap-5 px-20 text-gray-600">
+                <li className="hover:underline underline-offset-8 font-semibold font-poppins text-primary ">
+                    <Link to={'/'}>Home</Link>
                 </li>
-                <li className="hover:text-[#2d6a4f] hover:font-medium">
+                <li className=" hover:underline underline-offset-8 font-semibold font-poppins ">
                     <Link to="/community">Community</Link>
                 </li>
-                <li className="hover:text-[#2d6a4f] hover:font-medium">
+                <li className="hover:underline underline-offset-8 font-semibold font-poppins  ">
                     <Link to="/login">Login</Link>
                 </li>
-                <li className="hover:text-[#2d6a4f] hover:font-medium">
-                    <Link to="/signup">Sign Up</Link>
-                </li>
             </ul>
-        </nav>
+        </div>   
+    </nav>
     );
 }
 

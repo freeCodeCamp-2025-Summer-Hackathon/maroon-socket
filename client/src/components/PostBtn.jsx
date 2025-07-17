@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import AddPost from '../pages/AddPost.jsx';
-import { FaPen } from 'react-icons/fa6';
 import { MdCreate } from 'react-icons/md';
 
 export default function PostBtn() {
