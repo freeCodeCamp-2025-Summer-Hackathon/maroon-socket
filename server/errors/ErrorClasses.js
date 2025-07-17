@@ -28,4 +28,14 @@ class ApplicationError extends Error {
     }
 }
 
-export { ServerError, ValidationError, ApplicationError };
+class AuthenticationError extends Error {
+    constructor(message = '', status = 401) {
+        super();
+        this.message = message;
+        this.errorType = 'AUTHENTICATION_ERROR';
+        this.success = false;
+        this.status = status;
+    }
+}
+
+export { ServerError, ValidationError, ApplicationError, AuthenticationError };
