@@ -52,7 +52,7 @@ const Footer = () => {
                             <ul className="font-poppins font-normal flex flex-col gap-2">
                                 <li>
                                     <a
-                                        href='#home'
+                                        href="#home"
                                         className="hover:underline font-poppins underline-offset-8 "
                                         aria-label="Home"
                                     >

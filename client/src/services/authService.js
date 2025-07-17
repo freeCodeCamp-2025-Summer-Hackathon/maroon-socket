@@ -1,6 +1,5 @@
-import { flattenError}  from '../../../shared/schemas/util.js';
-import {signupSchema} from '../../../shared/schemas/signupSchema.js'
-
+import { flattenError } from '../../../shared/schemas/util.js';
+import { signupSchema } from '../../../shared/schemas/signupSchema.js';
 
 async function signupUser(userData) {
     const validationResult = signupSchema.safeParse(userData);
