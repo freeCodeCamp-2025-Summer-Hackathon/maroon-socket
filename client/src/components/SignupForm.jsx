@@ -89,7 +89,7 @@ function SignupForm({ setSignupSuccess }) {
                             type="text"
                             id="username"
                             value={userData.username}
-                            placeholder="JohnD"
+                            placeholder="johnd"
                             onChange={(e) =>
                                 setUserData({
                                     ...userData,
@@ -123,7 +123,7 @@ function SignupForm({ setSignupSuccess }) {
                             type="email"
                             id="email"
                             value={userData.email}
-                            placeholder="JohnD@gmail.com"
+                            placeholder="johnd@email.com"
                             onChange={(e) =>
                                 setUserData({
                                     ...userData,
@@ -140,7 +140,7 @@ function SignupForm({ setSignupSuccess }) {
                             type="password"
                             id="password"
                             value={userData.password}
-                            placeholder="pass123"
+                            placeholder="pass1234"
                             onChange={(e) =>
                                 setUserData({
                                     ...userData,
@@ -159,7 +159,7 @@ function SignupForm({ setSignupSuccess }) {
                             type="password"
                             id="passwordConfirm"
                             value={userData.passwordConfirm}
-                            placeholder="pass123"
+                            placeholder="pass1234"
                             onChange={(e) =>
                                 setUserData({
                                     ...userData,
@@ -182,7 +182,7 @@ function SignupForm({ setSignupSuccess }) {
                         <div className="text-sm flex justify-center items-center gap-1">
                             Already have an account?
                             <div className="text-[#29433F] cursor-pointer">
-                                <Link to="/login">Sign In</Link>
+                                <Link to="/login">Login</Link>
                             </div>
                         </div>
                     </form>

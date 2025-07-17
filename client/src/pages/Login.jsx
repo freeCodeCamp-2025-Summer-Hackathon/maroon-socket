@@ -1,138 +1,150 @@
 import { useState } from 'react';
-import { FaUserPen } from 'react-icons/fa6';
-import { MdLockOutline } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaUserPen, FaLock } from 'react-icons/fa6';
+import ErrorMessage from '../components/ErrorMessage';
+import signUp from '../assets/sign_up.png';
+import { loginUser } from '../services/authService';
+
+function Label({ htmlFor, children }) {
+    return (
+        <label className="block font-medium text-gray-700" htmlFor={htmlFor}>
+            {children}
+        </label>
+    );
+}
+
+function Input({ type, onChange, id, placeholder, value, disabled, children }) {
+    return (
+        <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
+            {children}
+            <input
+                className="w-full border-none bg-transparent focus:outline-none text-gray-500"
+                type={type}
+                id={id}
+                name={id}
+                value={value}
+                placeholder={placeholder}
+                onChange={onChange}
+                disabled={disabled}
+            />
+        </div>
+    );
+}
 
 function Login() {
-    const [credentials, setCredentials] = useState({
+    const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [userData, setUserData] = useState({
         username: '',
         password: ''
     });
-
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
-        setError('');
+        setLoading(true);
 
-        if (!credentials.username.trim() || !credentials.password.trim()) {
-            setError('Please provide username/email and password');
+        const res = await loginUser(userData);
+
+        if (res.success === 'false' && res.errorType === 'VALIDATION_ERROR') {
+            setErrors(res.errors);
+            setLoading(false);
             return;
         }
 
-        setLoading(true);
-
-        try {
-            const loginData = {
-                username: credentials.username,
-                password: credentials.password
-            };
-
-            const response = await fetch(
-                'http://localhost:3000/api/auth/login',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(loginData)
-                }
-            );
-
-            let data;
-            try {
-                data = await response.json();
-            } catch {
-                data = {};
-            }
-            console.log(data);
-            const token = data?.data?.token;
-
-            if (response.ok) {
-                if (token) {
-                    sessionStorage.setItem('token', token);
-                    navigate('/userHome');
-                } else {
-                    setError('Did not receive auth token from server');
-                }
-            } else {
-                setError(data?.message);
-            }
-        } catch {
-            setError('Login failed');
-        } finally {
+        if (res.success === false && res.errorType === 'APPLICATION_ERROR') {
+            setErrors({ message: res.message });
             setLoading(false);
+            return;
+        }
+
+        if (res.success === false) {
+            setErrors({ generic: 'Something went wrong' });
+            setLoading(false);
+            return;
+        }
+
+        if (res.success === true) {
+            const token = res.data.token;
+            if (localStorage) {
+                localStorage.setItem('token', token);
+                navigate('/userHome');
+            }
         }
     }
-    return (
-        <div className="bg-[#29433F] w-full h-screen flex justify-center items-center px-20">
-            <div className="bg-[#29433F] w-full h-screen flex justify-center items-center px-20">
-                <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden md:w-3/5 flex">
-                    <div className="flex flex-col items-start gap-4 py-32 px-20 w-full">
-                        <h1 className="text-3xl font-semibold text-[#29433F]">
-                            Sign In
-                        </h1>
-                        {error && (
-                            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded w-full">
-                                {error}
-                            </div>
-                        )}
-                        <form className="w-full flex flex-col justify-center items-start gap-4">
-                            <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
-                                <span>
-                                    <FaUserPen className="text-2xl text-gray-600" />
-                                </span>
-                                <input
-                                    className="w-full border-none bg-transparent focus:outline-none text-gray-500"
-                                    type="email"
-                                    value={credentials.username}
-                                    onChange={(e) =>
-                                        setCredentials({
-                                            ...credentials,
-                                            username: e.target.value
-                                        })
-                                    }
-                                    required
-                                    placeholder="Username/Email*"
-                                    disabled={loading}
-                                />
-                            </div>
-                            <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
-                                <span>
-                                    <MdLockOutline className="text-2xl text-gray-600" />
-                                </span>
-                                <input
-                                    className="w-full border-none bg-transparent focus:outline-none text-gray-500"
-                                    type="password"
-                                    value={credentials.password}
-                                    onChange={(e) =>
-                                        setCredentials({
-                                            ...credentials,
-                                            password: e.target.value
-                                        })
-                                    }
-                                    placeholder="Password*"
-                                    required
-                                    disabled={loading}
-                                />
-                            </div>
 
-                            <button
-                                className="w-40 h-12 p-3 bg-[#29433F] text-white cursor-pointer rounded-lg"
-                                onClick={(e) => handleSubmit(e)}
-                            >
-                                Login
-                            </button>
-                        </form>
-                        <div className="flex gap-1 py-4 mt-3">
-                            Don't have an account ?
-                            <div className="text-[#29433F] cursor-pointer hover:underline">
-                                <Link to="/signup">Register here</Link>
+    return (
+        <div className="bg-primary w-full min-h-screen flex justify-center items-center p-8">
+            <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full flex">
+                <div className="w-1/2">
+                    <img
+                        src={signUp}
+                        alt="a decorative plant pot"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+
+                {/* Right Side , Sign up form*/}
+                <div className="w-1/2 p-8 flex flex-col justify-center">
+                    <h2 className="text-3xl font-bold text-[#29433F] mb-8 text-center">
+                        Login
+                    </h2>
+                    <form
+                        className="w-full flex flex-col justify-center items-start gap-4"
+                        onSubmit={handleSubmit}
+                    >
+                        <Label htmlFor="username">Username/Email:</Label>
+                        <Input
+                            type="text"
+                            id="username"
+                            value={userData.username}
+                            placeholder="johnd"
+                            disabled={loading}
+                            onChange={(e) =>
+                                setUserData({
+                                    ...userData,
+                                    username: e.target.value
+                                })
+                            }
+                        >
+                            <FaUserPen className="text-2xl inline-block text-gray-600" />
+                        </Input>
+                        <ErrorMessage message={errors?.username}></ErrorMessage>
+
+                        <Label htmlFor="password">Password: </Label>
+                        <Input
+                            type="password"
+                            id="password"
+                            value={userData.password}
+                            placeholder="pass1234"
+                            disabled={loading}
+                            onChange={(e) =>
+                                setUserData({
+                                    ...userData,
+                                    password: e.target.value
+                                })
+                            }
+                        >
+                            <FaLock className="text-xl text-gray-600" />
+                        </Input>
+                        <ErrorMessage message={errors?.password}></ErrorMessage>
+
+                        <button
+                            className="w-30 h-12 p-3 bg-[#29423E] rounded-md text-[#F7FBF7] cursor-pointer mt-2"
+                            type="submit"
+                            disabled={loading}
+                        >
+                            Login
+                        </button>
+                        <ErrorMessage message={errors?.message}></ErrorMessage>
+
+                        <div className="text-sm flex justify-center items-center gap-1">
+                            Don't have an account?
+                            <div className="text-[#29433F] cursor-pointer">
+                                <Link to="/signup">Sign up</Link>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
