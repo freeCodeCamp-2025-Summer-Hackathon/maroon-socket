@@ -1,6 +1,4 @@
-import { PrismaClient } from '../generated/prisma/client.js';
-
-const prisma = new PrismaClient();
+import prisma from '../lib/prismaClient.js';
 
 async function seed() {
   // Seed a user

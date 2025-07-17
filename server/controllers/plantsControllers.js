@@ -1,8 +1,6 @@
-import { PrismaClient } from '../generated/prisma/client.js';
+import prisma from '../lib/prismaClient.js';
 import storage from '../supabase/storageClient.js';
 import { randomUUID } from 'node:crypto';
-
-const prisma = new PrismaClient();
 
 export const getAllPLants = async (req, res) => {
     try {
