@@ -1,12 +1,11 @@
-import { flattenError } from '../../../shared/schemas/util.js';
-import { signupSchema } from '../../../shared/schemas/signupSchema.js';
+import { flattenError, signupSchema } from 'shared/schemas';
 
 async function signupUser(userData) {
     const validationResult = signupSchema.safeParse(userData);
 
     if (validationResult.success === false) {
         const errors = flattenError(validationResult.error);
-        return { errors, success: 'false', errorType: 'VALIDATION_ERROR' };
+        return { errors, success: 'false', errorType: 'ZOD_ERROR' };
     }
 
     const apiUrl = import.meta.env.VITE_API_URL;
