@@ -17,14 +17,13 @@ const plants = [
 
 const MyPlants = () => {
     return (
-        <div className="bg-[#F7FBF7] w-screen h-screen rounded-md p-8 flex flex-col justify-center items-start gap-14 ">
-            {/* <h1 className="text-4xl font-bold ">My Plants</h1> */}
+        <div className="bg-white w-full h-screen rounded-md p-8 flex flex-col justify-center items-start gap-14 mt-32">
             <div className="w-full h-full flex justify-start gap-7 ">
                 {plants.map((plant, idx) => {
                     return (
                         <div
                             key={idx}
-                            className="flex flex-col justify-center items-center gap-4 w-fit h-fit p-6 bg-white shadow-md shadow-gray-300 rounded-lg"
+                            className="flex flex-col justify-center items-center gap-4 w-fit h-fit p-6 bg-secondary shadow-md shadow-gray-300 rounded-lg"
                         >
                             <div className="w-44 h-48 rounded-md">
                                 <img
@@ -39,7 +38,7 @@ const MyPlants = () => {
 
                 {/** Add new plants */}
                 <Link to={'/addPlant'}>
-                    <div className=" w-52 h-fit p-6 bg-white shadow-md shadow-gray-300 rounded-lg  md:flex flex-col justify-center items-center gap-8 cursor-pointer">
+                    <div className=" w-52 h-fit p-6 bg-secondary shadow-md shadow-gray-300 rounded-lg  md:flex flex-col justify-center items-center gap-8 cursor-pointer">
                         <span>
                             <FaPlus className="w-24 h-44 font-light" />
                         </span>

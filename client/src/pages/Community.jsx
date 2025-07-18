@@ -23,7 +23,7 @@ const posts = [
 
 const Community = () => {
     return (
-        <div className="w-full h-full px-12 py-16 flex flex-col justify-center items-center gap-12 relative pt-16">
+        <div className="w-full h-full px-12 py-16 flex flex-col justify-center items-center gap-12 relative pt-16 mt-24">
             {/** Welcome message */}
             <div className="flex flex-col justify-center items-center mb-11">
                 <h2 className="font-poppins font-bold text-4xl">
