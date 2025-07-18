@@ -84,96 +84,105 @@ function SignupForm({ setSignupSuccess }) {
                         className="w-full flex flex-col space-y-2"
                         onSubmit={handleSubmit}
                     >
-                <div className="space-y-1">  
-                        <Label htmlFor="username">Username:</Label>
-                        <Input
-                            type="text"
-                            id="username"
-                            value={userData.username}
-                            placeholder="johnd"
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    username: e.target.value
-                                })
-                            }
-                        >
-                            <FaUserPen className="text-2xl inline-block text-gray-600" />
-                        </Input>
-                        <ErrorMessage message={errors?.username}></ErrorMessage>
+                        <div className="space-y-1">
+                            <Label htmlFor="username">Username:</Label>
+                            <Input
+                                type="text"
+                                id="username"
+                                value={userData.username}
+                                placeholder="johnd"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        username: e.target.value
+                                    })
+                                }
+                            >
+                                <FaUserPen className="text-2xl inline-block text-gray-600" />
+                            </Input>
+                            <ErrorMessage
+                                message={errors?.username}
+                            ></ErrorMessage>
 
-                        <Label htmlFor="fullName">Full Name:</Label>
-                        <Input
-                            type="text"
-                            id="fullName"
-                            value={userData.fullName}
-                            placeholder="John Doe"
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    fullName: e.target.value
-                                })
-                            }
-                        >
-                            <FaUserPen className="text-2xl inline-block text-gray-600" />
-                        </Input>
-                        <ErrorMessage message={errors?.fullName}></ErrorMessage>
+                            <Label htmlFor="fullName">Full Name:</Label>
+                            <Input
+                                type="text"
+                                id="fullName"
+                                value={userData.fullName}
+                                placeholder="John Doe"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        fullName: e.target.value
+                                    })
+                                }
+                            >
+                                <FaUserPen className="text-2xl inline-block text-gray-600" />
+                            </Input>
+                            <ErrorMessage
+                                message={errors?.fullName}
+                            ></ErrorMessage>
 
-                        <Label htmlFor="email">Email:</Label>
-                        <Input
-                            type="email"
-                            id="email"
-                            value={userData.email}
-                            placeholder="johnd@email.com"
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    email: e.target.value
-                                })
-                            }
-                        >
-                            <FaEnvelope className="text-xl text-gray-600" />
-                        </Input>
-                        <ErrorMessage message={errors?.email}></ErrorMessage>
+                            <Label htmlFor="email">Email:</Label>
+                            <Input
+                                type="email"
+                                id="email"
+                                value={userData.email}
+                                placeholder="johnd@email.com"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        email: e.target.value
+                                    })
+                                }
+                            >
+                                <FaEnvelope className="text-xl text-gray-600" />
+                            </Input>
+                            <ErrorMessage
+                                message={errors?.email}
+                            ></ErrorMessage>
 
-                        <Label htmlFor="password">Password: </Label>
-                        <Input
-                            type="password"
-                            id="password"
-                            value={userData.password}
-                            placeholder="pass1234"
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    password: e.target.value
-                                })
-                            }
-                        >
-                            <FaLock className="text-xl text-gray-600" />
-                        </Input>
-                        <ErrorMessage message={errors?.password}></ErrorMessage>
+                            <Label htmlFor="password">Password: </Label>
+                            <Input
+                                type="password"
+                                id="password"
+                                value={userData.password}
+                                placeholder="pass1234"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        password: e.target.value
+                                    })
+                                }
+                            >
+                                <FaLock className="text-xl text-gray-600" />
+                            </Input>
+                            <ErrorMessage
+                                message={errors?.password}
+                            ></ErrorMessage>
 
-                        <Label htmlFor="passwordConfirm">
-                            Confirm Password:
-                        </Label>
-                        <Input
-                            type="password"
-                            id="passwordConfirm"
-                            value={userData.passwordConfirm}
-                            placeholder="pass1234"
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    passwordConfirm: e.target.value
-                                })
-                            }
-                        >
-                            <MdLockOutline className="text-3xl text-gray-600" />
-                        </Input>
-                        <ErrorMessage
-                            message={errors?.passwordConfirm || errors?.generic}
-                        ></ErrorMessage>
-                                               
+                            <Label htmlFor="passwordConfirm">
+                                Confirm Password:
+                            </Label>
+                            <Input
+                                type="password"
+                                id="passwordConfirm"
+                                value={userData.passwordConfirm}
+                                placeholder="pass1234"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        passwordConfirm: e.target.value
+                                    })
+                                }
+                            >
+                                <MdLockOutline className="text-3xl text-gray-600" />
+                            </Input>
+                            <ErrorMessage
+                                message={
+                                    errors?.passwordConfirm || errors?.generic
+                                }
+                            ></ErrorMessage>
                         </div>
 
                         <div className="space-y-1">
