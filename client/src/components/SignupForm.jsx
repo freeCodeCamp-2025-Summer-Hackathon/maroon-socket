@@ -65,9 +65,9 @@ function SignupForm({ setSignupSuccess }) {
     }
 
     return (
-        <div className="bg-primary w-full min-h-screen flex justify-center items-center p-8">
-            <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full flex">
-                <div className="w-1/2">
+        <div className="bg-primary w-full min-h-screen flex justify-center items-center p-4">
+            <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full flex min-h-[760px] max-h-[90vh]">
+                <div className="w-1/2 hidden md:block">
                     <img
                         src={signUp}
                         alt="a decorative plant pot"
@@ -76,14 +76,15 @@ function SignupForm({ setSignupSuccess }) {
                 </div>
 
                 {/* Right Side , Sign up form*/}
-                <div className="w-1/2 p-8 flex flex-col justify-center">
-                    <h2 className="text-3xl font-bold text-[#29433F] mb-8 text-center">
+                <div className="w-full md:w-1/2 p-6 flex flex-col justify-center overflow-y-auto">
+                    <h2 className="text-2xl md:text-3xl font-bold text-[#29433F] mb-6 text-center">
                         Sign Up
                     </h2>
                     <form
-                        className="w-full flex flex-col justify-center items-start gap-4"
+                        className="w-full flex flex-col space-y-2"
                         onSubmit={handleSubmit}
                     >
+                <div className="space-y-1">  
                         <Label htmlFor="username">Username:</Label>
                         <Input
                             type="text"
@@ -172,18 +173,72 @@ function SignupForm({ setSignupSuccess }) {
                         <ErrorMessage
                             message={errors?.passwordConfirm || errors?.generic}
                         ></ErrorMessage>
+                                               
+                        </div>
 
+                        <div className="space-y-1">
+                            <Label htmlFor="password">Password: </Label>
+                            <Input
+                                type="password"
+                                id="password"
+                                value={userData.password}
+                                placeholder="pass123"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        password: e.target.value
+                                    })
+                                }
+                            >
+                                <FaLock className="text-lg flex-shrink-0 text-gray-600" />
+                            </Input>
+                            <div className="min-h-[1.25rem]">
+                                <ErrorMessage
+                                    message={errors?.password}
+                                ></ErrorMessage>
+                            </div>
+                        </div>
+                        <div className="space-y-1">
+                            <Label htmlFor="passwordConfirm">
+                                Confirm Password:
+                            </Label>
+                            <Input
+                                type="password"
+                                id="passwordConfirm"
+                                value={userData.passwordConfirm}
+                                placeholder="pass123"
+                                onChange={(e) =>
+                                    setUserData({
+                                        ...userData,
+                                        passwordConfirm: e.target.value
+                                    })
+                                }
+                            >
+                                <MdLockOutline className="text-xl flex-shrink-0 text-gray-600" />
+                            </Input>
+                            <div className="min-h-[1.25rem]">
+                                <ErrorMessage
+                                    message={
+                                        errors?.passwordConfirm ||
+                                        errors?.generic
+                                    }
+                                ></ErrorMessage>
+                            </div>
+                        </div>
                         <button
-                            className="w-30 h-12 p-3 bg-[#29423E] rounded-md text-[#F7FBF7] cursor-pointer mt-2"
+                            className="w-full h-12  bg-[#29423E] hover:bg-[#1f312e] rounded-md text-[#F7FBF7] cursor-pointer mt-4 transition-colors duration-200"
                             type="submit"
                         >
                             Register
                         </button>
                         <div className="text-sm flex justify-center items-center gap-1">
                             Already have an account?
-                            <div className="text-[#29433F] cursor-pointer">
-                                <Link to="/login">Login</Link>
-                            </div>
+                            <Link
+                                to="/login"
+                                className="text-[#29433F] cursor-pointer hover:underline"
+                            >
+                                Login
+                            </Link>
                         </div>
                     </form>
                 </div>
