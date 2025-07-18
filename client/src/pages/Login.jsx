@@ -44,32 +44,43 @@ function Login() {
         e.preventDefault();
         setLoading(true);
 
-        const res = await loginUser(userData);
+        try {
+            const res = await loginUser(userData);
 
-        if (res.success === 'false' && res.errorType === 'VALIDATION_ERROR') {
-            setErrors(res.errors);
-            setLoading(false);
-            return;
-        }
-
-        if (res.success === false && res.errorType === 'APPLICATION_ERROR') {
-            setErrors({ message: res.message });
-            setLoading(false);
-            return;
-        }
-
-        if (res.success === false) {
-            setErrors({ generic: 'Something went wrong' });
-            setLoading(false);
-            return;
-        }
-
-        if (res.success === true) {
-            const token = res.data.token;
-            if (localStorage) {
-                localStorage.setItem('token', token);
-                navigate('/userHome');
+            if (
+                res.success === 'false' &&
+                res.errorType === 'VALIDATION_ERROR'
+            ) {
+                setErrors(res.errors);
+                setLoading(false);
+                return;
             }
+
+            if (
+                res.success === false &&
+                res.errorType === 'APPLICATION_ERROR'
+            ) {
+                setErrors({ message: res.message });
+                setLoading(false);
+                return;
+            }
+
+            if (res.success === false) {
+                setErrors({ generic: 'Something went wrong' });
+                setLoading(false);
+                return;
+            }
+
+            if (res.success === true) {
+                const token = res.data.token;
+                if (localStorage) {
+                    localStorage.setItem('token', token);
+                    navigate('/userHome');
+                }
+            }
+        } catch (error) {
+            setErrors({ message: error.message });
+            return;
         }
     }
 

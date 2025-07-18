@@ -44,15 +44,26 @@ function SignupForm({ setSignupSuccess }) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const res = await signupUser(userData);
+        try {
+            const res = await signupUser(userData);
 
-        if (res.success === 'false' && res.errorType === 'VALIDATION_ERROR') {
-            setErrors(res.errors);
-            return;
-        }
+            if (
+                res.success === 'false' &&
+                res.errorType === 'VALIDATION_ERROR'
+            ) {
+                setErrors(res.errors);
+                return;
+            }
 
-        if (res.success === false && res.errorType === 'APPLICATION_ERROR') {
-            setErrors({ message: res.message });
+            if (
+                res.success === false &&
+                res.errorType === 'APPLICATION_ERROR'
+            ) {
+                setErrors({ message: res.message });
+                return;
+            }
+        } catch (error) {
+            setErrors({ message: error.message });
             return;
         }
 
