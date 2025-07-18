@@ -44,24 +44,19 @@ function SignupForm({ setSignupSuccess }) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        try {
-            const res = await signupUser(userData);
+        const res = await signupUser(userData);
 
-            if (
-                res.success === 'false' &&
-                res.errorType === 'VALIDATION_ERROR'
-            ) {
-                setErrors(res.errors);
-                return;
-            } else if (res.success === 'false') {
-                setErrors({ generic: 'something went wrong' });
-                return;
-            }
-            setSignupSuccess(true);
-        } catch (error) {
-            console.log(error);
-            setErrors({ generic: 'something went wrong' });
+        if (res.success === 'false' && res.errorType === 'VALIDATION_ERROR') {
+            setErrors(res.errors);
+            return;
         }
+
+        if (res.success === false && res.errorType === 'APPLICATION_ERROR') {
+            setErrors({ message: res.message });
+            return;
+        }
+
+        setSignupSuccess(true);
     }
 
     return (
@@ -184,56 +179,7 @@ function SignupForm({ setSignupSuccess }) {
                                 }
                             ></ErrorMessage>
                         </div>
-
-                        <div className="space-y-1">
-                            <Label htmlFor="password">Password: </Label>
-                            <Input
-                                type="password"
-                                id="password"
-                                value={userData.password}
-                                placeholder="pass123"
-                                onChange={(e) =>
-                                    setUserData({
-                                        ...userData,
-                                        password: e.target.value
-                                    })
-                                }
-                            >
-                                <FaLock className="text-lg flex-shrink-0 text-gray-600" />
-                            </Input>
-                            <div className="min-h-[1.25rem]">
-                                <ErrorMessage
-                                    message={errors?.password}
-                                ></ErrorMessage>
-                            </div>
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="passwordConfirm">
-                                Confirm Password:
-                            </Label>
-                            <Input
-                                type="password"
-                                id="passwordConfirm"
-                                value={userData.passwordConfirm}
-                                placeholder="pass123"
-                                onChange={(e) =>
-                                    setUserData({
-                                        ...userData,
-                                        passwordConfirm: e.target.value
-                                    })
-                                }
-                            >
-                                <MdLockOutline className="text-xl flex-shrink-0 text-gray-600" />
-                            </Input>
-                            <div className="min-h-[1.25rem]">
-                                <ErrorMessage
-                                    message={
-                                        errors?.passwordConfirm ||
-                                        errors?.generic
-                                    }
-                                ></ErrorMessage>
-                            </div>
-                        </div>
+                        <ErrorMessage message={errors.message}></ErrorMessage>
                         <button
                             className="w-full h-12  bg-[#29423E] hover:bg-[#1f312e] rounded-md text-[#F7FBF7] cursor-pointer mt-4 transition-colors duration-200"
                             type="submit"
