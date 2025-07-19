@@ -47,21 +47,24 @@ function SignupForm({ setSignupSuccess }) {
         try {
             const res = await signupUser(userData);
 
-            if (
-                res.success === 'false' &&
-                res.errorType === 'VALIDATION_ERROR'
-            ) {
+            if (res.success === false && res.errorType === 'VALIDATION_ERROR') {
                 setErrors(res.errors);
                 return;
-            } else if (res.success === 'false') {
-                setErrors({ generic: 'something went wrong' });
+            }
+
+            if (
+                res.success === false &&
+                res.errorType === 'APPLICATION_ERROR'
+            ) {
+                setErrors({ message: res.message });
                 return;
             }
-            setSignupSuccess(true);
         } catch (error) {
-            console.log(error);
-            setErrors({ generic: 'something went wrong' });
+            setErrors({ message: error.message });
+            return;
         }
+
+        setSignupSuccess(true);
     }
 
     return (
@@ -90,7 +93,7 @@ function SignupForm({ setSignupSuccess }) {
                                 type="text"
                                 id="username"
                                 value={userData.username}
-                                placeholder="JohnD"
+                                placeholder="johnd"
                                 onChange={(e) =>
                                     setUserData({
                                         ...userData,
@@ -98,15 +101,12 @@ function SignupForm({ setSignupSuccess }) {
                                     })
                                 }
                             >
-                                <FaUserPen className="text-xl flex-shrink-0 inline-block text-gray-600" />
+                                <FaUserPen className="text-2xl inline-block text-gray-600" />
                             </Input>
-                            <div className="min-h-[1.25rem]">
-                                <ErrorMessage
-                                    message={errors?.username}
-                                ></ErrorMessage>
-                            </div>
-                        </div>
-                        <div className="space-y-1">
+                            <ErrorMessage
+                                message={errors?.username}
+                            ></ErrorMessage>
+
                             <Label htmlFor="fullName">Full Name:</Label>
                             <Input
                                 type="text"
@@ -120,22 +120,18 @@ function SignupForm({ setSignupSuccess }) {
                                     })
                                 }
                             >
-                                <FaUserPen className="text-xl flex-shrink-0 inline-block text-gray-600" />
+                                <FaUserPen className="text-2xl inline-block text-gray-600" />
                             </Input>
-                            <div className="min-h-[1.25rem]">
-                                <ErrorMessage
-                                    message={errors?.fullName}
-                                ></ErrorMessage>
-                            </div>
-                        </div>
+                            <ErrorMessage
+                                message={errors?.fullName}
+                            ></ErrorMessage>
 
-                        <div className="space-y-1">
                             <Label htmlFor="email">Email:</Label>
                             <Input
                                 type="email"
                                 id="email"
                                 value={userData.email}
-                                placeholder="JohnD@gmail.com"
+                                placeholder="johnd@email.com"
                                 onChange={(e) =>
                                     setUserData({
                                         ...userData,
@@ -143,22 +139,18 @@ function SignupForm({ setSignupSuccess }) {
                                     })
                                 }
                             >
-                                <FaEnvelope className="text-lg flex-shrink-0 text-gray-600" />
+                                <FaEnvelope className="text-xl text-gray-600" />
                             </Input>
-                            <div className="min-h-[1.25rem]">
-                                <ErrorMessage
-                                    message={errors?.email}
-                                ></ErrorMessage>
-                            </div>
-                        </div>
+                            <ErrorMessage
+                                message={errors?.email}
+                            ></ErrorMessage>
 
-                        <div className="space-y-1">
                             <Label htmlFor="password">Password: </Label>
                             <Input
                                 type="password"
                                 id="password"
                                 value={userData.password}
-                                placeholder="pass123"
+                                placeholder="pass1234"
                                 onChange={(e) =>
                                     setUserData({
                                         ...userData,
@@ -166,15 +158,12 @@ function SignupForm({ setSignupSuccess }) {
                                     })
                                 }
                             >
-                                <FaLock className="text-lg flex-shrink-0 text-gray-600" />
+                                <FaLock className="text-xl text-gray-600" />
                             </Input>
-                            <div className="min-h-[1.25rem]">
-                                <ErrorMessage
-                                    message={errors?.password}
-                                ></ErrorMessage>
-                            </div>
-                        </div>
-                        <div className="space-y-1">
+                            <ErrorMessage
+                                message={errors?.password}
+                            ></ErrorMessage>
+
                             <Label htmlFor="passwordConfirm">
                                 Confirm Password:
                             </Label>
@@ -182,7 +171,7 @@ function SignupForm({ setSignupSuccess }) {
                                 type="password"
                                 id="passwordConfirm"
                                 value={userData.passwordConfirm}
-                                placeholder="pass123"
+                                placeholder="pass1234"
                                 onChange={(e) =>
                                     setUserData({
                                         ...userData,
@@ -190,17 +179,15 @@ function SignupForm({ setSignupSuccess }) {
                                     })
                                 }
                             >
-                                <MdLockOutline className="text-xl flex-shrink-0 text-gray-600" />
+                                <MdLockOutline className="text-3xl text-gray-600" />
                             </Input>
-                            <div className="min-h-[1.25rem]">
-                                <ErrorMessage
-                                    message={
-                                        errors?.passwordConfirm ||
-                                        errors?.generic
-                                    }
-                                ></ErrorMessage>
-                            </div>
+                            <ErrorMessage
+                                message={
+                                    errors?.passwordConfirm || errors?.generic
+                                }
+                            ></ErrorMessage>
                         </div>
+                        <ErrorMessage message={errors.message}></ErrorMessage>
                         <button
                             className="w-full h-12  bg-[#29423E] hover:bg-[#1f312e] rounded-md text-[#F7FBF7] cursor-pointer mt-4 transition-colors duration-200"
                             type="submit"
@@ -213,7 +200,7 @@ function SignupForm({ setSignupSuccess }) {
                                 to="/login"
                                 className="text-[#29433F] cursor-pointer hover:underline"
                             >
-                                Sign In
+                                Login
                             </Link>
                         </div>
                     </form>
