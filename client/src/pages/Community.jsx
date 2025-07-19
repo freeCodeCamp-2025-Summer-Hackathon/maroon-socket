@@ -14,19 +14,29 @@ const posts = [
     {
         id: 2,
         userName: 'PlantParentTom',
-        title: 'Quick Tip: Let your monstera dry out!',
+        title: 'The Complete Guide to Nurturing Healthy Indoor Plants',
         tag: 'Tip',
         description:
-            "If your monstera leaves are turning yellow, it's often due to overwatering. Make sure the top 2 inches of soil are dry before the next watering. Also, ensure your pot has drainage holes!"
+            `Taking care of indoor plants isn't just about watering them occasionally
+             1. Know Your Plant's Needs
+             2. Don’t Overwater
+             3. Use Pots with Drainage
+             4. Give Them the Right Light
+             5. Rotate Regularly
+             6. Dust the Leaves
+             7. Repot When Necessary
+             8. Fertilize — But Not Too Much
+             9. Watch for Pests
+             10. Be Patient and Observant, Caring for plants is more about attention than perfection`
     }
 ];
 
 const Community = () => {
     return (
-        <div className="w-full h-full px-12 py-16 flex flex-col justify-center items-center gap-12 relative pt-16 mt-24">
+        <div className="w-full h-full md:px-12 py-16 flex flex-col justify-center items-center gap-12 relative pt-16 mt-20 bg-secondary">
             {/** Welcome message */}
-            <div className="flex flex-col justify-center items-center mb-11">
-                <h2 className="font-poppins font-bold text-4xl">
+            <div className="flex flex-col justify-center items-center max-md:gap-2 mb-11">
+                <h2 className="font-poppins font-bold text-2xl md:text-4xl">
                     Welcome to the PlantCare Community
                 </h2>
                 <p className=" font-poppins text-sm text-gray-600">
