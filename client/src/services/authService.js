@@ -5,7 +5,7 @@ async function signupUser(userData) {
 
     if (validationResult.success === false) {
         const errors = flattenError(validationResult.error);
-        return { errors, success: 'false', errorType: 'VALIDATION_ERROR' };
+        return { errors, success: false, errorType: 'VALIDATION_ERROR' };
     }
 
     const apiUrl = import.meta.env.VITE_API_URL;
@@ -24,7 +24,7 @@ async function loginUser(userData) {
 
     if (validationResult.success === false) {
         const errors = flattenError(validationResult.error);
-        return { errors, success: 'false', errorType: 'VALIDATION_ERROR' };
+        return { errors, success: false, errorType: 'VALIDATION_ERROR' };
     }
 
     const apiUrl = import.meta.env.VITE_API_URL;
