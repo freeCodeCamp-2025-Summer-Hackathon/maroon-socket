@@ -1,119 +1,75 @@
 import prisma from '../lib/prismaClient.js';
+import { commentSchema, flattenError } from 'shared/schemas/index.js';
+import { ValidationError, ApplicationError } from '../errors/ErrorClasses.js';
+import { Success } from '../lib/successClasses.js';
 
 const getAllComments = async (req, res) => {
     const postId = parseInt(req.params.id);
-    if (isNaN(postId)) {
-        return res.status(400).json({
-            success: false,
-            message: 'Invalid post ID'
-        });
-    }
+    if (isNaN(postId)) throw new ApplicationError('Invalid post ID');
 
-    try {
-        // Check if post exists
-        const post = await prisma.post.findUnique({
-            where: { id: postId }
-        });
+    // Check if post exists
+    const post = await prisma.post.findUnique({
+        where: { id: postId }
+    });
+    if (!post) throw new ApplicationError('Post not found', 404);
 
-        if (!post) {
-            return res.status(404).json({
-                success: false,
-                message: 'Post not found'
-            });
-        }
-
-        // Get all comments for the post
-        const comments = await prisma.comment.findMany({
-            where: {
-                post_id: postId
-            },
-            include: {
-                user: {
-                    select: {
-                        id: true,
-                        username: true
-                    }
+    // Get all comments for the post
+    const comments = await prisma.comment.findMany({
+        where: {
+            post_id: postId
+        },
+        include: {
+            user: {
+                select: {
+                    username: true
                 }
-            },
-            orderBy: {
-                createdAt: 'desc'
             }
-        });
-        res.status(200).json({
-            success: true,
-            message: 'Comments fetched successfully',
-            data: comments
-        });
-    } catch (error) {
-        console.error('Error fetching comments:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Internal server error'
-        });
-    }
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    });
+
+    res.status(200).json(
+        new Success('Comments fetched successfully', comments)
+    );
 };
 
 const createComment = async (req, res) => {
     const postId = parseInt(req.params.id);
-    if (isNaN(postId)) {
-        return res.status(400).json({
-            success: false,
-            message: 'Invalid post ID'
-        });
-    }
+    if (isNaN(postId)) throw new ApplicationError('Invalid post ID');
 
-    const { content } = req.body;
-    if (!content) {
-        return res.status(400).json({
-            success: false,
-            message: 'Content is required'
-        });
-    }
+    const validationResult = commentSchema.safeParse(req.body);
+    if (validationResult.success === false)
+        throw new ValidationError(flattenError(validationResult.error));
 
-    try {
-        const userId = req.user.id;
+    const { content } = validationResult.data;
+    const userId = req.user.id;
 
-        // Check if post exists
-        const post = await prisma.post.findUnique({
-            where: { id: postId }
-        });
+    // Check if post exists
+    const post = await prisma.post.findUnique({
+        where: { id: postId }
+    });
+    if (!post) throw new ApplicationError('Post not found', 404);
 
-        if (!post) {
-            return res.status(404).json({
-                success: false,
-                message: 'Post not found'
-            });
-        }
-
-        // create comment
-        const comment = await prisma.comment.create({
-            data: {
-                content,
-                post: {
-                    connect: {
-                        id: postId
-                    }
-                },
-                user: {
-                    connect: {
-                        id: userId
-                    }
+    // create comment
+    const comment = await prisma.comment.create({
+        data: {
+            content,
+            post: {
+                connect: {
+                    id: postId
+                }
+            },
+            user: {
+                connect: {
+                    id: userId
                 }
             }
-        });
+        }
+    });
 
-        res.status(201).json({
-            success: true,
-            message: 'Comment created successfully',
-            data: comment
-        });
-    } catch (error) {
-        console.error('Error creating comment:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Internal server error'
-        });
-    }
+    res.status(201).json(new Success('Comment created successfully', comment));
 };
 
 export { getAllComments, createComment };
