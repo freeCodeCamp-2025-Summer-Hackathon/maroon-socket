@@ -47,10 +47,7 @@ function Login() {
         try {
             const res = await loginUser(userData);
 
-            if (
-                res.success === 'false' &&
-                res.errorType === 'VALIDATION_ERROR'
-            ) {
+            if (res.success === false && res.errorType === 'VALIDATION_ERROR') {
                 setErrors(res.errors);
                 setLoading(false);
                 return;
