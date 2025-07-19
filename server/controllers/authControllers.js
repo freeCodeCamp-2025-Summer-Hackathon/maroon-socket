@@ -5,11 +5,10 @@ import {
     signupSchema,
     flattenError
 } from 'shared/schemas/index.js';
-import { PrismaClient } from '../generated/prisma/client.js';
+import prisma from '../lib/prismaClient.js';
 import { ApplicationError, ValidationError } from '../errors/ErrorClasses.js';
 import { Success } from '../lib/successClasses.js';
 
-const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || 'secret';
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS) || 10;
 
