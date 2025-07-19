@@ -1,74 +1,57 @@
 import prisma from '../lib/prismaClient.js';
+import { postSchema, flattenError } from 'shared/schemas/index.js';
+import { Success } from '../lib/successClasses.js';
+import { ValidationError } from '../errors/ErrorClasses.js';
 
 const getPosts = async (req, res) => {
-    try {
-        // Pagination
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
-        const skip = (page - 1) * limit;
+    // Pagination
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
 
-        // Sorting
-        const sortBy = req.query.sort || 'createdAt';
-        const order = req.query.order || 'desc';
+    // Sorting
+    const sortBy = req.query.sort || 'createdAt';
+    const order = req.query.order || 'desc';
 
-        const posts = await prisma.post.findMany({
-            skip: skip,
-            take: limit,
-            orderBy: {
-                [sortBy]: order
+    const posts = await prisma.post.findMany({
+        skip: skip,
+        take: limit,
+        orderBy: {
+            [sortBy]: order
+        },
+        include: {
+            user: {
+                select: {
+                    username: true
+                }
             }
-        });
+        }
+    });
 
-        res.status(200).json({
-            success: true,
-            message: 'Posts fetched successfully',
-            data: posts
-        });
-    } catch (error) {
-        console.error('Error fetching posts:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Internal server error'
-        });
-    }
+    res.status(200).json(new Success('Posts fetched successfully', posts));
 };
 
 const createPost = async (req, res) => {
-    try {
-        const { title, content, tag } = req.body;
-        const userId = req.user.id;
+    const userId = req.user.id;
+    const validationResult = postSchema.safeParse(req.body);
+    if (validationResult.success === false)
+        throw new ValidationError(flattenError(validationResult.error));
 
-        if (!title || !content || !tag) {
-            return res.status(400).json({
-                success: false,
-                message: 'Title, content, and tag are required!'
-            });
-        }
+    const { title, content, tag } = validationResult.data;
 
-        const post = await prisma.post.create({
-            data: {
-                title,
-                content,
-                tag,
-                user: {
-                    connect: {
-                        id: userId
-                    }
+    const post = await prisma.post.create({
+        data: {
+            title,
+            content,
+            tag,
+            user: {
+                connect: {
+                    id: userId
                 }
             }
-        });
-        res.status(201).json({
-            success: true,
-            message: 'Post created successfully',
-            data: post
-        });
-    } catch (error) {
-        console.error('Error creating post:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Internal server error'
-        });
-    }
+        }
+    });
+    res.status(201).json(new Success('Post created successfully', post));
 };
 
 export { getPosts, createPost };
