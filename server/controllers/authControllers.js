@@ -46,13 +46,9 @@ const login = async (req, res) => {
         expiresIn: '7d'
     });
 
-    return res.status(200).json({
-        success: true,
-        message: 'Login successful',
-        data: {
-            token: jwtToken
-        }
-    });
+    return res
+        .status(201)
+        .json(new Success('Login successful', { token: jwtToken }));
 };
 
 const signup = async (req, res) => {
