@@ -16,8 +16,7 @@ const posts = [
         userName: 'PlantParentTom',
         title: 'The Complete Guide to Nurturing Healthy Indoor Plants',
         tag: 'Tip',
-        description:
-            `Taking care of indoor plants isn't just about watering them occasionally
+        description: `Taking care of indoor plants isn't just about watering them occasionally
              1. Know Your Plant's Needs
              2. Don’t Overwater
              3. Use Pots with Drainage

@@ -2,8 +2,8 @@ import { FaUser } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
 const PostCard = ({ post, fullContent = false }) => {
-const maxLength = 300;    
-const isLong = post?.description.length > maxLength;
+    const maxLength = 300;
+    const isLong = post?.description.length > maxLength;
 
     return (
         <div className="w-full h-fit rounded-md shadow shadow-gray-400 px-4 md:px-8 py-14 bg-white relative ">
@@ -18,20 +18,24 @@ const isLong = post?.description.length > maxLength;
             {/** TITLE and DESCRIPTION */}
             <div className="flex flex-col w-full px-8 gap-4">
                 <h2 className="text-lg font-poppins font-semibold">
-                   { post.title}
-                   </h2>
+                    {post.title}
+                </h2>
                 <div className="w-full h-fit bg-gray-200 p-4 rounded-md">
                     <p className="text-base">
-                      { fullContent ? post?.description : post?.description.slice(0,maxLength)}
-                        {
-                         !fullContent && isLong && (
+                        {fullContent
+                            ? post?.description
+                            : post?.description.slice(0, maxLength)}
+                        {!fullContent && isLong && (
                             // Change the path accordingly
                             <Link to={`/`}>
-                                <span className='font-bold text-black'>......</span>
-                                <button className='text-black hover:text-blue-700 underline text-base font-bold cursor-pointer' >Read More</button>
+                                <span className="font-bold text-black">
+                                    ......
+                                </span>
+                                <button className="text-black hover:text-blue-700 underline text-base font-bold cursor-pointer">
+                                    Read More
+                                </button>
                             </Link>
-                        )
-                    }
+                        )}
                     </p>
                 </div>
             </div>
