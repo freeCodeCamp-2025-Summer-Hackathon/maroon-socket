@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
+import './lib/scheduler.js';
 import authRouter from './routes/authRouter.js';
 import plantRouter from './routes/plantRouter.js';
 import postRouter from './routes/postRouter.js';
