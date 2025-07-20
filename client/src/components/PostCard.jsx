@@ -45,9 +45,7 @@ const PostCard = ({ post, fullContent = false }) => {
                 aria-label={`Post category: ${post.tag}`}
                 className={`absolute top-20 right-12 md:top-14 md:right-16 px-2 w-24 h-7 flex justify-center items-center rounded-md shadow shadow-gray-400 ${post.tag === 'tip' ? 'bg-blue-600' : 'bg-green-600'}`}
             >
-                <p className="text-white font-bold">
-                    {post.tag}
-                </p>
+                <p className="text-white font-bold">{post.tag}</p>
             </span>
         </div>
     );
