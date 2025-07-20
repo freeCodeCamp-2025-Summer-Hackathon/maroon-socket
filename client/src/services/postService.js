@@ -1,5 +1,6 @@
-const apiUrl = import.meta.env.VITE_API_URL;
 import { flattenError, postSchema } from 'shared/schemas/index.js';
+
+const apiUrl = import.meta.env.VITE_API_URL;
 
 async function createPost(data) {
     const validationResult = postSchema.safeParse(data);

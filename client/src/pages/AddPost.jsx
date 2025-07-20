@@ -3,14 +3,15 @@ import { AiTwotoneCloseSquare } from 'react-icons/ai';
 import ErrorMessage from '../components/ErrorMessage';
 import { createPost, getAllPosts } from '../services/postService';
 
+const postOptions = ['question', 'tip'];
+
 const AddPost = ({ onClose, setPosts }) => {
-    const [postType, setPostType] = useState('question');
+    const [postType, setPostType] = useState(postOptions[0]);
     const [postFields, setPostFields] = useState({
         title: '',
         content: ''
     });
     const [errors, setErrors] = useState({});
-    const postOptions = ['question', 'tip'];
 
     async function handleSubmit(e) {
         e.preventDefault();
