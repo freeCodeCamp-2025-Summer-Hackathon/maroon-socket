@@ -63,7 +63,7 @@ function Login() {
             }
 
             if (res.success === false) {
-                setErrors({ generic: 'Something went wrong' });
+                setErrors({ message: 'Something went wrong' });
                 setLoading(false);
                 return;
             }
