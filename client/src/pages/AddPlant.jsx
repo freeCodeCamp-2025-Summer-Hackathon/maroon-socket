@@ -86,6 +86,7 @@ const AddPlant = () => {
                     </h1>
                     <span className="size-10">
                         <img
+                            alt="plant pot icon"
                             src={plantPotIcon2}
                             className="w-full h-full object-cover"
                         />
