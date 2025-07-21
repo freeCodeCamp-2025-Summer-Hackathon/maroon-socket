@@ -1,11 +1,33 @@
 import { useState } from 'react';
+import { createComment, getAllComments } from '../services/commentService';
+import ErrorMessage from '../components/ErrorMessage';
 
-const CommentInputBox = () => {
-    const handleComment = () => {
-        console.log(comment);
-        setComment('');
-    };
+const CommentInputBox = ({ postId, setAllComments }) => {
     const [comment, setComment] = useState('');
+    const [errors, setErrors] = useState({});
+
+    async function handleComment() {
+        try {
+            const res = await createComment({ content: comment }, postId);
+
+            if (res.success === false && res.errorType === 'VALIDATION_ERROR')
+                setErrors(res.errors);
+            else if (
+                res.success === false &&
+                res.errorType === 'APPLICATION_ERROR'
+            )
+                setErrors({ message: res.message });
+            else if (res.success === true) {
+                const allPosts = await getAllComments(postId);
+                setAllComments(allPosts.data);
+                setComment('');
+            }
+        } catch (error) {
+            console.log(error);
+            alert('something bad has happened');
+        }
+    }
+
     return (
         <>
             <div className="mt-6">
@@ -25,6 +47,7 @@ const CommentInputBox = () => {
                     Post Comment
                 </button>
             </div>
+            <ErrorMessage message={errors?.content}></ErrorMessage>
         </>
     );
 };
