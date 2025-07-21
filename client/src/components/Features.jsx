@@ -31,7 +31,7 @@ const Features = () => {
     return (
         <section className="min-h-screen w-full flex flex-col justify-around items-center gap-10 px-4 py-16 bg-secondary relative">
             <div className="w-full flex flex-col justify-center items-center text-center gap-2">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-poppins">
+                <h1 className="text-2xl md:text-4xl font-bold font-poppins">
                     Everything You Need for Happy Plants
                 </h1>
                 <p className="text-base font-poppins text-gray-500">

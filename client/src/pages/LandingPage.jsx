@@ -15,7 +15,7 @@ function LandingPage() {
                 <section className="relative w-full min-h-screen bg-white overflow-hidden">
                     {/* Text */}
                     <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center px-4 text-center gap-6 z-20">
-                        <h1 className="font-poppins text-3xl md:text-5xl font-bold leading-tight">
+                        <h1 className="font-poppins text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
                             Helping You Keep Your{' '}
                             <span className="text-primary">Plant</span> Happy
                         </h1>
@@ -69,7 +69,7 @@ function LandingPage() {
                             />
                         </div>
                         <div className="w-full lg:w-1/2 text-white text-center lg:text-left">
-                            <blockquote className="font-poppins font-bold text-2xl md:text-4xl leading-relaxed">
+                            <blockquote className="font-poppins font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-relaxed">
                                 "To nurture a plant is to slow down, <br /> pay
                                 attention, <br /> and grow alongside it."
                             </blockquote>
@@ -80,7 +80,7 @@ function LandingPage() {
                 {/* Community section */}
                 <section className="w-full py-16 px-4 bg-white">
                     <div className="container mx-auto flex flex-col items-center gap-6 text-center">
-                        <h1 className="text-3xl md:text-4xl font-bold font-poppins">
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-poppins">
                             Join the{' '}
                             <span className="text-primary">PlantPal</span>{' '}
                             Community

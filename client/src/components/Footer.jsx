@@ -48,7 +48,7 @@ const Footer = () => {
                     <div className="grid gap-10 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                         {/* About */}
                         <div className="flex flex-col gap-4">
-                            <h2 className="font-inter font-bold text-black text-xl md:text-2xl">
+                            <h2 className="font-inter font-bold text-black text-lg md:text-xl">
                                 About PlantPal
                             </h2>
                             <p className="font-poppins text-base text-white">
@@ -61,7 +61,7 @@ const Footer = () => {
                         {/* Quick Links */}
                         <div className="flex flex-col gap-4 sm:px-4">
                             <h2
-                                className="font-inter font-bold text-black text-xl md:text-2xl "
+                                className="font-inter font-bold text-black text-lg md:text-xl "
                                 arial-label="Quick Links"
                             >
                                 Quick Links
@@ -108,7 +108,7 @@ const Footer = () => {
 
                         {/* Social & Contact */}
                         <div className="flex flex-col gap-4">
-                            <h2 className="font-inter font-bold text-black text-xl md:text-2xl">
+                            <h2 className="font-inter font-bold text-black text-lg md:text-xl">
                                 Follow Us
                             </h2>
                             <p className="font-poppins text-white">
