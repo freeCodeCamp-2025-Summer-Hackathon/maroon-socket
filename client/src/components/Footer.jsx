@@ -11,49 +11,66 @@ import {
 
 const Footer = () => {
     return (
-        <footer className="relative h-full text-white pb-0">
-            <div className="absolute top-0 left-0 w-full h-full overflow-auto bg-primary">
-                <svg
-                    data-name="Layer 1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 1200 120"
-                    preserveAspectRatio="none"
-                >
-                    <path
-                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-                        className="relative block fill-white"
-                    ></path>
-                </svg>
-                <div className="py-8 px-10 md:px-20">
-                    {/* Logo Row */}
-                    <div className="flex justify-start">
-                        <img src={logo} alt="PlantPal Logo" className="h-32" />
+        <footer className="relative w-full text-white">
+            <div className="relative w-full bg-primary overflow-hidden">
+                {/* SVG Wave */}
+                <div className="w-full">
+                    <svg
+                        data-name="Layer 1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 1200 120"
+                        preserveAspectRatio="none"
+                        className="w-full h-20 md:h-28"
+                    >
+                        <path
+                            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,
+                               82.39-16.72,168.19-17.73,250.45-.39C823.78,
+                               31,906.67,72,985.66,92.83c70.05,18.48,
+                               146.53,26.09,214.34,3V0H0V27.35A600.21,
+                               600.21,0,0,0,321.39,56.44Z"
+                            className="fill-white"
+                        ></path>
+                    </svg>
+                </div>
+
+                {/* Footer Content */}
+                <div className="px-6 sm:px-10 md:px-20 py-10 flex flex-col gap-10">
+                    {/* Logo */}
+                    <div className="flex justify-center md:justify-start">
+                        <img
+                            src={logo}
+                            alt="PlantPal Logo"
+                            className="h-24 md:h-28"
+                        />
                     </div>
 
                     {/* Content Row */}
-                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
-                        <div className="flex flex-col gap-5">
-                            <h2 className="font-inter font-bold text-black text-2xl">
+                    <div className="grid gap-10 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                        {/* About */}
+                        <div className="flex flex-col gap-4">
+                            <h2 className="font-inter font-bold text-black text-xl md:text-2xl">
                                 About PlantPal
                             </h2>
-                            <p className="font-poppins text-base ">
+                            <p className="font-poppins text-base text-white">
                                 Plant care is essential for maintaining healthy
                                 and thriving greenery. Scheduling watering and
-                                providing proper care for your plants
+                                providing proper care for your plants.
                             </p>
                         </div>
-                        <div className="flex flex-col gap-5 lg:px-16 md:px-8">
+
+                        {/* Quick Links */}
+                        <div className="flex flex-col gap-4 sm:px-4">
                             <h2
-                                className="font-inter font-bold text-black text-2xl"
+                                className="font-inter font-bold text-black text-xl md:text-2xl "
                                 arial-label="Quick Links"
                             >
                                 Quick Links
                             </h2>
-                            <ul className="font-poppins font-normal flex flex-col gap-2">
+                            <ul className="font-poppins flex flex-col gap-2 text-white">
                                 <li>
                                     <a
                                         href="#home"
-                                        className="hover:underline font-poppins underline-offset-8 "
+                                        className="hover:underline"
                                         aria-label="Home"
                                     >
                                         Home
@@ -62,7 +79,7 @@ const Footer = () => {
                                 <li>
                                     <Link
                                         to="/"
-                                        className="hover:underline font-poppins underline-offset-8"
+                                        className="hover:underline"
                                         aria-label="community"
                                     >
                                         Community
@@ -71,7 +88,7 @@ const Footer = () => {
                                 <li>
                                     <Link
                                         to="/myplants"
-                                        className="hover:underline font-poppins underline-offset-8"
+                                        className="hover:underline"
                                         aria-label="My Plants"
                                     >
                                         My Plants
@@ -80,7 +97,7 @@ const Footer = () => {
                                 <li>
                                     <Link
                                         to="/login"
-                                        className="hover:underline font-poppins underline-offset-8"
+                                        className="hover:underline"
                                         aria-label="login"
                                     >
                                         Login
@@ -88,75 +105,75 @@ const Footer = () => {
                                 </li>
                             </ul>
                         </div>
-                        <div className="flex flex-col gap-5">
-                            <h2 className="font-inter font-bold text-black text-2xl">
+
+                        {/* Social & Contact */}
+                        <div className="flex flex-col gap-4">
+                            <h2 className="font-inter font-bold text-black text-xl md:text-2xl">
                                 Follow Us
                             </h2>
-                            <p className="font-poppins font-normal">
-                                Have questions? Reach out to us at{' '}
+                            <p className="font-poppins text-white">
+                                Have questions? Reach out to us at&nbsp;
                                 <a
                                     href="mailto:support@plantpal.com"
-                                    className="hover:underline underline-offset-8"
+                                    className="hover:underline"
                                 >
                                     support@plantpal.com
                                 </a>
                                 .
                             </p>
-                            <div className="flex gap-6 mt-2">
+                            <div className="flex gap-4 mt-2">
                                 <a
                                     href="https://github.com/freeCodeCamp-2025-Summer-Hackathon/maroon-socket/tree/main"
                                     target="_blank"
                                     rel="noreferrer"
-                                    aria-label="Instagram"
                                     className="text-white hover:text-[#dfff00] transition-colors"
+                                    aria-label="GitHub"
                                 >
-                                    <FaGithub size={28} />
+                                    <FaGithub size={24} />
                                 </a>
                                 <a
                                     href="/"
                                     target="_blank"
                                     rel="noreferrer"
+                                    className="text-white hover:text-[#dfff00] transition-colors"
                                     aria-label="Discord"
-                                    className="text-white hover:text-[#dfff00] transition-colors"
                                 >
-                                    <FaDiscord size={28} />
+                                    <FaDiscord size={24} />
                                 </a>
                                 <a
                                     href="/"
                                     target="_blank"
                                     rel="noreferrer"
-                                    aria-label="Facebook"
                                     className="text-white hover:text-[#dfff00] transition-colors"
+                                    aria-label="YouTube"
                                 >
-                                    <FaYoutube size={28} />
+                                    <FaYoutube size={24} />
                                 </a>
                                 <a
                                     href="/"
                                     target="_blank"
                                     rel="noreferrer"
+                                    className="text-white hover:text-[#dfff00] transition-colors"
                                     aria-label="Reddit"
-                                    className="text-white hover:text-[#dfff00] transition-colors"
                                 >
-                                    <FaReddit size={28} />
+                                    <FaReddit size={24} />
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    {/* Copyright Row */}
-                    <div className="flex w-full justify-center">
-                        <div className="mt-16 pt-5 border-t w-11/12 lg:w-3/5 border-gray-300">
-                            <p className="text-center">
-                                Made with 💚 for the&nbsp;
-                                <Link
-                                    to="https://www.freecodecamp.org/"
-                                    className="hover:underline"
-                                >
-                                    FreeCodeCamp
-                                </Link>{' '}
-                                Hackathon
-                            </p>
-                        </div>
+                    {/* Copyright */}
+                    <div className="w-full border-t border-gray-300 pt-6 mt-6 text-center">
+                        <p className="text-white text-sm">
+                            Made with 💚 for the{' '}
+                            <Link
+                                to="https://www.freecodecamp.org/"
+                                className="hover:underline"
+                            >
+                                FreeCodeCamp
+                            </Link>{' '}
+                            Hackathon
+                        </p>
                     </div>
                 </div>
             </div>

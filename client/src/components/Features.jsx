@@ -29,9 +29,9 @@ const plantPalFeatures = [
 
 const Features = () => {
     return (
-        <section className="h-[110vh] w-full flex flex-col justify-around items-center gap-7 relative bg-secondary pb-32">
-            <div className="w-full flex flex-col justify-center items-center gap-2 ">
-                <h1 className="text-4xl font-bold font-poppins">
+        <section className="min-h-screen w-full flex flex-col justify-around items-center gap-10 px-4 py-16 bg-secondary relative">
+            <div className="w-full flex flex-col justify-center items-center text-center gap-2">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-poppins">
                     Everything You Need for Happy Plants
                 </h1>
                 <p className="text-base font-poppins text-gray-500">
@@ -39,25 +39,25 @@ const Features = () => {
                     enjoyable.
                 </p>
             </div>
-            <div className="w-3/4 flex justify-center items-center gap-16 ">
-                {plantPalFeatures.map((feat, idx) => {
-                    return (
-                        <div
-                            key={idx}
-                            className={`w-2/5 h-fit  min-h-fit rounded-lg shadow-lg shadow-gray-500 bg-white p-9 flex flex-col justify-center gap-6 duration-500 transition-transform ease-in-out hover:scale-125 cursor-pointer ${idx === 1 ? '-mt-44' : ''}`}
-                        >
-                            <span className="">{feat.icon}</span>
-                            <div className="flex flex-col justify-center gap-3 ">
-                                <h2 className="font-poppins font-bold text-lg ">
-                                    {feat.title}
-                                </h2>
-                                <p className="font-poppins text-gray-500 line-clamp-3 text-sm">
-                                    {feat.description}
-                                </p>
-                            </div>
-                        </div>
-                    );
-                })}
+
+            {/* Feature Cards */}
+            <div className="flex flex-wrap justify-around items-stretch gap-6 sm:gap-10 w-full max-w-6xl">
+                {plantPalFeatures.map((feat, idx) => (
+                    <div
+                        key={idx}
+                        className={`flex flex-col justify-around p-6 sm:p-8 bg-white shadow-lg rounded-xl shadow-gray-500 transition-transform duration-500 ease-in-out hover:scale-105 cursor-pointer basis-[90%] sm:basis-[45%] lg:basis-[30%] ${
+                            idx === 1 ? 'sm:mt-0 lg:-mt-24' : ''
+                        }`}
+                    >
+                        <div className="text-3xl mb-4">{feat.icon}</div>
+                        <h2 className="text-lg font-bold font-poppins mb-2">
+                            {feat.title}
+                        </h2>
+                        <p className="text-sm text-gray-500 font-poppins line-clamp-3">
+                            {feat.description}
+                        </p>
+                    </div>
+                ))}
             </div>
         </section>
     );
