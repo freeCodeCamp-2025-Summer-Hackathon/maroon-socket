@@ -1,21 +1,40 @@
+import { useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { getAllPlants } from '../services/plantService.js';
 
-// Just for testing
-const plants = [
-    {
-        name: 'Peace Lily',
-        url: 'https://images.unsplash.com/photo-1593691509543-c55fb32d8de5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVhY2UlMjBsaWx5fGVufDB8fDB8fHww',
-        notes: 'Beautiful flowering plant that thrives in low light and improves indoor air quality.'
-    },
-    {
-        name: 'Fiddle Leaf Fig',
-        url: 'https://images.unsplash.com/photo-1545239705-1564e58b9e4a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmlkZGxlJTIwbGVhZiUyMGZpZ3xlbnwwfHwwfHx8MA%3D%3D',
-        notes: 'Popular for its large, glossy leaves, ideal for adding a modern touch to interiors.'
-    }
-];
 
 const MyPlants = () => {
+    const [plants, setPlants] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchPlants = async () => {
+            try {
+                const result = await getAllPlants();
+                if (result.success) {
+                    setPlants(result.data);
+                }
+            } catch (error) {
+                console.error('Error fetching plants:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPlants();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="bg-white w-full h-screen rounded-md p-8 flex flex-col justify-center items-start gap-14 mt-32">
+                <div className="w-full h-full flex justify-center items-center">
+                    <p>Loading your plants...</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="bg-white w-full h-screen rounded-md p-8 flex flex-col justify-center items-start gap-14 mt-32">
             <div className="w-full h-full flex justify-start gap-7 ">
@@ -27,7 +46,8 @@ const MyPlants = () => {
                         >
                             <div className="w-44 h-48 rounded-md">
                                 <img
-                                    src={plant.url}
+                                    src={plant.image_url || 'https://via.placeholder.com/200x200/4ade80/ffffff?text=Plant'}
+                                    alt={plant.name}
                                     className="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110 "
                                 />
                             </div>
