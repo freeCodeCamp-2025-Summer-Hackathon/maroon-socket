@@ -47,7 +47,9 @@ const CommentInputBox = ({ postId, setAllComments }) => {
                     Post Comment
                 </button>
             </div>
-            <ErrorMessage message={errors?.content}></ErrorMessage>
+            <ErrorMessage
+                message={errors?.content || errors?.message}
+            ></ErrorMessage>
         </>
     );
 };
