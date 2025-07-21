@@ -18,7 +18,13 @@ const PostCard = ({ post, fullContent = false }) => {
             {/** TITLE and DESCRIPTION */}
             <div className="flex flex-col w-full px-8 gap-4">
                 <h2 className="text-lg font-poppins font-semibold">
-                    {post.title}
+                    <Link
+                        to={`/community/${post.id}`}
+                        state={post}
+                        className="hover:text-blue-700"
+                    >
+                        {post.title}
+                    </Link>
                 </h2>
                 <div className="w-full h-fit bg-gray-200 p-4 rounded-md">
                     <p className="text-base">
@@ -27,7 +33,7 @@ const PostCard = ({ post, fullContent = false }) => {
                             : post?.content.slice(0, maxLength)}
                         {!fullContent && isLong && (
                             // Change the path accordingly
-                            <Link to={`/`}>
+                            <Link to={`/community/${post.id}`} state={post}>
                                 <span className="font-bold text-black">
                                     ......
                                 </span>
