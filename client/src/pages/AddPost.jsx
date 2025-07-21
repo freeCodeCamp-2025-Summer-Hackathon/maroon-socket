@@ -1,21 +1,39 @@
 import { useState } from 'react';
 import { AiTwotoneCloseSquare } from 'react-icons/ai';
+import ErrorMessage from '../components/ErrorMessage';
+import { createPost, getAllPosts } from '../services/postService';
 
-const AddPost = ({ onClose }) => {
-    const [postType, setPostType] = useState('');
+const postOptions = ['question', 'tip'];
+
+const AddPost = ({ onClose, setPosts }) => {
+    const [postType, setPostType] = useState(postOptions[0]);
     const [postFields, setPostFields] = useState({
         title: '',
         content: ''
     });
-    const postOptions = ['Question', 'Tip'];
-    function handleSubmit(e) {
+    const [errors, setErrors] = useState({});
+
+    async function handleSubmit(e) {
         e.preventDefault();
-        if (!postType || !postFields.title || !postFields.content) {
-            alert('Please provide Post Type, title and description');
-            return false;
+        try {
+            const res = await createPost({ ...postFields, tag: postType });
+
+            if (res.success === false && res.errorType === 'VALIDATION_ERROR')
+                setErrors(res.errors);
+            else if (
+                res.success === false &&
+                res.errorType === 'APPLICATION_ERROR'
+            )
+                setErrors({ message: res.message });
+            else if (res.success === true) {
+                const allPosts = await getAllPosts();
+                setPosts(allPosts.data);
+                onClose();
+            }
+        } catch (error) {
+            console.log(error);
+            alert('something bad has happened');
         }
-        console.log(postType);
-        console.log(postFields);
     }
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-700 ease-out z-50 h-full flex flex-col justify-center items-center py-16 px-4 space-y-11 ">
@@ -53,9 +71,6 @@ const AddPost = ({ onClose }) => {
                                 onChange={(e) => setPostType(e.target.value)}
                                 className="w-full focus:outline-none rounded-lg p-3 text-gray-700 bg-[#F2F5F2] bg-[length:24px_24px] bg-position-[down_4px_center]"
                             >
-                                <option value="" disabled>
-                                    Select a post type
-                                </option>
                                 {postOptions.map((option) => (
                                     <option key={option} value={option}>
                                         {option}
@@ -63,6 +78,7 @@ const AddPost = ({ onClose }) => {
                                 ))}
                             </select>
                         </div>
+                        <ErrorMessage message={errors?.tag}></ErrorMessage>
                     </div>
                     <div className="flex flex-col space-y-2">
                         <label
@@ -85,6 +101,7 @@ const AddPost = ({ onClose }) => {
                             placeholder="Title of the Post"
                             className="w-full rounded-lg p-3 text-gray-700 bg-[#F2F5F2] placeholder:font-poppins placeholder:text-gray-400 focus:outline-green-800"
                         />
+                        <ErrorMessage message={errors?.title}></ErrorMessage>
                     </div>
                     <div className="flex flex-col space-y-2">
                         <label
@@ -107,6 +124,9 @@ const AddPost = ({ onClose }) => {
                             rows="4"
                             className="w-full rounded-lg p-3 text-gray-700 bg-[#F2F5F2] placeholder:font-poppins placeholder:text-gray-400 focus:outline-green-800"
                         />
+                        <ErrorMessage
+                            message={errors?.content || errors?.message}
+                        ></ErrorMessage>
                     </div>
                     <div className="w-full py-4 flex">
                         <button

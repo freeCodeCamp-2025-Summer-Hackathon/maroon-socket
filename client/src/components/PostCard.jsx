@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const PostCard = ({ post, fullContent = false }) => {
     const maxLength = 300;
-    const isLong = post?.description.length > maxLength;
+    const isLong = post?.content.length > maxLength;
 
     return (
         <div className="w-full h-fit rounded-md shadow shadow-gray-400 px-4 md:px-8 py-14 bg-white relative ">
@@ -12,7 +12,7 @@ const PostCard = ({ post, fullContent = false }) => {
                 <span aria-label="User-icon">
                     <FaUser className="size-8 bg-gray-500 rounded-full p-2 text-white" />
                 </span>
-                <p className="font-semibold">{post.userName}</p>
+                <p className="font-semibold">{post.user.username}</p>
             </div>
 
             {/** TITLE and DESCRIPTION */}
@@ -23,8 +23,8 @@ const PostCard = ({ post, fullContent = false }) => {
                 <div className="w-full h-fit bg-gray-200 p-4 rounded-md">
                     <p className="text-base">
                         {fullContent
-                            ? post?.description
-                            : post?.description.slice(0, maxLength)}
+                            ? post?.content
+                            : post?.content.slice(0, maxLength)}
                         {!fullContent && isLong && (
                             // Change the path accordingly
                             <Link to={`/`}>
@@ -43,11 +43,9 @@ const PostCard = ({ post, fullContent = false }) => {
             {/** TAG CONTAINER */}
             <span
                 aria-label={`Post category: ${post.tag}`}
-                className={`absolute top-20 right-12 md:top-14 md:right-16 px-2 w-24 h-7 flex justify-center items-center rounded-md shadow shadow-gray-400 ${post.tag === 'Tip' ? 'bg-blue-600' : 'bg-green-600'}`}
+                className={`absolute top-20 right-12 md:top-14 md:right-16 px-2 w-24 h-7 flex justify-center items-center rounded-md shadow shadow-gray-400 ${post.tag === 'tip' ? 'bg-blue-600' : 'bg-green-600'}`}
             >
-                <p className="text-white font-bold">
-                    {post.tag === 'Tip' ? 'Tip' : 'Question'}
-                </p>
+                <p className="text-white font-bold">{post.tag}</p>
             </span>
         </div>
     );
