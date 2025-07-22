@@ -3,7 +3,7 @@ import { FaUserPen, FaEnvelope, FaLock } from 'react-icons/fa6';
 import ErrorMessage from './ErrorMessage';
 import { MdLockOutline } from 'react-icons/md';
 import signUp from '../assets/sign_up.png';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { signupUser } from '../services/authService';
 
 function Label({ htmlFor, children }) {

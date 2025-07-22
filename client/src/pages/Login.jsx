@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import { FaUserPen, FaLock } from 'react-icons/fa6';
 import ErrorMessage from '../components/ErrorMessage';
 import signUp from '../assets/sign_up.png';

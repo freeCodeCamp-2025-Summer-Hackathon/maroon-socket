@@ -1,7 +1,7 @@
 import DetailedPostCard from '../components/DetailedPostCard';
 import Comments from '../components/Comments';
 import CommentInputBox from '../components/CommentInputBox';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
 import { getAllComments } from '../services/commentService';
 import { Link } from 'react-router-dom';

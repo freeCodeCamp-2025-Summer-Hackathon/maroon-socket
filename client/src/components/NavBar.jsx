@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Plantlogo from '../assets/logos/green_logo.svg';
 
 function NavBar() {
