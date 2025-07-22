@@ -44,10 +44,10 @@ function Profile() {
 
     return (
         <div className="flex flex-col mt-24 items-center">
-            <h1 className="font-bold">Step 1</h1>
-            <div>
+            <h1 className="font-bold font-poppins text-lg">Step 1</h1>
+            <div className="my-3">
                 <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-2 py-2 px-4 rounded "
+                    className="bg-btn text-white px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-200"
                     onClick={openTelegramForChatId}
                 >
                     Connect Telegram
@@ -58,7 +58,7 @@ function Profile() {
                 This will take you to a new window that will open Telegram.
             </p>
 
-            <h1 className="mt-5 font-bold">Step 2</h1>
+            <h1 className="font-bold font-poppins text-lg mt-5">Step 2</h1>
             <form
                 className="bg-white  rounded px-8 pt-2 pb-8"
                 onSubmit={handleSubmit}
@@ -73,12 +73,12 @@ function Profile() {
                         onChange={(e) => setChatId(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="flex items-center justify-center my-3">
                     <button
+                        className="bg-btn text-white px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-200 w-auto"
                         type="submit"
-                        className="mt-4 bg-green-600 hover:bg-green-700 text-white font-bold w-full py-2 px-4 rounded"
                     >
-                        Submit
+                        Connect Telegram
                     </button>
                 </div>
                 {error && <div className="text-red-600 mt-2">{error}</div>}
