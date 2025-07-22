@@ -13,7 +13,7 @@ cron.schedule('* * * * *', async () => {
     });
 
     for (const plant of plants) {
-        // chefk if any reminder exists for this plant
+        // check if any reminder exists for this plant
         // first time we add a plant, there is a no corresponding reminder record with nextRun..
         const existing = await prisma.reminder.findFirst({
             where: {
@@ -76,15 +76,3 @@ cron.schedule('* * * * *', async () => {
         }
     }
 });
-
-// function getNextRunDate(frequency) {
-//     const now = new Date();
-//     switch (frequency) {
-//         case 'daily':
-//             return new Date(now.setDate(now.getDate() + 1)); //this is in days. use getMinute() for demo day. dont forget!!
-//         case 'weekly':
-//             return new Date(now.setDate(now.getDate() + 7));
-//         default:
-//             return now;
-//     }
-// }
