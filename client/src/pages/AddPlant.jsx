@@ -56,7 +56,7 @@ const AddPlant = () => {
             console.log('Submitting plant data:', newPlant);
             const result = await createPlant(newPlant);
             console.log('Plant creation result:', result);
-            
+
             if (result.success) {
                 setSubmitResult({ type: 'success', data: result.data });
                 // Reset form on success
@@ -67,11 +67,17 @@ const AddPlant = () => {
                     image: null
                 });
             } else {
-                setSubmitResult({ type: 'error', message: result.message || 'Failed to create plant' });
+                setSubmitResult({
+                    type: 'error',
+                    message: result.message || 'Failed to create plant'
+                });
             }
         } catch (error) {
             console.error('Error creating plant:', error);
-            setSubmitResult({ type: 'error', message: 'Network error or server unavailable' });
+            setSubmitResult({
+                type: 'error',
+                message: 'Network error or server unavailable'
+            });
         } finally {
             setIsSubmitting(false);
         }
@@ -206,15 +212,35 @@ const AddPlant = () => {
 
                         {/** Submit Result Display */}
                         {submitResult && (
-                            <div className={`w-full p-3 rounded-lg ${submitResult.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                            <div
+                                className={`w-full p-3 rounded-lg ${submitResult.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
+                            >
                                 {submitResult.type === 'success' ? (
                                     <div>
-                                        <p className="font-semibold">Plant added successfully!</p>
+                                        <p className="font-semibold">
+                                            Plant added successfully!
+                                        </p>
                                         <p>Name: {submitResult.data.name}</p>
                                         {submitResult.data.image_url && (
-                                            <p>Image uploaded: <a href={submitResult.data.image_url} target="_blank" rel="noopener noreferrer" className="underline">View Image</a></p>
+                                            <p>
+                                                Image uploaded:{' '}
+                                                <a
+                                                    href={
+                                                        submitResult.data
+                                                            .image_url
+                                                    }
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="underline"
+                                                >
+                                                    View Image
+                                                </a>
+                                            </p>
                                         )}
-                                        <p>Watering frequency: {submitResult.data.water_freq} days</p>
+                                        <p>
+                                            Watering frequency:{' '}
+                                            {submitResult.data.water_freq} days
+                                        </p>
                                     </div>
                                 ) : (
                                     <p>Error: {submitResult.message}</p>
@@ -236,7 +262,10 @@ const AddPlant = () => {
                                 type="button"
                                 disabled={isSubmitting}
                                 onClick={() => navigate('/userHome')}
-                            > Go to Home </button>
+                            >
+                                {' '}
+                                Go to Home{' '}
+                            </button>
                         </div>
                     </form>
                 </div>

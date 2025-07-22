@@ -7,7 +7,7 @@ async function createPlant(plantData) {
     formData.append('name', plantData.plantName);
     formData.append('note', plantData.notes);
     formData.append('water_freq', plantData.waterFreq);
-    
+
     if (plantData.image) {
         formData.append('image', plantData.image);
     }
@@ -15,7 +15,7 @@ async function createPlant(plantData) {
     const response = await fetch(`${apiUrl}/api/plant`, {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${token}`
+            Authorization: `Bearer ${token}`
         },
         body: formData
     });
@@ -29,7 +29,7 @@ async function getAllPlants() {
     const response = await fetch(`${apiUrl}/api/plant`, {
         method: 'GET',
         headers: {
-            'Authorization': `Bearer ${token}`
+            Authorization: `Bearer ${token}`
         }
     });
 

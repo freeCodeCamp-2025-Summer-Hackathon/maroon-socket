@@ -3,7 +3,6 @@ import { FaPlus } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { getAllPlants } from '../services/plantService.js';
 
-
 const MyPlants = () => {
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -46,7 +45,10 @@ const MyPlants = () => {
                         >
                             <div className="w-44 h-48 rounded-md">
                                 <img
-                                    src={plant.image_url || 'https://via.placeholder.com/200x200/4ade80/ffffff?text=Plant'}
+                                    src={
+                                        plant.image_url ||
+                                        'https://via.placeholder.com/200x200/4ade80/ffffff?text=Plant'
+                                    }
                                     alt={plant.name}
                                     className="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110 "
                                 />
