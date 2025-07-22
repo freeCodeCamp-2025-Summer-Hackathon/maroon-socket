@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import process from 'process';
 
 function Profile() {
     const [chatId, setChatId] = useState('');
@@ -7,7 +6,8 @@ function Profile() {
     const [success, setSuccess] = useState('');
 
     function openTelegramForChatId() {
-        window.open(process.env.TELEGRAM_BOT_URL, '_blank');
+        const apiUrl = import.meta.env.VITE_TELEGRAM_BOT_URL;
+        window.open(apiUrl, '_blank');
         return;
     }
 
