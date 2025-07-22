@@ -32,7 +32,7 @@ function Profile() {
             const data = await res.json();
             console.log(data);
             if (!res.ok) {
-                setError(data.errors.chatId || 'Failed to save Chat ID');
+                setError(data?.errors?.chatId || 'Failed to save Chat ID');
             } else {
                 setSuccess('Chat ID saved successfully!');
             }
