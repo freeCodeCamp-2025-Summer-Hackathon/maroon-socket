@@ -26,7 +26,7 @@ cron.schedule('* * * * *', async () => {
             //calculate nextRun based on water_freq (assuming water_freq is in days).
             // for demo day probably a every minute reminder will be helpful
             const nextRun = new Date();
-            nextRun.setDate(nextRun.getMinutes() + plant.water_freq);
+            nextRun.setMinutes(nextRun.getMinutes() + plant.water_freq);
 
             await prisma.reminder.create({
                 data: {

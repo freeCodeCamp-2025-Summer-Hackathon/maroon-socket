@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import process from 'process';
 
 function Profile() {
     const [chatId, setChatId] = useState('');
@@ -6,8 +7,7 @@ function Profile() {
     const [success, setSuccess] = useState('');
 
     function openTelegramForChatId() {
-        const url = 'https://t.me/plantpal_notify_bot?start=true';
-        window.open(url, '_blank');
+        window.open(process.env.TELEGRAM_BOT_URL, '_blank');
         return;
     }
 
