@@ -18,12 +18,9 @@ const PostCard = ({ post, fullContent = false }) => {
             {/** TITLE and DESCRIPTION */}
             <div className="flex flex-col w-full px-8 gap-4">
                 <h2 className="text-lg font-poppins font-semibold">
-                    <Link
-                        to={`/community/${post.id}`}
-                        state={post}
-                        className="hover:text-blue-700"
-                    >
+                    <Link to={`/community/${post.id}`} state={post}>
                         {post.title}
+                        <span className="absolute inset-0 hover:shadow-2xl"></span>
                     </Link>
                 </h2>
                 <div className="w-full h-fit bg-gray-200 p-4 rounded-md">
@@ -37,7 +34,7 @@ const PostCard = ({ post, fullContent = false }) => {
                                 <span className="font-bold text-black">
                                     ......
                                 </span>
-                                <button className="text-black hover:text-blue-700 underline text-base font-bold cursor-pointer">
+                                <button className="text-black underline text-base font-bold cursor-pointer">
                                     Read More
                                 </button>
                             </Link>
