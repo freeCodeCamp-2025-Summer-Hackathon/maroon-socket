@@ -78,7 +78,7 @@ function Profile() {
                         className="bg-btn text-white px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-200 w-auto"
                         type="submit"
                     >
-                        Connect Telegram
+                        Submit
                     </button>
                 </div>
                 {error && <div className="text-red-600 mt-2">{error}</div>}
