@@ -27,9 +27,5 @@
     "homepage": "https://github.com/freeCodeCamp-2025-Summer-Hackathon/maroon-socket#readme",
     "devDependencies": {
         "prettier": "3.6.2"
-    },
-    "dependencies": {
-        "node-cron": "^4.2.1",
-        "node-telegram-bot-api": "^0.66.0"
     }
 }
