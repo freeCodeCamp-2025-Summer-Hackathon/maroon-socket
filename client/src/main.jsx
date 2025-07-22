@@ -11,6 +11,7 @@ import UserHome from './pages/UserHome.jsx';
 import Community from './pages/Community.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import DetailedPost from './pages/DetailedPost.jsx';
+import Profile from './pages/Profile.jsx';
 
 const router = createBrowserRouter([
     {
@@ -22,7 +23,8 @@ const router = createBrowserRouter([
             { path: '/myPlants', element: <MyPlants /> },
             { path: '/userHome', element: <UserHome /> },
             { path: '/community', element: <Community /> },
-            { path: 'community/:id', element: <DetailedPost /> }
+            { path: 'community/:id', element: <DetailedPost /> },
+            { path: '/profile', element: <Profile /> }
         ]
     },
     { path: '/login', element: <Login /> },
