@@ -5,10 +5,11 @@ export default function PostBtn({ onClick }) {
         <>
             <button
                 onClick={onClick}
-                className="bg-btn flex justify-center gap-2 w-fit md:w-60 px-6 py-2 rounded-md text-white font-semibold text-lg font-poppins"
+                className="bg-btn flex items-center justify-center gap-1 sm:gap-2 px-4 py-2 rounded-md text-white font-semibold text-sm sm:text-base md:text-lg font-poppins w-fit md:w-60"
             >
-                <MdCreate className="self-center" />
-                Create a Post
+                <MdCreate className="text-base sm:text-lg md:text-xl" />
+                <span className="block sm:hidden">Create</span>
+                <span className="hidden sm:block truncate">Create a post</span>
             </button>
         </>
     );
