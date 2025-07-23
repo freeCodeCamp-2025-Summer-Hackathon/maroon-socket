@@ -15,33 +15,45 @@ datasource db {
 }
 
 model User {
-  id            Int       @id @default(autoincrement())
-  fullName      String
-  username      String    @unique
-  email         String    @unique
-  password_hash String
-  createdAt     DateTime  @default(now())
-  Plants        Plants[]
-  Posts         Post[]
-  Comments      Comment[]
+  id               Int        @id @default(autoincrement())
+  fullName         String
+  username         String     @unique
+  email            String     @unique
+  password_hash    String
+  telegram_chat_id String?
+  createdAt        DateTime   @default(now())
+  Plants           Plants[]
+  Posts            Post[]
+  Comments         Comment[]
+  Reminder         Reminder[]
 }
 
 model Plants {
-  id         Int      @id @default(autoincrement())
+  id         Int         @id @default(autoincrement())
   name       String
   note       String?
   image_url  String
   water_freq Int?
-  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
+  user       User        @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
   user_id    Int
-  createdAt  DateTime @default(now())
+  createdAt  DateTime    @default(now())
   waterLogs  WaterLogs[]
+  Reminder   Reminder[]
+}
+
+model Reminder {
+  id       Int      @id @default(autoincrement())
+  user_id  Int
+  plant_id Int
+  nextRun  DateTime
+  user     User     @relation(fields: [user_id], references: [id])
+  plant    Plants   @relation(fields: [plant_id], references: [id])
 }
 
 model WaterLogs {
-  id Int             @id @default(autoincrement())
-  plant Plants       @relation(fields: [plant_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
-  plant_id Int
+  id        Int      @id @default(autoincrement())
+  plant     Plants   @relation(fields: [plant_id], references: [id], onDelete: Cascade, onUpdate: Restrict)
+  plant_id  Int
   wateredAt DateTime @default(now())
 }
 

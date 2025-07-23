@@ -1,38 +1,43 @@
-//import { CiPaperplane } from 'react-icons/ci';
+import PostCard from '../components/PostCard';
 import Comments from '../components/Comments';
 import CommentInputBox from '../components/CommentInputBox';
-
-// dummy post and comments
-const post = {
-    UserName: 'Someone',
-    title: 'Water Conservation Tips',
-    content:
-        'Too much water, soils can become loose and plants can become unstable.'
-};
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getAllComments } from '../services/commentService';
 
 const DetailedPost = () => {
+    const location = useLocation();
+    const postId = location.state.id;
+    const [comments, setComments] = useState([]);
+
+    useEffect(() => {
+        const populatePosts = async () => {
+            try {
+                const res = await getAllComments(postId);
+                setComments(res.data);
+            } catch (error) {
+                console.log(error);
+                alert('someting went wrong');
+            }
+        };
+
+        populatePosts();
+    }, [postId]);
+
     return (
         <div className="flex justify-center p-6">
-            <div className="w-screen h-screen flex flex-col bg-white max-w-fit gap-2">
+            <div className="w-screen h-screen flex flex-col bg-white max-w-fit gap-2 pt-20">
                 {/*Post details*/}
-                <div className="flex flex-col gap-1 mb-2 rounded-md border-2 border-green-600 border-opacity-20 shadow  px-4 m-4">
-                    <div className="flex flex-row gap-2 py-2">
-                        <div className="h-8 w-8 rounded-full text-white font-bold bg-[#3a6b3d] flex items-center justify-center">
-                            {post.UserName.charAt(0).toUpperCase()}
-                        </div>
-                        <h5 className="font-semibold text-base flex items-center">
-                            {post.UserName}
-                        </h5>
-                    </div>
-                    <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
-                    <p className="mb-4 text-gray-700">{post.content}</p>
-                </div>
+                <PostCard post={location.state} fullContent={true}></PostCard>
 
                 {/*Comments section*/}
-                <Comments />
+                <Comments comments={comments} />
 
                 {/*Comment Input Box*/}
-                <CommentInputBox />
+                <CommentInputBox
+                    postId={location.state.id}
+                    setAllComments={setComments}
+                />
             </div>
         </div>
     );
