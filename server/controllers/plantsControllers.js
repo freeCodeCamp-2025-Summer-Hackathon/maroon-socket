@@ -15,7 +15,9 @@ export const getAllPLants = async (req, res, next) => {
             }
         });
 
-        res.status(200).json(new Success('Plants retrieved successfully', plants));
+        res.status(200).json(
+            new Success('Plants retrieved successfully', plants)
+        );
     } catch (error) {
         console.error('Get all plants error:', error);
         next(new ServerError('Failed to retrieve plants'));
@@ -70,7 +72,9 @@ export const createPlant = async (req, res, next) => {
             }
         });
 
-        res.status(201).json(new Success('Plant created successfully', newPlant));
+        res.status(201).json(
+            new Success('Plant created successfully', newPlant)
+        );
     } catch (error) {
         console.error('Create plant error:', error);
         if (error instanceof ApplicationError || error instanceof ServerError) {
@@ -98,7 +102,10 @@ export const logWatering = async (req, res, next) => {
         }
 
         if (plant.user_id !== userId) {
-            throw new ApplicationError('User does not have access to this plant', 403);
+            throw new ApplicationError(
+                'User does not have access to this plant',
+                403
+            );
         }
 
         const waterLog = await prisma.waterLogs.create({
@@ -108,7 +115,9 @@ export const logWatering = async (req, res, next) => {
             }
         });
 
-        res.status(201).json(new Success('Water log created successfully', waterLog));
+        res.status(201).json(
+            new Success('Water log created successfully', waterLog)
+        );
     } catch (error) {
         console.error('Log watering error:', error);
         if (error instanceof ApplicationError || error instanceof ServerError) {
