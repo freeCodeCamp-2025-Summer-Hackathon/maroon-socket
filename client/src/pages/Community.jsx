@@ -24,7 +24,7 @@ const Community = () => {
     }, []);
 
     return (
-        <div className="w-full h-full md:px-12 py-16 flex flex-col justify-center items-center gap-12 relative pt-16 mt-20 bg-secondary">
+        <div className="w-full h-full px-4 md:px-12 py-12 md:py-16 flex flex-col justify-center items-center gap-12 relative mt-20 bg-secondary">
             {/**Post form */}
             {showForm &&
                 createPortal(
@@ -34,21 +34,25 @@ const Community = () => {
                     />,
                     document.body
                 )}
+
             {/** Welcome message */}
-            <div className="flex flex-col justify-center items-center max-md:gap-2 mb-11">
-                <h2 className="font-poppins font-bold text-2xl md:text-4xl">
+            <div className="flex flex-col justify-center items-center text-center gap-2 pb-2 sm:pb-6 sm:mb-8">
+                <h2 className="font-poppins font-bold text-xl sm:text-3xl md:text-4xl">
                     Welcome to the PlantCare Community
                 </h2>
-                <p className=" font-poppins text-sm text-gray-600">
+                <p className="font-poppins text-xs sm:text-lg text-gray-600">
                     Share tips, ask questions, and connect with fellow plant
                     lovers.
                 </p>
             </div>
+
             {/** Create POST Button */}
-            <div className="w-5/6 flex justify-end">
+            <div className="w-full max-w-5xl flex justify-end">
                 <PostBtn onClick={() => setShowForm(true)} />
             </div>
-            <div className=" flex flex-col w-5/6 h-fit justify-center items-center gap-10 ">
+
+            {/** Post Cards */}
+            <div className="w-full max-w-5xl flex flex-col gap-8 items-center">
                 {posts.map((post) => {
                     return <PostCard key={post.id} post={post} />;
                 })}

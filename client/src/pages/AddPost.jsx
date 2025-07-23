@@ -37,7 +37,7 @@ const AddPost = ({ onClose, setPosts }) => {
     }
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-700 ease-out z-50 h-full flex flex-col justify-center items-center py-16 px-4 space-y-11 ">
-            <div className="w-full max-w-2xl px-8 py-4 space-y-8 shadow shadow-gray-500 bg-secondary rounded-md">
+            <div className="w-[95vw] sm:w-full max-w-2xl px-4 sm:px-8 py-4 space-y-8 shadow shadow-gray-500 bg-secondary rounded-md">
                 <div className="flex flex-col space-y-4">
                     <button
                         className="self-end cursor-pointer"
@@ -46,7 +46,7 @@ const AddPost = ({ onClose, setPosts }) => {
                     >
                         <AiTwotoneCloseSquare className="text-3xl text-[#2C6A4E]" />
                     </button>
-                    <h1 className="text-center text-3xl font-bold text-[#2C6A4E]">
+                    <h1 className="text-center text-2xl sm:text-3xl font-bold text-[#2C6A4E]">
                         Create Post
                     </h1>
                 </div>
@@ -59,7 +59,7 @@ const AddPost = ({ onClose, setPosts }) => {
                     <div className="flex flex-col space-y-2">
                         <label
                             htmlFor="post-Type"
-                            className="block mb-1 font-medium text-gray-700"
+                            className="block mb-1 text-sm sm:text-xl font-medium text-gray-700"
                         >
                             Post Type:
                         </label>
@@ -69,7 +69,7 @@ const AddPost = ({ onClose, setPosts }) => {
                                 name="postType"
                                 value={postType}
                                 onChange={(e) => setPostType(e.target.value)}
-                                className="w-full focus:outline-none rounded-lg p-3 text-gray-700 bg-[#F2F5F2] bg-[length:24px_24px] bg-position-[down_4px_center]"
+                                className="w-full text-sm sm:text-md focus:outline-none rounded-lg p-3 text-gray-700 bg-[#F2F5F2] bg-[length:24px_24px] bg-position-[down_4px_center]"
                             >
                                 {postOptions.map((option) => (
                                     <option key={option} value={option}>
@@ -83,7 +83,7 @@ const AddPost = ({ onClose, setPosts }) => {
                     <div className="flex flex-col space-y-2">
                         <label
                             htmlFor="title"
-                            className="block mb-1 font-medium text-gray-700"
+                            className="block mb-1 text-sm sm:text-xl font-medium text-gray-700"
                         >
                             Title:
                         </label>
@@ -99,14 +99,14 @@ const AddPost = ({ onClose, setPosts }) => {
                             }}
                             value={postFields.title}
                             placeholder="Title of the Post"
-                            className="w-full rounded-lg p-3 text-gray-700 bg-[#F2F5F2] placeholder:font-poppins placeholder:text-gray-400 focus:outline-green-800"
+                            className="w-full text-sm sm:text-lg rounded-lg p-3 text-gray-700 bg-[#F2F5F2] placeholder:font-poppins placeholder:text-gray-400 focus:outline-green-800"
                         />
                         <ErrorMessage message={errors?.title}></ErrorMessage>
                     </div>
                     <div className="flex flex-col space-y-2">
                         <label
                             htmlFor="description"
-                            className="block mb-1 font-medium text-gray-700"
+                            className="block mb-1 text-sm sm:text-xl font-medium text-gray-700"
                         >
                             Description:
                         </label>
@@ -122,7 +122,7 @@ const AddPost = ({ onClose, setPosts }) => {
                             }}
                             value={postFields.content}
                             rows="4"
-                            className="w-full rounded-lg p-3 text-gray-700 bg-[#F2F5F2] placeholder:font-poppins placeholder:text-gray-400 focus:outline-green-800"
+                            className="w-full text-xs sm:text-base rounded-lg p-3 text-gray-700 bg-[#F2F5F2] placeholder:font-poppins placeholder:text-gray-400 focus:outline-green-800"
                         />
                         <ErrorMessage
                             message={errors?.content || errors?.message}
@@ -131,7 +131,7 @@ const AddPost = ({ onClose, setPosts }) => {
                     <div className="w-full py-4 flex">
                         <button
                             type="submit"
-                            className="w-full rounded-full bg-[#2C6A4E] py-3 font-bold text-white transition-colors hover:bg-opacity-90 text-xl focus:outline-none"
+                            className="w-full rounded-full bg-[#2C6A4E] py-3 font-bold text-white transition-colors hover:bg-opacity-90 text-base sm:text-xl focus:outline-none"
                         >
                             Post
                         </button>
