@@ -3,7 +3,6 @@ import Plantlogo from '../assets/logos/green_logo.svg';
 
 function NavBar() {
     return (
-
         <nav className="bg-white shadow-md flex items-center fixed top-0 left-0 w-full z-50">
             <div className="w-full flex justify-between items-center px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center">
@@ -22,7 +21,6 @@ function NavBar() {
                         <Link to={'/userHome'}>My Plants</Link>
                     </li>
                     <li className="hover:underline underline-offset-8 font-semibold font-poppins">
-
                         <Link to="/community">Community</Link>
                     </li>
                     <li className="hover:underline underline-offset-8 font-semibold font-poppins">
