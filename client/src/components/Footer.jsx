@@ -1,6 +1,6 @@
 import '../index.css';
 import logo from '../assets/logos/white_logo.svg';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import {
     FaInstagram,
     FaDiscord,

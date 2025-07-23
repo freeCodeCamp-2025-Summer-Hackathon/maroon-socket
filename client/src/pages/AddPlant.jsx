@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { FiUpload } from 'react-icons/fi';
 import plantPotIcon2 from '../assets/plant-pot2.png';
 import { createPlant } from '../services/plantService.js';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const AddPlant = () => {
     const [newPlant, setNewPlant] = useState({

@@ -1,6 +1,6 @@
 import NavBar from '../components/NavBar.jsx';
 import hero from '../assets/hero.png';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Footer from '../components/Footer.jsx';
 import Features from '../components/Features.jsx';
 import quote from '../assets/quote.png';
