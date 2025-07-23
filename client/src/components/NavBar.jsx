@@ -18,6 +18,9 @@ function NavBar() {
                         <Link to={'/'}>Home</Link>
                     </li>
                     <li className="hover:underline underline-offset-8 font-semibold font-poppins">
+                        <Link to={'/userHome'}>My Plants</Link>
+                    </li>
+                    <li className="hover:underline underline-offset-8 font-semibold font-poppins">
                         <Link to="/community">Community</Link>
                     </li>
                     <li className="hover:underline underline-offset-8 font-semibold font-poppins">

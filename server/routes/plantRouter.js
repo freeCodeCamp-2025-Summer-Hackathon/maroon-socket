@@ -6,12 +6,14 @@ import {
 } from '../controllers/plantsControllers.js';
 import requireAuth from '../middleware/requireAuth.js';
 import upload from '../middleware/upload.js';
+import { validate } from '../middleware/validation.js';
+import { plantSchema } from 'shared/schemas/index.js';
 const router = express.Router();
 
 router.use(requireAuth);
 
 router.get('/', getAllPLants);
-router.post('/', upload.single('image'), createPlant);
+router.post('/', upload.single('image'), validate(plantSchema), createPlant);
 
 router.post('/:plantId/water', logWatering);
 
