@@ -3,26 +3,29 @@ import Plantlogo from '../assets/logos/green_logo.svg';
 
 function NavBar() {
     return (
-        <nav className="bg-white shadow-md flex items-center p-6 fixed top-0 left-0 w-full z-50">
-            <div className="w-full flex justify-between items-center px-8">
-                <div className="w-28 flex justify-center items-center">
+
+        <nav className="bg-white shadow-md flex items-center fixed top-0 left-0 w-full z-50">
+            <div className="w-full flex justify-between items-center px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center">
                     <img
-                        alt="PlantPal Logo"
                         src={Plantlogo}
-                        className="object-cover w-full h-7"
+                        alt="Plant Logo"
+                        className="w-24 lg:w-28 py-4"
                     />
                 </div>
-                <ul className=" flex gap-5 px-20 text-gray-600">
-                    <li className="hover:underline underline-offset-8 font-semibold font-poppins text-primary ">
+
+                <ul className="flex gap-3 md:gap-5 lg:px-20 text-gray-600">
+                    <li className="hover:underline underline-offset-8 font-semibold font-poppins text-primary">
                         <Link to={'/'}>Home</Link>
                     </li>
-                    <li className="hover:underline underline-offset-8 font-semibold font-poppins text-primary ">
+                    <li className="hover:underline underline-offset-8 font-semibold font-poppins">
                         <Link to={'/userHome'}>My Plants</Link>
                     </li>
-                    <li className=" hover:underline underline-offset-8 font-semibold font-poppins ">
+                    <li className="hover:underline underline-offset-8 font-semibold font-poppins">
+
                         <Link to="/community">Community</Link>
                     </li>
-                    <li className="hover:underline underline-offset-8 font-semibold font-poppins  ">
+                    <li className="hover:underline underline-offset-8 font-semibold font-poppins">
                         <Link to="/login">Login</Link>
                     </li>
                 </ul>

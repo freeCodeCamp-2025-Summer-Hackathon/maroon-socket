@@ -4,3 +4,4 @@ export * from './plantSchema.js';
 export * from './util.js';
 export * from './postSchema.js';
 export * from './commentSchema.js';
+export * from './chatIdSchema.js';
