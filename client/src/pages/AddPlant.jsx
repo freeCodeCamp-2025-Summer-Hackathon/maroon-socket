@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const AddPlant = () => {
     const [newPlant, setNewPlant] = useState({
         plantName: '',
-        notes: '',
+        note: '',
         waterFreq: '',
         image: null
     });
@@ -62,7 +62,7 @@ const AddPlant = () => {
                 // Reset form on success
                 setNewPlant({
                     plantName: '',
-                    notes: '',
+                    note: '',
                     waterFreq: '',
                     image: null
                 });
@@ -130,7 +130,7 @@ const AddPlant = () => {
                         </div>
                         <div className=" flex flex-col justify-center items-start gap-1">
                             <label
-                                htmlFor="notes"
+                                htmlFor="note"
                                 className="font-semibold text-lg text-white"
                             >
                                 Notes
@@ -138,16 +138,16 @@ const AddPlant = () => {
                             <textarea
                                 className="border-none w-full px-3 py-2 text-base rounded-lg shadow-md shadow-black focus:outline-none"
                                 rows={4}
-                                id="notes"
+                                id="note"
                                 placeholder="Write anything about your plant..."
                                 onChange={(e) => {
                                     setNewPlant({
                                         ...newPlant,
-                                        notes: e.target.value
+                                        note: e.target.value
                                     });
                                 }}
-                                value={newPlant.notes}
-                                name="notes"
+                                value={newPlant.note}
+                                name="note"
                                 required
                             />
                         </div>

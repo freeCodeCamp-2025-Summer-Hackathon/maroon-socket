@@ -5,7 +5,7 @@ async function createPlant(plantData) {
 
     const formData = new FormData();
     formData.append('name', plantData.plantName);
-    formData.append('note', plantData.notes);
+    formData.append('note', plantData.note);
     formData.append('water_freq', plantData.waterFreq);
 
     if (plantData.image) {
