@@ -1,10 +1,9 @@
 import DetailedPostCard from '../components/DetailedPostCard';
 import Comments from '../components/Comments';
 import CommentInputBox from '../components/CommentInputBox';
-import { useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
 import { getAllComments } from '../services/commentService';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 import { FaArrowLeft } from 'react-icons/fa6';
 
 const DetailedPost = () => {
