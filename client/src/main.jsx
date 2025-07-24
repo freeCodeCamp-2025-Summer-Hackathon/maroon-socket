@@ -13,11 +13,13 @@ import LandingPage from './pages/LandingPage.jsx';
 import DetailedPost from './pages/DetailedPost.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import Profile from './pages/Profile.jsx';
+import ErrorPage from './pages/ErrorPage.jsx';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
+        errorElement: <ErrorPage/>,
         children: [
             { path: '/', element: <LandingPage /> },
             {
