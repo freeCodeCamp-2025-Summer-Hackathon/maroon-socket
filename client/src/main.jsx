@@ -11,6 +11,7 @@ import UserHome from './pages/UserHome.jsx';
 import Community from './pages/Community.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import DetailedPost from './pages/DetailedPost.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 import Profile from './pages/Profile.jsx';
 
 const router = createBrowserRouter([
@@ -19,12 +20,43 @@ const router = createBrowserRouter([
         element: <App />,
         children: [
             { path: '/', element: <LandingPage /> },
-            { path: '/addPlant', element: <AddPlant /> },
-            { path: '/myPlants', element: <MyPlants /> },
-            { path: '/userHome', element: <UserHome /> },
-            { path: '/community', element: <Community /> },
+            {
+                path: '/addPlant',
+                element: (
+                    <ProtectedRoute>
+                        <AddPlant />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: '/myPlants',
+                element: (
+                    <ProtectedRoute>
+                        <MyPlants />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: '/userHome',
+                element: (
+                    <ProtectedRoute>
+                        <UserHome />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: '/community',
+                element: <Community />
+            },
             { path: 'community/:id', element: <DetailedPost /> },
-            { path: '/profile', element: <Profile /> }
+            {
+                path: '/profile',
+                element: (
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                )
+            }
         ]
     },
     { path: '/login', element: <Login /> },
