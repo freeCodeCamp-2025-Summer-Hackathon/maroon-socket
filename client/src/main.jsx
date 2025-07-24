@@ -58,11 +58,11 @@ const router = createBrowserRouter([
                         <Profile />
                     </ProtectedRoute>
                 )
-            }
+            },
+            { path: '/login', element: <Login /> },
+            { path: '/signup', element: <SignUp /> }
         ]
-    },
-    { path: '/login', element: <Login /> },
-    { path: '/signup', element: <SignUp /> }
+    }
 ]);
 
 createRoot(document.getElementById('root')).render(
