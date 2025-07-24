@@ -38,9 +38,11 @@ function NavBar() {
                         </li>
                     ) : null}
 
-                    <li className="hover:underline underline-offset-8 font-semibold font-poppins">
-                        <Link to="/login">Login</Link>
-                    </li>
+                    {isLoggedIn ? null : (
+                        <li className="hover:underline underline-offset-8 font-semibold font-poppins">
+                            <Link to="/login">Login</Link>
+                        </li>
+                    )}
                 </ul>
             </div>
         </nav>
