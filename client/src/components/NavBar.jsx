@@ -26,17 +26,22 @@ function NavBar() {
                     <li className="hover:underline underline-offset-8 font-semibold font-poppins text-primary">
                         <Link to={'/'}>Home</Link>
                     </li>
-                    <li className="hover:underline underline-offset-8 font-semibold font-poppins">
-                        <Link to={'/userHome'}>My Plants</Link>
-                    </li>
+
+                    {isLoggedIn ? (
+                        <>
+                            {' '}
+                            <li className="hover:underline underline-offset-8 font-semibold font-poppins">
+                                <Link to={'/userHome'}>My Plants</Link>
+                            </li>
+                            <li className="hover:underline underline-offset-8 font-semibold font-poppins">
+                                <Link to="/profile">Profile</Link>
+                            </li>{' '}
+                        </>
+                    ) : null}
+
                     <li className="hover:underline underline-offset-8 font-semibold font-poppins">
                         <Link to="/community">Community</Link>
                     </li>
-                    {isLoggedIn ? (
-                        <li className="hover:underline underline-offset-8 font-semibold font-poppins">
-                            <Link to="/profile">Profile</Link>
-                        </li>
-                    ) : null}
 
                     {isLoggedIn ? null : (
                         <li className="hover:underline underline-offset-8 font-semibold font-poppins">
