@@ -10,7 +10,8 @@ function ErrorPage() {
                 </span>
             </h1>
             <p className="text-primary font-poppins text-xl font-medium ">
-                Oops this wasn't supposed to happen!, Let's get you back to&nbsp;
+                Oops this wasn't supposed to happen!, Let's get you back
+                to&nbsp;
                 <Link to="/" className="underline font-semibold">
                     Home
                 </Link>
