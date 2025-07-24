@@ -84,12 +84,10 @@ const AddPlant = () => {
     };
 
     return (
-        <div className="bg-secondary w-full h-full flex justify-center py-6 ">
-            <div className=" w-2/5 h-fit bg-primary px-8 py-12 flex flex-col justify-around items-start gap-5 rounded-md ">
-                <div className=" w-full flex justify-center items-center gap-2">
-                    <h1 className="text-3xl font-semibold text-white pl-4">
-                        Add Plant
-                    </h1>
+        <div className="bg-secondary flex justify-center py-6">
+            <div className="px-8 py-12 flex flex-col justify-around items-start gap-5 rounded-md ">
+                <div className=" w-full flex justify-center items-center gap-2 ">
+                    <h1 className="text-3xl font-semibol pl-4">Add Plant</h1>
                     <span className="size-10">
                         <img
                             alt="plant pot icon"
@@ -99,21 +97,20 @@ const AddPlant = () => {
                     </span>
                 </div>
 
-                {/** Add Plant form */}
                 <div className="w-full flex justify-center items-center">
                     <form
-                        className="flex w-full h-full flex-col justify-center gap-10  rounded-md px-4"
+                        className="flex w-full h-full flex-col justify-center gap-10 rounded-md px-4"
                         onSubmit={handleSubmit}
                     >
                         <div className=" flex flex-col justify-center items-start gap-1">
                             <label
                                 htmlFor="plantName"
-                                className="font-semibold text-lg text-white"
+                                className="font-semibold text-lg "
                             >
                                 Plant Name
                             </label>
                             <input
-                                className="border-none w-full p-3 text-base rounded-lg shadow-md shadow-black focus:outline-none"
+                                className="w-full p-3 text-base rounded-lg border-2 border-btn outline-btn"
                                 type="text"
                                 id="plantName"
                                 value={newPlant.plantName}
@@ -131,12 +128,12 @@ const AddPlant = () => {
                         <div className=" flex flex-col justify-center items-start gap-1">
                             <label
                                 htmlFor="note"
-                                className="font-semibold text-lg text-white"
+                                className="font-semibold text-lg"
                             >
                                 Notes
                             </label>
                             <textarea
-                                className="border-none w-full px-3 py-2 text-base rounded-lg shadow-md shadow-black focus:outline-none"
+                                className="w-full p-3 text-base rounded-lg border-2 border-btn outline-btn"
                                 rows={4}
                                 id="note"
                                 placeholder="Write anything about your plant..."
@@ -154,12 +151,12 @@ const AddPlant = () => {
                         <div className=" flex flex-col justify-center items-start gap-1">
                             <label
                                 htmlFor="waterFreq"
-                                className="font-semibold text-lg text-white"
+                                className="font-semibold text-lg "
                             >
                                 Watering Frequency
                             </label>
                             <select
-                                className="border w-full px-3 py-2 text-base rounded-lg shadow-md shadow-black focus:outline-none"
+                                className="w-full p-3 text-base rounded-lg border-2 border-btn outline-btn"
                                 id="waterFreq"
                                 value={newPlant.waterFreq}
                                 name="waterFreq"
@@ -180,7 +177,7 @@ const AddPlant = () => {
                         <div className="flex flex-col justify-center items-start gap-1 ">
                             <div
                                 id="plantImage"
-                                className="w-40 h-36 p-2 flex justify-center items-center bg-white shadow-black rounded-lg shadow-md"
+                                className="h-36 p-2 flex justify-center items-center w-full text-base rounded-lg border-2 border-btn outline-btn"
                                 onClick={() => imageRef.current.click()}
                             >
                                 {newPlant.image ? (
@@ -205,12 +202,10 @@ const AddPlant = () => {
                                 accept=".png, .jpg, .jpeg"
                                 name="plantImage"
                                 onChange={handleImage}
-                                required
                                 className="hidden"
                             />
                         </div>
 
-                        {/** Submit Result Display */}
                         {submitResult && (
                             <div
                                 className={`w-full p-3 rounded-lg ${submitResult.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
@@ -248,23 +243,22 @@ const AddPlant = () => {
                             </div>
                         )}
 
-                        {/** Submit Container */}
-                        <div className="w-full flex gap-2 justify-center items-center">
+                        <div className="w-full flex gap-4 justify-center items-center">
                             <button
-                                className="border flex justify-center items-center text-lg w-full h-10 p-3 rounded-lg shadow-md text-secondary border-none drop-shadow font-bold bg-btn disabled:opacity-50 transition-colors hover:bg-opacity-80 disabled:cursor-not-allowed"
+                                className="bg-btn text-white mx-6 px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-200"
                                 type="submit"
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? 'Adding...' : 'Add'}
                             </button>
+
                             <button
-                                className="border flex justify-center items-center text-lg w-full h-10 p-3 rounded-lg shadow-md text-primary font-bold drop-shadow transition-colors hover:bg-opacity-80  bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+                                className=" text-black outline outline-btn px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-200"
                                 type="button"
                                 disabled={isSubmitting}
                                 onClick={() => navigate('/userHome')}
                             >
-                                {' '}
-                                Go to Home{' '}
+                                Go to Home
                             </button>
                         </div>
                     </form>

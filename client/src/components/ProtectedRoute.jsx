@@ -7,7 +7,7 @@ function ProtectedRoute({ children }) {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (!token) navigate('/');
+        if (!token) navigate('/login');
         else setIsLoggedIn(true);
     }, [navigate]);
 
