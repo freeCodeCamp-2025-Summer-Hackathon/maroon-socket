@@ -3,7 +3,7 @@ import TelegramBot from 'node-telegram-bot-api';
 const token = process.env.TELEGRAM_BOT_TOKEN;
 //const chatId = ; // You can store per-user too if needed
 
-const bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(token, { polling: false });
 
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
