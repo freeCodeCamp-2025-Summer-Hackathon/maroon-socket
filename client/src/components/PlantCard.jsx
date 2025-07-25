@@ -2,7 +2,7 @@ import React from 'react';
 import { FaDroplet } from 'react-icons/fa6';
 import placeholder from '../assets/placeholder.jpg';
 
-const PlantCard = ({plant, onClick}) => {
+const PlantCard = ({ plant, onClick }) => {
     return (
         <div
             onClick={() => onClick(plant)}
