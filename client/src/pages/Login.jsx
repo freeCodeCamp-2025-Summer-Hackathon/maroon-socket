@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { FaUserPen, FaLock } from 'react-icons/fa6';
 import ErrorMessage from '../components/ErrorMessage';
-import signUp from '../assets/sign_up.png';
+import authHero from '../assets/auth-hero.png';
 import { loginUser } from '../services/authService';
 
 function Label({ htmlFor, children }) {
@@ -82,78 +82,75 @@ function Login() {
     }
 
     return (
-        <div className="bg-primary w-full min-h-screen flex justify-center items-center p-8">
-            <div className="bg-[#FEF7E7] rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full flex">
-                <div className="w-1/2">
-                    <img
-                        src={signUp}
-                        alt="a decorative plant pot"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
+        <div className="flex overflow-clip h-screen w-screen ">
+            <div className="bg-[#FEF7E7] w-1/3 hidden md:flex md:items-center  ">
+                <img
+                    src={authHero}
+                    alt="a decorative plant pot"
+                    className="h-3/4 mt-24"
+                />
+            </div>
 
-                {/* Right Side , Sign up form*/}
-                <div className="w-1/2 p-8 flex flex-col justify-center">
-                    <h2 className="text-3xl font-bold text-[#29433F] mb-8 text-center">
-                        Login
-                    </h2>
-                    <form
-                        className="w-full flex flex-col justify-center items-start gap-4"
-                        onSubmit={handleSubmit}
+            <div className="w-full md:w-2/3 flex md:px-6 flex-col justify-center items-center">
+                <h2 className="text-3xl font-bold text-[#29433F] mb-8 text-left">
+                    Login
+                </h2>
+                <form
+                    className="md:w-1/2 flex flex-col justify-center items-start gap-4"
+                    onSubmit={handleSubmit}
+                >
+                    <Label htmlFor="username">Username/Email:</Label>
+                    <Input
+                        type="text"
+                        id="username"
+                        value={userData.username}
+                        placeholder="johnd"
+                        disabled={loading}
+                        onChange={(e) =>
+                            setUserData({
+                                ...userData,
+                                username: e.target.value
+                            })
+                        }
                     >
-                        <Label htmlFor="username">Username/Email:</Label>
-                        <Input
-                            type="text"
-                            id="username"
-                            value={userData.username}
-                            placeholder="johnd"
-                            disabled={loading}
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    username: e.target.value
-                                })
-                            }
-                        >
-                            <FaUserPen className="text-2xl inline-block text-gray-600" />
-                        </Input>
-                        <ErrorMessage message={errors?.username}></ErrorMessage>
+                        <FaUserPen className="text-2xl inline-block text-gray-600" />
+                    </Input>
+                    <ErrorMessage message={errors?.username}></ErrorMessage>
 
-                        <Label htmlFor="password">Password: </Label>
-                        <Input
-                            type="password"
-                            id="password"
-                            value={userData.password}
-                            placeholder="pass1234"
-                            disabled={loading}
-                            onChange={(e) =>
-                                setUserData({
-                                    ...userData,
-                                    password: e.target.value
-                                })
-                            }
-                        >
-                            <FaLock className="text-xl text-gray-600" />
-                        </Input>
-                        <ErrorMessage message={errors?.password}></ErrorMessage>
+                    <Label htmlFor="password">Password: </Label>
+                    <Input
+                        type="password"
+                        id="password"
+                        value={userData.password}
+                        placeholder="pass1234"
+                        disabled={loading}
+                        onChange={(e) =>
+                            setUserData({
+                                ...userData,
+                                password: e.target.value
+                            })
+                        }
+                    >
+                        <FaLock className="text-xl text-gray-600" />
+                    </Input>
+                    <ErrorMessage message={errors?.password}></ErrorMessage>
 
-                        <button
-                            className="w-30 h-12 p-3 bg-[#29423E] rounded-md text-[#F7FBF7] cursor-pointer mt-2"
-                            type="submit"
-                            disabled={loading}
-                        >
-                            Login
-                        </button>
-                        <ErrorMessage message={errors?.message}></ErrorMessage>
+                    <button
+                        className="bg-btn text-white px-6 py-3 rounded-lg cursor-pointer font-semibold font-poppins hover:scale-110 transition duration-200"
+                        type="submit"
+                        disabled={loading}
+                    >
+                        Login
+                    </button>
+                    <ErrorMessage message={errors?.message}></ErrorMessage>
 
-                        <div className="text-sm flex justify-center items-center gap-1">
-                            Don't have an account?
-                            <div className="text-[#29433F] cursor-pointer">
-                                <Link to="/signup">Sign up</Link>
-                            </div>
+                    <div className="text-sm flex justify-center items-center gap-1">
+                        Don't have an account?
+                        <div className="text-[#29433F] cursor-pointer">
+                            <Link to="/signup">Sign up</Link>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     );
