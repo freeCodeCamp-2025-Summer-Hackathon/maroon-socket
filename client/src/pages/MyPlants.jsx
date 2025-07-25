@@ -12,9 +12,7 @@ const MyPlants = () => {
     const [selectedPlant, setSelectedPlant] = useState(null);
 
     const handleCardClick = (plant) => {
-        console.log(plant);
         setSelectedPlant(plant);
-        console.log(selectedPlant);
     };
 
     const closeModal = () => setSelectedPlant(null);
@@ -61,7 +59,7 @@ const MyPlants = () => {
             {/** Create Plant Button */}
             <div className="w-full max-w-6xl flex justify-end">
                 <Link to="/addPlant">
-                    <PlantBtn onClick={() => setShowForm(true)} />
+                    <PlantBtn />
                 </Link>
             </div>
             <div className="w-full max-w-6xl px-2 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 place-items-center ">
@@ -74,9 +72,9 @@ const MyPlants = () => {
                 ))}
                 {selectedPlant && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                        <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-md relative flex gap-4 flex-col">
+                        <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-md relative flex gap-4 flex-col transform transition-all animate-fade-in">
                             <button
-                                className="absolute top-2 right-3 text-xl font-bold text-gray-600 hover:text-black"
+                                className="absolute top-2 right-3 text-xl font-bold text-gray-600 hover:text-primary"
                                 onClick={closeModal}
                             >
                                 &times;
@@ -89,7 +87,7 @@ const MyPlants = () => {
                                 />
                             </div>
 
-                            <h2 className="text-2xl px-4 font-semibold ">
+                            <h2 className=" text-xl md:text-2xl px-4 font-semibold">
                                 {selectedPlant.name}
                             </h2>
 
@@ -112,8 +110,8 @@ const MyPlants = () => {
                                 </span>
                             </p>
 
-                            <p className="text-sm px-4 text-gray-700">
-                                <span className="font-medium">Notes:</span>{' '}
+                            <p className="text-xs sm:text-sm px-4 text-gray-700">
+                                <span className="font-medium">Note:</span>{' '}
                                 {selectedPlant.note || 'None'}
                             </p>
                         </div>

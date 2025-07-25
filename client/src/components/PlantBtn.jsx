@@ -1,6 +1,6 @@
 import { FaPlus } from 'react-icons/fa6';
 
-export default function PlantBtn({ onClick }) {
+export default function PlantBtn() {
     return (
         <>
             <button
