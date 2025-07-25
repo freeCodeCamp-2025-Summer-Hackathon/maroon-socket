@@ -6,9 +6,17 @@ Repository for the maroon-socket team's work. In this repository we are developi
 
 This project needs a telegram bot to send notifications to user. To create a telegram bot you need to create a telegram accound and message the bot named @Botfather.
 
-Type `/newbot` in its chat to start the process of creating a new bot and follow the instructions. If at some points it tells you that you bot's name should have `bot` at the end of it then make the b capital like this `maroon_Bot` it might otherwise say that the username is already taken.
+Type `/newbot` in its chat to start the process of creating a new bot and follow the instructions. If at some points it tells you that username is already taken then just keep trying until it succeeds.
 
-finishing this setup you should have a url (used in client) to your bot and a token(used in server) for the bot. look at the env files for client and server folders for instructions on setting them.
+sucessfully creating a bot will give you a token and url.
+
+Your token will look something like this:
+`4839XXX812:AAFD39kkdpWt3yXXXXXrgyOLMaJhac60qc`
+Paste it in server's .env for `TELEGRAM_BOT_TOKEN`, look at .env.sample if you need examples.
+
+The url will look something like this:
+`t.me/plantpalremind_bot`
+you need to add `?start=true` to the end and paste it in client .env for `VITE_TELEGRAM_BOT_URL`, look at .env.sample if you need examples.
 
 ## 🚀 Steps to Run
 
