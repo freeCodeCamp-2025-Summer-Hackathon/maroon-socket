@@ -23,7 +23,7 @@ function LandingPage() {
                             PlantPal helps you care for your plants, track
                             progress, and connect with a plant-loving community.
                         </p>
-                        <Link to="/login">
+                        <Link to="/signup">
                             <button className="bg-btn text-white px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-200">
                                 Get Started
                             </button>
