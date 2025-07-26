@@ -154,7 +154,14 @@ function NavBar() {
                         </Link>
                     </li>
 
-                    {loggedIn ? null : (
+                    {loggedIn ? (
+                        <li
+                            className="px-2 hover:underline underline-offset-8 font-semibold font-poppins cursor-pointer"
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </li>
+                    ) : (
                         <li className="hover:bg-gray-50 rounded-md px-2 py-1">
                             <Link
                                 to="/login"
