@@ -69,7 +69,7 @@ const AddPost = ({ onClose, setPosts }) => {
                                 name="postType"
                                 value={postType}
                                 onChange={(e) => setPostType(e.target.value)}
-                                className="w-full text-sm sm:text-md focus:outline-none rounded-lg p-3 text-gray-700 bg-[#F2F5F2] bg-[length:24px_24px] bg-position-[down_4px_center]"
+                                className="w-full text-sm sm:text-md rounded-lg p-3 text-gray-700 bg-[#F2F5F2] bg-[length:24px_24px] bg-position-[down_4px_center]"
                             >
                                 {postOptions.map((option) => (
                                     <option key={option} value={option}>

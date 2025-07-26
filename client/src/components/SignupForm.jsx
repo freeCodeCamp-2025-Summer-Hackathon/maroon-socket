@@ -16,7 +16,7 @@ function Label({ htmlFor, children }) {
 
 function Input({ type, onChange, id, placeholder, value, children }) {
     return (
-        <div className="w-full flex justify-center items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
+        <div className="w-full flex justify-center has-[:focus-visible]:border-primary has-[:focus-visible]:border-[2px] items-center gap-4 rounded-lg border-[1px] border-gray-400 py-3 px-5 shadow">
             {children}
             <input
                 className="w-full border-none bg-transparent focus:outline-none text-gray-500"
