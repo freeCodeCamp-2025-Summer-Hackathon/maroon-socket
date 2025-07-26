@@ -1,11 +1,17 @@
 import { Link, useNavigate } from 'react-router';
 import Plantlogo from '../assets/logos/green_logo.svg';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import AuthContext from './AuthContext';
 
 function NavBar() {
     const { loggedIn, setLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            setLoggedIn(true);
+        }
+    }, []);
 
     function handleLogout() {
         localStorage.removeItem('token');
