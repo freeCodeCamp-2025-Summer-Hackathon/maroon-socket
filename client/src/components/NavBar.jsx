@@ -121,7 +121,7 @@ function NavBar() {
                         </Link>
                     </li>
 
-                    {isLoggedIn ? (
+                    {loggedIn ? (
                         <>
                             <li className="hover:bg-gray-50 rounded-md px-2 py-1">
                                 <Link
@@ -154,7 +154,7 @@ function NavBar() {
                         </Link>
                     </li>
 
-                    {isLoggedIn ? null : (
+                    {loggedIn ? null : (
                         <li className="hover:bg-gray-50 rounded-md px-2 py-1">
                             <Link
                                 to="/login"
