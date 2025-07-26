@@ -1,12 +1,12 @@
 import { Link, useNavigate } from 'react-router';
 import Plantlogo from '../assets/logos/green_logo.svg';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AuthContext from './AuthContext';
 
 function NavBar() {
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
+    const { loggedIn, setLoggedIn } = useContext(AuthContext);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
@@ -28,7 +28,6 @@ function NavBar() {
     const closeMobileMenu = () => {
         setIsMobileMenuOpen(false);
     };
-
 
     return (
         <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
