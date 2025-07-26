@@ -8,20 +8,38 @@ import { getAllPosts } from '../services/postService';
 const Community = () => {
     const [posts, setPosts] = useState([]);
     const [showForm, setShowForm] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredPosts, setFilteredPosts] = useState([]);
 
     useEffect(() => {
         const populatePosts = async () => {
             try {
                 const res = await getAllPosts();
                 setPosts(res.data);
+                setFilteredPosts(res.data);
             } catch (error) {
                 console.log(error);
-                alert('someting went wrong');
+                alert('Something went wrong');
             }
         };
 
         populatePosts();
     }, []);
+
+    useEffect(() => {
+        if (searchTerm.trim() === '') {
+            setFilteredPosts(posts);
+        } else {
+            const filtered = posts.filter(
+                (post) =>
+                    post.content
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                    post.title.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            setFilteredPosts(filtered);
+        }
+    }, [searchTerm, posts]);
 
     return (
         <div className="w-full min-h-screen px-4 md:px-12 py-24 md:py-36 flex flex-col justify-center items-center gap-10 relative bg-secondary">
@@ -46,16 +64,30 @@ const Community = () => {
                 </p>
             </div>
 
-            {/** Create POST Button */}
-            <div className="w-full max-w-5xl flex justify-end">
+            <div className="w-full max-w-5xl flex flex-row md:justify-between gap-6 md:gap-8">
+                {/* Search Input */}
+                <input
+                    type="text"
+                    name="search_posts"
+                    placeholder=" Search posts..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full p-2 rounded-md border border-gray-300 text-xs md:text-base focus:outline-none focus:ring-2 focus:ring-green-600"
+                />
+
+                {/* Create Post Button */}
                 <PostBtn onClick={() => setShowForm(true)} />
             </div>
 
             {/** Post Cards */}
             <div className="w-full max-w-5xl flex flex-col gap-8 items-center">
-                {posts.map((post) => {
-                    return <PostCard key={post.id} post={post} />;
-                })}
+                {filteredPosts.length > 0 ? (
+                    filteredPosts.map((post) => (
+                        <PostCard key={post.id} post={post} />
+                    ))
+                ) : (
+                    <p className="text-gray-500">No posts found.</p>
+                )}
             </div>
         </div>
     );
