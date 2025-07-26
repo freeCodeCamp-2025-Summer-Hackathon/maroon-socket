@@ -84,88 +84,99 @@ const AddPlant = () => {
     };
 
     return (
-        <div className="bg-secondary flex justify-center py-6">
-            <div className="px-8 py-12 flex flex-col justify-around items-start gap-5 rounded-md ">
-                <div className=" w-full flex justify-center items-center gap-2 ">
-                    <h1 className="text-3xl font-semibol pl-4">Add Plant</h1>
-                    <span className="size-10">
-                        <img
-                            alt="plant pot icon"
-                            src={plantPotIcon2}
-                            className="w-full h-full object-cover"
-                        />
-                    </span>
+        <div className="bg-secondary flex justify-center py-6 px-4 md:px-10 lg:px-20 pt-20 sm:pt-24">
+            <div className="px-3 sm:px-6 py-4 sm:py-10 flex flex-col md:flex-row gap-4 md:gap-10 items-start justify-between w-full max-w-6xl rounded-md bg-white shadow-md">
+                {/* Left Column (Heading + Icon) */}
+                <div className="w-full md:w-1/3 flex flex-col items-center md:items-start gap-4">
+                    <div className="w-full flex justify-center md:justify-start items-center gap-2">
+                        <h1 className="text-xl md:text-3xl font-semibold">
+                            Add Plant
+                        </h1>
+                        <span className="size-8 sm:size-10">
+                            <img
+                                alt="plant pot icon"
+                                src={plantPotIcon2}
+                                className="w-full h-full object-cover"
+                            />
+                        </span>
+                    </div>
                 </div>
 
-                <div className="w-full flex justify-center items-center">
+                {/* Right Column (Form) */}
+                <div className="w-full md:w-2/3">
                     <form
-                        className="flex w-full h-full flex-col justify-center gap-10 rounded-md px-4"
+                        className="flex flex-col justify-center gap-4 sm:gap-8"
                         onSubmit={handleSubmit}
                     >
-                        <div className=" flex flex-col justify-center items-start gap-1">
+                        {/* Plant Name */}
+                        <div className="flex flex-col gap-1">
                             <label
                                 htmlFor="plantName"
-                                className="font-semibold text-lg "
+                                className="font-semibold text-base md:text-lg"
                             >
                                 Plant Name
                             </label>
                             <input
-                                className="w-full p-3 text-base rounded-lg border-2 border-btn outline-btn"
+                                className="w-full p-3 text-sm md:text-base rounded-lg border sm:border-2 border-btn outline-btn"
                                 type="text"
                                 id="plantName"
                                 value={newPlant.plantName}
-                                placeholder="e.g-Money plant"
+                                placeholder="e.g - Money plant"
                                 name="plantName"
-                                onChange={(e) => {
+                                onChange={(e) =>
                                     setNewPlant({
                                         ...newPlant,
                                         plantName: e.target.value
-                                    });
-                                }}
+                                    })
+                                }
                                 required
                             />
                         </div>
-                        <div className=" flex flex-col justify-center items-start gap-1">
+
+                        {/* Notes */}
+                        <div className="flex flex-col gap-1">
                             <label
                                 htmlFor="note"
-                                className="font-semibold text-lg"
+                                className="font-semibold text-base md:text-lg"
                             >
                                 Notes
                             </label>
                             <textarea
-                                className="w-full p-3 text-base rounded-lg border-2 border-btn outline-btn"
+                                className="w-full p-3 text-sm md:text-base rounded-lg border sm:border-2 border-btn outline-btn"
                                 rows={4}
                                 id="note"
                                 placeholder="Write anything about your plant..."
-                                onChange={(e) => {
+                                onChange={(e) =>
                                     setNewPlant({
                                         ...newPlant,
                                         note: e.target.value
-                                    });
-                                }}
+                                    })
+                                }
                                 value={newPlant.note}
                                 name="note"
                                 required
                             />
                         </div>
-                        <div className=" flex flex-col justify-center items-start gap-1">
+
+                        {/* Watering Frequency */}
+                        <div className="flex flex-col gap-1">
                             <label
                                 htmlFor="waterFreq"
-                                className="font-semibold text-lg "
+                                className="font-semibold text-base md:text-lg"
                             >
                                 Watering Frequency
                             </label>
                             <select
-                                className="w-full p-3 text-base rounded-lg border-2 border-btn outline-btn"
+                                className="w-full p-3 text-sm md:text-base rounded-lg border sm:border-2 border-btn outline-btn"
                                 id="waterFreq"
                                 value={newPlant.waterFreq}
                                 name="waterFreq"
-                                onChange={(e) => {
+                                onChange={(e) =>
                                     setNewPlant({
                                         ...newPlant,
                                         waterFreq: parseInt(e.target.value)
-                                    });
-                                }}
+                                    })
+                                }
                                 required
                             >
                                 <option>--Select Watering Frequency--</option>
@@ -174,10 +185,12 @@ const AddPlant = () => {
                                 <option value="1">Daily</option>
                             </select>
                         </div>
-                        <div className="flex flex-col justify-center items-start gap-1 ">
+
+                        {/* Upload Image */}
+                        <div className="flex flex-col gap-1">
                             <div
                                 id="plantImage"
-                                className="h-36 p-2 flex justify-center items-center w-full text-base rounded-lg border-2 border-btn outline-btn"
+                                className="h-36 p-2 flex justify-center items-center w-full text-base rounded-lg border sm:border-2 border-btn outline-btn cursor-pointer"
                                 onClick={() => imageRef.current.click()}
                             >
                                 {newPlant.image ? (
@@ -189,12 +202,10 @@ const AddPlant = () => {
                                     </div>
                                 )}
                             </div>
-                            {imageFormatError ? (
-                                <p className="text-sm text-red-500 ">
+                            {imageFormatError && (
+                                <p className="text-sm text-red-500">
                                     Only .png .jpg .webp formats are allowed
                                 </p>
-                            ) : (
-                                ''
                             )}
                             <input
                                 ref={imageRef}
@@ -206,9 +217,14 @@ const AddPlant = () => {
                             />
                         </div>
 
+                        {/* Submit Result */}
                         {submitResult && (
                             <div
-                                className={`w-full p-3 rounded-lg ${submitResult.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
+                                className={`w-full p-3 rounded-lg ${
+                                    submitResult.type === 'success'
+                                        ? 'bg-green-100 text-green-800'
+                                        : 'bg-red-100 text-red-800'
+                                }`}
                             >
                                 {submitResult.type === 'success' ? (
                                     <div>
@@ -243,17 +259,17 @@ const AddPlant = () => {
                             </div>
                         )}
 
-                        <div className="w-full flex gap-4 justify-center items-center">
+                        {/* Action Buttons */}
+                        <div className="w-full flex flex-wrap gap-4 mt-8 justify-center items-center">
                             <button
-                                className="bg-btn text-white mx-6 px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-200"
+                                className="bg-btn text-white px-6 py-3 rounded-lg text-sm md:text-base font-semibold font-poppins outline outline-btn hover:scale-105 transition duration-300 ease-in-out"
                                 type="submit"
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? 'Adding...' : 'Add'}
                             </button>
-
                             <button
-                                className=" text-black outline outline-btn px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-200"
+                                className="text-black outline outline-btn px-6 py-3 rounded-lg text-sm md:text-base font-semibold font-poppins hover:scale-105 transition duration-300"
                                 type="button"
                                 disabled={isSubmitting}
                                 onClick={() => navigate('/userHome')}
