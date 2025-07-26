@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { FaUserPen, FaLock } from 'react-icons/fa6';
 import ErrorMessage from '../components/ErrorMessage';
 import authHero from '../assets/auth-hero.png';
 import { loginUser } from '../services/authService';
+import AuthContext from '../components/AuthContext';
 
 function Label({ htmlFor, children }) {
     return (
@@ -39,6 +40,7 @@ function Login() {
         password: ''
     });
     const navigate = useNavigate();
+    const { setLoggedIn } = useContext(AuthContext);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -72,6 +74,7 @@ function Login() {
                 const token = res.data.token;
                 if (localStorage) {
                     localStorage.setItem('token', token);
+                    setLoggedIn(true);
                     navigate('/userHome');
                 }
             }
