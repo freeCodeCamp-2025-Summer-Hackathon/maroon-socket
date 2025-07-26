@@ -65,7 +65,7 @@ function NavBar() {
                 <button
                     className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1"
                     onClick={toggleMobileMenu}
-                    aria-label="Toggle mobile menu"
+                    aria-label="mobile menu button"
                 >
                     <span
                         className={`block w-6 h-0.5 bg-gray-600 transition-all duration-300 ${

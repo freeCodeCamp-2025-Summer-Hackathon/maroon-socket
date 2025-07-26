@@ -45,7 +45,7 @@ const MyPlants = () => {
     }
 
     return (
-        <div className="w-full h-full px-4 md:px-12 py-24 md:py-36 flex flex-col justify-center items-center gap-10 relative bg-secondary">
+        <div className="w-full min-h-screen px-4 md:px-12 py-24 md:py-36 flex flex-col justify-center items-center gap-10 relative bg-secondary">
             <div className="flex flex-col justify-center items-center text-center gap-2 sm:pb-6 sm:mb-8">
                 <h2 className="font-poppins font-bold text-xl sm:text-3xl md:text-4xl">
                     Your Green Sanctuary

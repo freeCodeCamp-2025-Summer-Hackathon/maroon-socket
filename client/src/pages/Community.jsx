@@ -24,7 +24,7 @@ const Community = () => {
     }, []);
 
     return (
-        <div className="w-full h-full px-4 md:px-12 py-24 md:py-36 flex flex-col justify-center items-center gap-10 relative bg-secondary">
+        <div className="w-full min-h-screen px-4 md:px-12 py-24 md:py-36 flex flex-col justify-center items-center gap-10 relative bg-secondary">
             {/**Post form */}
             {showForm &&
                 createPortal(
