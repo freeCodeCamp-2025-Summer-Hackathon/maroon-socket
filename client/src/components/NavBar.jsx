@@ -1,15 +1,17 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Plantlogo from '../assets/logos/green_logo.svg';
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import AuthContext from './AuthContext';
 
 function NavBar() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { loggedIn, setLoggedIn } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (localStorage.getItem('token')) {
-            setIsLoggedIn(true);
-        }
-    }, []);
+    function handleLogout() {
+        localStorage.removeItem('token');
+        setLoggedIn(false);
+        navigate('/');
+    }
 
     return (
         <nav className="bg-white shadow-md flex items-center fixed top-0 left-0 w-full z-50">
@@ -27,15 +29,14 @@ function NavBar() {
                         <Link to={'/'}>Home</Link>
                     </li>
 
-                    {isLoggedIn ? (
+                    {loggedIn ? (
                         <>
-                            {' '}
                             <li className="hover:underline underline-offset-8 font-semibold font-poppins">
                                 <Link to={'/userHome'}>My Plants</Link>
                             </li>
                             <li className="hover:underline underline-offset-8 font-semibold font-poppins">
                                 <Link to="/profile">Profile</Link>
-                            </li>{' '}
+                            </li>
                         </>
                     ) : null}
 
@@ -43,7 +44,14 @@ function NavBar() {
                         <Link to="/community">Community</Link>
                     </li>
 
-                    {isLoggedIn ? null : (
+                    {loggedIn ? (
+                        <li
+                            className="hover:underline underline-offset-8 font-semibold font-poppins cursor-pointer"
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </li>
+                    ) : (
                         <li className="hover:underline underline-offset-8 font-semibold font-poppins">
                             <Link to="/login">Login</Link>
                         </li>

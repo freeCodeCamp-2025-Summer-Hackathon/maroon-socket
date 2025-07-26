@@ -14,6 +14,7 @@ import DetailedPost from './pages/DetailedPost.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import Profile from './pages/Profile.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
+import { AuthProvider } from './components/AuthContext.jsx';
 
 const router = createBrowserRouter([
     {
@@ -67,6 +68,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <RouterProvider router={router} />
+        <AuthProvider>
+            <RouterProvider router={router} />
+        </AuthProvider>
     </StrictMode>
 );
