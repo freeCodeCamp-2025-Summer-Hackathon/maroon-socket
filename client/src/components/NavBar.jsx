@@ -12,7 +12,7 @@ function NavBar() {
         if (localStorage.getItem('token')) {
             setLoggedIn(true);
         }
-    }, []);
+    }, [setLoggedIn]);
 
     function handleLogout() {
         localStorage.removeItem('token');
