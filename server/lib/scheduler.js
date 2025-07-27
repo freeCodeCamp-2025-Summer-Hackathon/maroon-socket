@@ -1,8 +1,11 @@
-import cron from 'node-cron';
+import { CronJob } from 'cron';
 import prisma from '../lib/prismaClient.js';
 import { sendTelegramMessage } from './telegram/bot.js';
 
-cron.schedule('* * * * *', async () => {
+/**
+ * this function queries the database and sends any pending reminders to user telegram
+ */
+async function sendReminders() {
     const now = new Date().toISOString();
     console.log(`Finding reminders where nextRun is due or past: ${now}`);
 
@@ -38,4 +41,6 @@ cron.schedule('* * * * *', async () => {
             });
         }
     }
-});
+}
+
+new CronJob('* * * * *', sendReminders, null, true);
