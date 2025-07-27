@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaPlus, FaDroplet } from 'react-icons/fa6';
+import { FaDroplet } from 'react-icons/fa6';
 import { Link } from 'react-router';
 import { getAllPlants } from '../services/plantService.js';
 import PlantBtn from '../components/PlantBtn.jsx';
@@ -10,6 +10,8 @@ const MyPlants = () => {
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedPlant, setSelectedPlant] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredPlants, setFilteredPlants] = useState([]);
 
     const handleCardClick = (plant) => {
         setSelectedPlant(plant);
@@ -34,6 +36,17 @@ const MyPlants = () => {
         fetchPlants();
     }, []);
 
+    useEffect(() => {
+        if (searchTerm.trim() === '') {
+            setFilteredPlants(plants);
+        } else {
+            const filtered = plants.filter((plant) =>
+                plant.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            setFilteredPlants(filtered);
+        }
+    }, [searchTerm, plants]);
+
     if (loading) {
         return (
             <div className="bg-white w-full h-screen rounded-md p-8 flex flex-col justify-center items-start gap-14 mt-32">
@@ -56,22 +69,39 @@ const MyPlants = () => {
                 </p>
             </div>
 
-            {/** Create Plant Button */}
-            <div className="w-full max-w-6xl flex justify-end">
+            <div className="w-full max-w-6xl px-2 flex flex-row md:justify-between gap-6 md:gap-8">
+                {/* Search Input */}
+                <input
+                    type="text"
+                    name="search_plant"
+                    placeholder=" Search your plants..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full p-2 rounded-md border border-gray-300 text-xs md:text-base focus:outline-none focus:ring-2 focus:ring-green-600"
+                />
+
+                {/** Create Plant Button */}
                 <Link to="/addPlant">
                     <PlantBtn />
                 </Link>
             </div>
+
             <div className="w-full max-w-6xl px-2 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 place-items-center ">
-                {plants.map((plant) => (
-                    <PlantCard
-                        key={plant.id}
-                        plant={plant}
-                        onClick={handleCardClick}
-                    />
-                ))}
+                {filteredPlants.length > 0 ? (
+                    filteredPlants.map((plant) => (
+                        <PlantCard
+                            key={plant.id}
+                            plant={plant}
+                            onClick={handleCardClick}
+                        />
+                    ))
+                ) : (
+                    <p className="text-gray-500 text-center mt-4">
+                        No plants found.
+                    </p>
+                )}
                 {selectedPlant && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
                         <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-md relative flex gap-4 flex-col transform transition-all animate-fade-in">
                             <button
                                 className="absolute top-2 right-3 text-xl font-bold text-gray-600 hover:text-primary"

@@ -36,7 +36,7 @@ const AddPost = ({ onClose, setPosts }) => {
         }
     }
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-700 ease-out z-50 h-full flex flex-col justify-center items-center py-16 px-4 space-y-11 ">
+        <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm transition-opacity duration-700 ease-out z-50 h-full flex flex-col justify-center items-center py-16 px-4 space-y-11 ">
             <div className="w-[95vw] sm:w-full max-w-2xl px-4 sm:px-8 py-4 space-y-8 shadow shadow-gray-500 bg-secondary rounded-md transform transition-all animate-fade-in">
                 <div className="flex flex-col space-y-4">
                     <button
