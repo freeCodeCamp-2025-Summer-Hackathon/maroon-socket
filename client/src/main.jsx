@@ -32,14 +32,6 @@ const router = createBrowserRouter([
                 )
             },
             {
-                path: '/myPlants',
-                element: (
-                    <ProtectedRoute>
-                        <MyPlants />
-                    </ProtectedRoute>
-                )
-            },
-            {
                 path: '/userHome',
                 element: (
                     <ProtectedRoute>
