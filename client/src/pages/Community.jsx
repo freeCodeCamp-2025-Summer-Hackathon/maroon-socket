@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import PostBtn from '../components/PostBtn';
 import PostCard from '../components/PostCard';
 import AddPost from './AddPost';
 import { getAllPosts } from '../services/postService';
+import AuthContext from '../components/AuthContext';
 
 const Community = () => {
     const [posts, setPosts] = useState([]);
+    const { loggedIn } = useContext(AuthContext);
     const [showForm, setShowForm] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredPosts, setFilteredPosts] = useState([]);
@@ -76,7 +78,7 @@ const Community = () => {
                 />
 
                 {/* Create Post Button */}
-                <PostBtn onClick={() => setShowForm(true)} />
+                {loggedIn && <PostBtn onClick={() => setShowForm(true)} />}
             </div>
 
             {/** Post Cards */}

@@ -1,15 +1,17 @@
 import DetailedPostCard from '../components/DetailedPostCard';
 import Comments from '../components/Comments';
 import CommentInputBox from '../components/CommentInputBox';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getAllComments } from '../services/commentService';
 import { Link, useLocation } from 'react-router';
 import { FaArrowLeft } from 'react-icons/fa6';
+import AuthContext from '../components/AuthContext';
 
 const DetailedPost = () => {
     const location = useLocation();
     const postId = location.state.id;
     const [comments, setComments] = useState([]);
+    const { loggedIn } = useContext(AuthContext);
 
     useEffect(() => {
         const populatePosts = async () => {
@@ -43,10 +45,12 @@ const DetailedPost = () => {
                 <Comments comments={comments} />
 
                 {/* Comment Input Box */}
-                <CommentInputBox
-                    postId={location.state.id}
-                    setAllComments={setComments}
-                />
+                {loggedIn && (
+                    <CommentInputBox
+                        postId={location.state.id}
+                        setAllComments={setComments}
+                    />
+                )}
             </div>
         </div>
     );
