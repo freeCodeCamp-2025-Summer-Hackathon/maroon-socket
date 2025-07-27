@@ -72,6 +72,19 @@ export const createPlant = async (req, res, next) => {
             }
         });
 
+        let nextRun = new Date();
+        if (newPlant.water_freq) {
+            nextRun.setDate(nextRun.getMinutes() + newPlant.water_freq);
+        }
+
+        await prisma.reminder.create({
+            data: {
+                user_id: req.user.id,
+                plant_id: newPlant.id,
+                nextRun
+            }
+        });
+
         res.status(201).json(
             new Success('Plant created successfully', newPlant)
         );
