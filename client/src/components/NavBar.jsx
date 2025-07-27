@@ -1,16 +1,24 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Plantlogo from '../assets/logos/green_logo.svg';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import AuthContext from './AuthContext';
 
 function NavBar() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { loggedIn, setLoggedIn } = useContext(AuthContext);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
-            setIsLoggedIn(true);
+            setLoggedIn(true);
         }
-    }, []);
+    }, [setLoggedIn]);
+
+    function handleLogout() {
+        localStorage.removeItem('token');
+        setLoggedIn(false);
+        navigate('/');
+    }
 
     // Functions to toggle the mobile menu
     const toggleMobileMenu = () => {
@@ -39,7 +47,7 @@ function NavBar() {
                         <Link to={'/'}>Home</Link>
                     </li>
 
-                    {isLoggedIn ? (
+                    {loggedIn ? (
                         <>
                             <li className="hover:underline underline-offset-8 font-semibold font-poppins">
                                 <Link to={'/userHome'}>My Plants</Link>
@@ -54,7 +62,14 @@ function NavBar() {
                         <Link to="/community">Community</Link>
                     </li>
 
-                    {isLoggedIn ? null : (
+                    {loggedIn ? (
+                        <li
+                            className="hover:underline underline-offset-8 font-semibold font-poppins cursor-pointer"
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </li>
+                    ) : (
                         <li className="hover:underline underline-offset-8 font-semibold font-poppins">
                             <Link to="/login">Login</Link>
                         </li>
@@ -106,7 +121,7 @@ function NavBar() {
                         </Link>
                     </li>
 
-                    {isLoggedIn ? (
+                    {loggedIn ? (
                         <>
                             <li className="hover:bg-gray-50 rounded-md px-2 py-1">
                                 <Link
@@ -139,7 +154,14 @@ function NavBar() {
                         </Link>
                     </li>
 
-                    {isLoggedIn ? null : (
+                    {loggedIn ? (
+                        <li
+                            className="px-2 hover:underline underline-offset-8 font-semibold font-poppins cursor-pointer"
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </li>
+                    ) : (
                         <li className="hover:bg-gray-50 rounded-md px-2 py-1">
                             <Link
                                 to="/login"
