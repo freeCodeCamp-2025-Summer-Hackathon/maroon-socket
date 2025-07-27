@@ -179,7 +179,9 @@ const AddPlant = () => {
                                 }
                                 required
                             >
-                                <option>--Select Watering Frequency--</option>
+                                <option value="" disabled>
+                                    Select watering frequency
+                                </option>
                                 <option value="30">Monthly</option>
                                 <option value="7">Weekly</option>
                                 <option value="1">Daily</option>
