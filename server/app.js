@@ -9,6 +9,7 @@ import authRouter from './routes/authRouter.js';
 import plantRouter from './routes/plantRouter.js';
 import postRouter from './routes/postRouter.js';
 import commentRouter from './routes/commentRouter.js';
+import userRouter from './routes/userRouter.js';
 import profileRouter from './routes/profileRouter.js';
 import errorHandler from './errors/errorHandler.js';
 
@@ -31,6 +32,7 @@ app.get('/api/status', (req, res) => {
 });
 
 app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 app.use('/api/plant', plantRouter);
 app.use('/api/post', postRouter);
 app.use('/api/post/:id/comment', commentRouter);

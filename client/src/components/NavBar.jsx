@@ -52,9 +52,6 @@ function NavBar() {
                             <li className="hover:underline underline-offset-8 font-semibold font-poppins">
                                 <Link to={'/userHome'}>My Plants</Link>
                             </li>
-                            <li className="hover:underline underline-offset-8 font-semibold font-poppins">
-                                <Link to="/profile">Profile</Link>
-                            </li>
                         </>
                     ) : null}
 
@@ -130,15 +127,6 @@ function NavBar() {
                                     onClick={closeMobileMenu}
                                 >
                                     My Plants
-                                </Link>
-                            </li>
-                            <li className="hover:bg-gray-50 rounded-md px-2 py-1">
-                                <Link
-                                    to="/profile"
-                                    className="block font-semibold font-poppins"
-                                    onClick={closeMobileMenu}
-                                >
-                                    Profile
                                 </Link>
                             </li>
                         </>

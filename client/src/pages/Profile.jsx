@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Profile() {
+function Profile({ setChatIdPresent }) {
     const [chatId, setChatId] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -35,6 +35,7 @@ function Profile() {
                 setError(data?.errors?.chatId || 'Failed to save Chat ID');
             } else {
                 setSuccess('Chat ID saved successfully!');
+                setChatIdPresent(true);
             }
         } catch (err) {
             console.log(err);
@@ -44,6 +45,11 @@ function Profile() {
 
     return (
         <div className="flex flex-col mt-24 items-center">
+            <p className="pb-4 font-semibold font-poppins">
+                Please connect your telegram first so you can get reminders
+                about your plant
+            </p>
+
             <h1 className="font-bold font-poppins text-lg">Step 1</h1>
             <div className="my-3">
                 <button
