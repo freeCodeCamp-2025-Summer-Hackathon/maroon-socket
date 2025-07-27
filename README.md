@@ -1,8 +1,29 @@
 # maroon-socket
 
-Repository for the maroon-socket team's work. In this repository we are developing a web app that lets you add plants and get notifications to water them via connecting to your telegram. It also has a community section where you can create posts and comment on them.
+<img src="shared/assets/team-banner.png" alt="Team Banner for Maroon Socket" width="500
+" />
 
-## Telegram bot setup
+This is a full-stack web app that lets you add plants and get notifications to water them via connecting to your telegram. It also has a community section where you can create posts and add comments.
+
+<details>
+
+## <summary>Tech Stack</summary>
+
+### Frontend
+
+You can add text within a collapsed section.
+
+You can add an image or a code block, too.
+
+```ruby
+   puts "Hello World"
+```
+
+</details>
+
+## Project Setup
+
+## Reminder Bot setup
 
 This project needs a telegram bot to send notifications to user. To create a telegram bot you need to create a telegram accound and message the bot named @Botfather.
 
