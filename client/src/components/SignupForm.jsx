@@ -98,7 +98,6 @@ function SignupForm({ setSignupSuccess }) {
                                     username: e.target.value
                                 })
                             }
-                            className="text-sm lg:text-base"
                         >
                             <FaUserPen className="text-2xl inline-block text-gray-600" />
                         </Input>
