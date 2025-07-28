@@ -68,7 +68,7 @@ function SignupForm({ setSignupSuccess }) {
     }
 
     return (
-        <div className="flex overflow-clip h-screen w-screen ">
+        <div className="flex overflow-clip h-screen w-screen mt-12 lg:mt-10 ">
             <div className="bg-[#FEF7E7] w-1/3 hidden md:flex md:items-center  ">
                 <img
                     src={authHero}

@@ -4,8 +4,12 @@ import { Link } from 'react-router';
 import Footer from '../components/Footer.jsx';
 import Features from '../components/Features.jsx';
 import quote from '../assets/quote.png';
+import AuthContext from '../components/AuthContext.jsx';
+import { useContext } from 'react';
 
 function LandingPage() {
+    const { loggedIn } = useContext(AuthContext);
+
     return (
         <div className="w-full min-h-screen scroll-smooth" id="home">
             <NavBar />
@@ -23,11 +27,19 @@ function LandingPage() {
                             PlantPal helps you care for your plants, track
                             progress, and connect with a plant-loving community.
                         </p>
-                        <Link to="/signup">
-                            <button className="bg-btn text-white px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-200">
-                                Get Started
-                            </button>
-                        </Link>
+                        {loggedIn ? (
+                            <Link to="/userHome">
+                                <button className="bg-btn text-white px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-500 ease-in-out">
+                                    Get Started
+                                </button>
+                            </Link>
+                        ) : (
+                            <Link to="/signup">
+                                <button className="bg-btn text-white px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-500 ease-in-out">
+                                    Get Started
+                                </button>
+                            </Link>
+                        )}
                     </div>
 
                     {/* SVG Wave */}
@@ -88,11 +100,19 @@ function LandingPage() {
                         <p className="text-base font-poppins text-gray-500">
                             Ask questions, share your green wisdom
                         </p>
-                        <Link to="/login">
-                            <button className="bg-btn text-white px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-200">
-                                Join our green community
-                            </button>
-                        </Link>
+                        {loggedIn ? (
+                            <Link to="/community">
+                                <button className="bg-btn text-white px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-500 ease-in-out">
+                                    Join our green community
+                                </button>
+                            </Link>
+                        ) : (
+                            <Link to="/signup">
+                                <button className="bg-btn text-white px-6 py-3 rounded-lg font-semibold font-poppins hover:scale-110 transition duration-500 ease-in-out">
+                                    Join our green community
+                                </button>
+                            </Link>
+                        )}
                     </div>
                 </section>
             </main>
