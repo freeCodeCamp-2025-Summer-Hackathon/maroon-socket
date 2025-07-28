@@ -104,7 +104,7 @@ Look at `.env.sample` for examples.
 
 ## Project Team
 
-<img src='shared/assets/team-banner.png' alt='Team Banner for Maroon Socket' width=500>
+<img src='shared/images/team-banner.png' alt='Team Banner for Maroon Socket' width=300>
 
 1. Ayushi
 2. Ganesh
